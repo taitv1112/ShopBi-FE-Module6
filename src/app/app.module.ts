@@ -49,6 +49,7 @@ export const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'user-account', component: UserAccountComponent},
   {path: 'change-avatar', component: ChangeAvatarComponent},
+  {path: 'pm', component: PmComponent},
 
   {
     path: 'guide/getting-started',
