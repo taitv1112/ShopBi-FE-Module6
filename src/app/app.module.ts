@@ -43,6 +43,7 @@ import { AdminComponent } from './admin/admin/admin.component';
 import { PmComponent } from './pm/pm/pm.component';
 import { UserComponent } from './user/user/user.component';
 import {ShowListComponent} from './pm/CRUDProduct/show-list/show-list.component';
+import { IndexComponent } from './user/index/index.component';
 
 export const appRoutes: Routes = [
   {path: '', component: HomeComponent, data: {title: 'Home'}},
@@ -53,6 +54,7 @@ export const appRoutes: Routes = [
   {path: 'pm', component: PmComponent},
   {path: 'pm/list', component: ShowListComponent},
   {path: 'admin', component: AdminComponent},
+  {path: 'index', component: UserComponent},
 
   {
     path: 'guide/getting-started',
@@ -63,7 +65,7 @@ export const appRoutes: Routes = [
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, UploadAvatarComponent, ChangeAvatarComponent, AdminComponent, PmComponent, UserComponent,ShowListComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, UploadAvatarComponent, ChangeAvatarComponent, AdminComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent],
   imports: [
     FormsModule,
     HttpClientModule,
