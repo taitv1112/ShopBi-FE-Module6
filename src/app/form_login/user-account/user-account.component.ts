@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -8,15 +8,16 @@ import {Router} from '@angular/router';
 })
 export class UserAccountComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
   }
 
   logOut() {
     window.sessionStorage.clear();
-    this.router.navigate(['login']).then(()=>{
+    this.router.navigate(['login']).then(() => {
       window.location.reload();
-    })
+    });
   }
 }
