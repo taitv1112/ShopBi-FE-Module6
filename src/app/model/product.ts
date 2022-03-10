@@ -8,14 +8,10 @@ export class Product {
   description: string;
   price: number;
   quantity: number;
-  quantitySale: number;
-  // so luong sp da ban
-  quantityMax: number;
-  // so luong toi da co the ban
-  quantityMin: number;
-  // so luong toi thieu co the ban
-  priceSale: number;
-  // gia sau khuyen mai
+  quantitySale: number; // so luong sp da ban
+  quantityMax: number;// so luong toi da co the ban
+  quantityMin: number;// so luong toi thieu co the ban
+  priceSale: number;// gia sau khuyen mai
   coverPhoto: string;
 
   category: Category;
@@ -24,7 +20,7 @@ export class Product {
 
   promotion: Promotion;
 
-  // tslint:disable-next-line:max-line-length
+
   constructor(id: number, name: string, description: string, price: number, quantity: number, quantitySale: number, quantityMax: number, quantityMin: number, priceSale: number, coverPhoto: string, category: Category, user: User, promotion: Promotion) {
     this.id = id;
     this.name = name;
@@ -40,4 +36,6 @@ export class Product {
     this.user = user;
     this.promotion = promotion;
   }
+
+
 }

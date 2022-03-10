@@ -44,6 +44,9 @@ import { PmComponent } from './pm/pm/pm.component';
 import { UserComponent } from './user/user/user.component';
 import {ShowListComponent} from './pm/CRUDProduct/show-list/show-list.component';
 import { IndexComponent } from './user/index/index.component';
+import {EditComponent} from './pm/CRUDProduct/edit/edit.component';
+import { CreateComponent } from './pm/CRUDProduct/create/create.component';
+
 
 export const appRoutes: Routes = [
   {path: '', component: HomeComponent, data: {title: 'Home'}},
@@ -53,6 +56,8 @@ export const appRoutes: Routes = [
   {path: 'change-avatar', component: ChangeAvatarComponent},
   {path: 'pm', component: PmComponent},
   {path: 'pm/list', component: ShowListComponent},
+  {path: 'pm/edit/:id', component: EditComponent},
+  {path: 'pm/create', component: CreateComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'index', component: UserComponent},
 
@@ -65,7 +70,7 @@ export const appRoutes: Routes = [
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, UploadAvatarComponent, ChangeAvatarComponent, AdminComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, UploadAvatarComponent, ChangeAvatarComponent, AdminComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent,EditComponent, CreateComponent],
   imports: [
     FormsModule,
     HttpClientModule,
@@ -82,6 +87,7 @@ export const appRoutes: Routes = [
     MatInputModule,
     NgxAudioPlayerModule,
     AngularFireStorageModule,
+
     AngularFireModule.initializeApp(environment.firebaseConfig),
     // tslint:disable-next-line:max-line-length
     RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, ReactiveFormsModule, MatProgressSpinnerModule, MatPaginatorModule, MatTableModule, MatDialogModule

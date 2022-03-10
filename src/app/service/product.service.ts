@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import * as http from 'http';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Product} from '../model/product';
@@ -27,10 +26,7 @@ export class ProductService {
   public getProductsByPM(idPm: number): Observable<Product[]> {
     this.httpClient.get(this.apilocal + 'index/pm/' + idPm);
   }
-  // @ts-ignore
-  public getProductsByPM(idPm: number): Observable<Product[]> {
-    this.httpClient.get(this.apilocal + 'index/pm/' + idPm);
-  }
+
   // @ts-ignore
   public getProductsBestSeller(): Observable<Product[]> {
     this.httpClient.get(this.apilocal + '/index/bestSale');
