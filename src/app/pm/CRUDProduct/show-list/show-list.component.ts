@@ -24,4 +24,12 @@ export class ShowListComponent implements OnInit {
     })
   }
 
+  delete(id : number){
+    this.http.delete("http://localhost:8080/pm/" + id).subscribe((data)=>{
+      this.getListProduct()
+    })
+  }
+
+
+
 }

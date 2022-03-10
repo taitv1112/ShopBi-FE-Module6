@@ -23,7 +23,7 @@ import {NavBarModule} from './shared/navbar';
 import {FooterModule} from './shared/footer';
 import {RegisterComponent} from './form_login/register/register.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginComponent} from './form_login/login/login.component';
 import {UserAccountComponent} from './form_login/user-account/user-account.component';
@@ -43,6 +43,10 @@ import { AdminComponent } from './admin/admin/admin.component';
 import { PmComponent } from './pm/pm/pm.component';
 import { UserComponent } from './user/user/user.component';
 import {ShowListComponent} from './pm/CRUDProduct/show-list/show-list.component';
+import {EditComponent} from './pm/CRUDProduct/edit/edit.component';
+import {MatInputModule} from '@angular/material/input';
+import { CreateComponent } from './pm/CRUDProduct/create/create.component';
+
 
 export const appRoutes: Routes = [
   {path: '', component: HomeComponent, data: {title: 'Home'}},
@@ -52,6 +56,8 @@ export const appRoutes: Routes = [
   {path: 'change-avatar', component: ChangeAvatarComponent},
   {path: 'pm', component: PmComponent},
   {path: 'pm/list', component: ShowListComponent},
+  {path: 'pm/edit/:id', component: EditComponent},
+  {path: 'pm/create', component: CreateComponent},
   {path: 'admin', component: AdminComponent},
 
   {
@@ -63,7 +69,7 @@ export const appRoutes: Routes = [
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, UploadAvatarComponent, ChangeAvatarComponent, AdminComponent, PmComponent, UserComponent,ShowListComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, UploadAvatarComponent, ChangeAvatarComponent, AdminComponent, PmComponent, UserComponent,ShowListComponent, EditComponent, CreateComponent],
   imports: [
     FormsModule,
     HttpClientModule,
@@ -80,6 +86,7 @@ export const appRoutes: Routes = [
     MatInputModule,
     NgxAudioPlayerModule,
     AngularFireStorageModule,
+    MatInputModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     // tslint:disable-next-line:max-line-length
     RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, ReactiveFormsModule, MatProgressSpinnerModule, MatPaginatorModule, MatTableModule, MatDialogModule
