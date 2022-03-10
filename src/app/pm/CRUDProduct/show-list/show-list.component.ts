@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Product} from '../../../model/product';
+import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-show-list',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowListComponent implements OnInit {
 
-  constructor() { }
+  listProduct : Product[] = [];
+
+  constructor(private http: HttpClient,private router : Router) { }
 
   ngOnInit(): void {
+    this.getListProduct()
+  }
+
+  getListProduct(){
+    this.http.get<Product[]>("http://localhost:8080/pm/product").subscribe((data)=>{
+      this.listProduct = data;
+    })
   }
 
 }

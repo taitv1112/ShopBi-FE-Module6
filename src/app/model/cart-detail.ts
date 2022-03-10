@@ -2,10 +2,10 @@ import {Cart} from './cart';
 import {Product} from './product';
 
 export class CartDetail {
-  private  id! : number;
-  private  cart : Cart;
-  private  product : Product;
-  private  quantity! : number;
+   id! : number;
+   cart : Cart;
+  product : Product;
+  quantity! : number;
 
 
   constructor(id: number, cart: Cart, product: Product, quantity: number) {
@@ -14,4 +14,5 @@ export class CartDetail {
     this.product = product;
     this.quantity = quantity;
   }
+
 }

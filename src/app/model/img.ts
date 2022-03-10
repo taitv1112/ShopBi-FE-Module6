@@ -1,10 +1,10 @@
 import {Product} from './product';
 
 export class Img {
-  private  id! : number;
-  private  link! : string;
+   id! : number;
+  link! : string;
 
-  private  product : Product;
+   product : Product;
 
 
   constructor(id: number, link: string, product: Product) {

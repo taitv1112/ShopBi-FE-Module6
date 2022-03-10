@@ -1,7 +1,7 @@
 export class Promotion {
-  private  id : number;
-  private  name : string;
-  private  discount: number;
+    id : number;
+    name : string;
+   discount: number;
 
   constructor(id: number, name: string, discount: number) {
     this.id = id;

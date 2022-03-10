@@ -3,13 +3,13 @@ import {Product} from './product';
 import {Rate} from './rate';
 
 export class RateProduct {
-  private  id : number;
+ id : number;
 
-  private  orders :Orders;
+  orders :Orders;
 
-  private  product :Product;
+  product :Product;
 
-  private  rate :Rate;
+ rate :Rate;
 
 
   constructor(id: number, orders: Orders, product: Product, rate: Rate) {

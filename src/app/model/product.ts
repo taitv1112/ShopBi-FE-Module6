@@ -3,22 +3,22 @@ import {User} from './user';
 import {Promotion} from './promotion';
 
 export class Product {
-  private  id : number;
-  private  name : string;
-  private  description : string;
-  private  price : number;
-  private  quantity: number;
-  private  quantity_sale: number; // so luong sp da ban
-  private  quantity_max: number;// so luong toi da co the ban
-  private  quantity_min: number;// so luong toi thieu co the ban
-  private  price_sale: number;// gia sau khuyen mai
-  private  cover_photo: string;
+  id : number;
+ name : string;
+   description : string;
+  price : number;
+  quantity: number;
+   quantity_sale: number; // so luong sp da ban
+  quantity_max: number;// so luong toi da co the ban
+   quantity_min: number;// so luong toi thieu co the ban
+   price_sale: number;// gia sau khuyen mai
+   cover_photo: string;
 
-  private  category : Category;
+    category : Category;
 
-  private  user : User;
+  user : User;
 
-  private  promotion : Promotion;
+    promotion : Promotion;
 
 
   constructor(id: number, name: string, description: string, price: number, quantity: number, quantity_sale: number, quantity_max: number, quantity_min: number, price_sale: number, cover_photo: string, category: Category, user: User, promotion: Promotion) {
@@ -36,4 +36,6 @@ export class Product {
     this.user = user;
     this.promotion = promotion;
   }
+
+
 }

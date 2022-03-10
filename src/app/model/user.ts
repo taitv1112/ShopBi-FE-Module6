@@ -1,14 +1,14 @@
 export class User {
-  private  id! : number;
-  private  name! :string;
-  private  username! :string;
-  private  email! :string;
-  private  password! :string;
-  private  avatar! :string;
-  private  phone! : string;
-  private  address! :string;
-  private  name_store! :string;
-  private  rate_number! :number;
+ id! : number;
+ name! :string;
+ username! :string;
+  email! :string;
+  password! :string;
+ avatar! :string;
+  phone! : string;
+ address! :string;
+  name_store! :string;
+  rate_number! :number;
 
 
   constructor(id: number, name: string, username: string, email: string, password: string, avatar: string, phone: string, address: string, name_store: string, rate_number: number) {

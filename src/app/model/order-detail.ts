@@ -2,12 +2,12 @@ import Order = jasmine.Order;
 import {Product} from './product';
 
 export class OrderDetail {
-  private  id! : number;
+    id! : number;
 
-  private  orders : Order;
+   orders : Order;
 
-  private  product :Product;
-  private  quantity: number;
+   product :Product;
+    quantity: number;
 
   constructor(id: number, orders: jasmine.Order, product: Product, quantity: number) {
     this.id = id;
