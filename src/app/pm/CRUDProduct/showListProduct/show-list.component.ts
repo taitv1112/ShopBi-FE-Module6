@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from '../../../model/product';
 import {HttpClient} from '@angular/common/http';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Category} from '../../../model/category';
 
 @Component({
   selector: 'app-show-list',
@@ -11,12 +12,39 @@ import {Router} from '@angular/router';
 export class ShowListComponent implements OnInit {
 
   listProduct : Product[] = [];
+  listCategory : Category[] = [];
+  idCate:number;
 
-  constructor(private http: HttpClient,private router : Router) { }
+
+  constructor(private http: HttpClient,private router : Router,private active: ActivatedRoute) {
+
+  }
 
   ngOnInit(): void {
     this.getListProduct()
+    this.getListCategory()
   }
+  search :string ='';
+
+  searchName(){
+    this.http.get<Product[]>("http://localhost:8080/pm/find/" + this.search).subscribe((data)=>{
+      this.listProduct = data
+    })
+  }
+
+  searchCategory(id:any){
+    this.http.get<Product[]>("http://localhost:8080/pm/find/category/" +id).subscribe((data)=>{
+      this.listProduct = data
+      console.log(this.listProduct);
+    })
+  }
+
+  getListCategory(){
+    this.http.get<Category[]>("http://localhost:8080/pm/category").subscribe((data)=>{
+      this.listCategory = data;
+    })
+  }
+
 
   getListProduct(){
     this.http.get<Product[]>("http://localhost:8080/pm/product").subscribe((data)=>{

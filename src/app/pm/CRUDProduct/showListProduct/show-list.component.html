@@ -101,6 +101,19 @@
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navbar -->
 
+    <div class="input-group">
+        <div class="form-outline">
+            <input type="search" id="form1" class="form-control" placeholder="Search" [(ngModel)]="search"/>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="searchName()">
+            <i class="fas fa-search"></i>
+        </button>
+        <select class="input-group" ngModel (ngModelChange)="searchCategory($event)">
+            <option *ngFor="let c of listCategory" [ngValue]="c.id">{{c.name}}</option>
+        </select>
+
+    </div>
+
     <!-- End Navbar -->
     <div class="container-fluid py-4">
         <div class="row">
@@ -146,7 +159,7 @@
                                                      class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a routerLink="pm/detailProduct"><h6 class="mb-0 text-sm">{{product.name}}</h6></a>
+                                                <a routerLink="/pm/detailProduct/{{product.id}}"><h6 class="mb-0 text-sm">{{product.name}}</h6></a>
                                             </div>
                                         </div>
                                     </td>
