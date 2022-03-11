@@ -72,13 +72,13 @@ export class EditComponent implements OnInit {
         category: new FormControl(data.category),
         promotion: new FormControl(data.promotion)
       })
-      console.log("vao show edit",this.formEdit.value)
+      console.log("vao show editProduct",this.formEdit.value)
 
     })
   }
 
   edit(){
-    console.log("vao edit",this.formEdit.value)
+    console.log("vao editProduct",this.formEdit.value)
     this.http.put<Product>("http://localhost:8080/pm" , this.formEdit.value).subscribe((data)=>{
       console.log("hdhdhdh");
       console.log(this.id)

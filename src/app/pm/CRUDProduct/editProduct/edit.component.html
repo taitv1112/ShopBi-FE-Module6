@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white " routerLink="/pm/list">
+                <a class="nav-link text-white active bg-gradient-primary" routerLink="/pm/listProduct">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">table_view</i>
                     </div>
@@ -30,7 +30,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white active bg-gradient-primary " routerLink="/pm/create">
+                <a class="nav-link text-white " routerLink="/pm/createProduct">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">receipt_long</i>
                     </div>
@@ -100,7 +100,7 @@
 </aside>
 
 <div class="container" >
-    <form (ngSubmit)="create()" [formGroup]="formCreate" >
+    <form (ngSubmit)="edit()" [formGroup]="formEdit" >
         <div class="form-group" hidden>
             <label >Id</label>
             <input type="text" class="form-control" placeholder="Enter Name" id="id" formControlName="id">
@@ -108,38 +108,38 @@
         <div class="form-group">
             <label >Name</label>
             <input type="text" class="form-control" placeholder="Enter Name" id="email" formControlName="name">
-            <p *ngIf="!formCreate?.get('name')?.valid" style="color: red">Không được nhập dưới 6 ký tự</p>
+            <p *ngIf="!formEdit?.get('name')?.valid" style="color: red">Không được nhập dưới 6 ký tự</p>
         </div>
         <div class="form-group">
             <label >Price:</label>
             <input type="text" class="form-control" placeholder="Enter Price" formControlName="price">
-            <p *ngIf="!formCreate?.get('price')?.valid" style="color: red">Không được nhập chữ</p>
+            <p *ngIf="!formEdit?.get('price')?.valid" style="color: red">Không được nhập chữ</p>
         </div>
         <div class="form-group">
             <label >description:</label>
             <input type="text" class="form-control" placeholder="Enter description" formControlName="description">
-            <p *ngIf="!formCreate?.get('description')?.valid" style="color: red">Không được nhập dưới 6 ký tự</p>
+            <p *ngIf="!formEdit?.get('description')?.valid" style="color: red">Không được nhập dưới 6 ký tự</p>
 
         </div>
         <div class="form-group">
             <label >quantity:</label>
             <input type="text" class="form-control" placeholder="Enter quantity" formControlName="quantity">
-            <p *ngIf="!formCreate?.get('quantity')?.valid" style="color: red">Không được nhập chữ</p>
+            <p *ngIf="!formEdit?.get('quantity')?.valid" style="color: red">Không được nhập chữ</p>
         </div>
         <div class="form-group">
             <label >quantity_sale:</label>
             <input type="text" class="form-control" placeholder="Enter quantity_sale" formControlName="quantitySale">
-            <p *ngIf="!formCreate?.get('quantitySale')?.valid" style="color: red">Không được nhập chữ</p>
+            <p *ngIf="!formEdit?.get('quantitySale')?.valid" style="color: red">Không được nhập chữ</p>
         </div>
         <div class="form-group">
             <label >quantity_max:</label>
             <input type="text" class="form-control" placeholder="Enter quantity_max" formControlName="quantityMax">
-            <p *ngIf="!formCreate?.get('quantityMax')?.valid" style="color: red">Không được nhập chữ</p>
+            <p *ngIf="!formEdit?.get('quantityMax')?.valid" style="color: red">Không được nhập chữ</p>
         </div>
         <div class="form-group">
             <label >quantity_min:</label>
             <input type="text" class="form-control" placeholder="Enter quantity_min" formControlName="quantityMin">
-            <p *ngIf="!formCreate?.get('quantityMin')?.valid" style="color: red">Không được nhập chữ</p>
+            <p *ngIf="!formEdit?.get('quantityMin')?.valid" style="color: red">Không được nhập chữ</p>
         </div>
         <div class="form-group">
             <label >cover_photo:</label>
