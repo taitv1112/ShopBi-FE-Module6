@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white active bg-gradient-primary" routerLink="/pm/list">
+                <a class="nav-link text-white active bg-gradient-primary" routerLink="/pm/listProduct">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">table_view</i>
                     </div>
@@ -30,7 +30,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white " routerLink="/pm/create">
+                <a class="nav-link text-white " routerLink="/pm/createProduct">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">receipt_long</i>
                     </div>
@@ -146,7 +146,7 @@
                                                      class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <h6 class="mb-0 text-sm">{{product.name}}</h6>
+                                                <a routerLink="pm/detailProduct"><h6 class="mb-0 text-sm">{{product.name}}</h6></a>
                                             </div>
                                         </div>
                                     </td>
@@ -166,7 +166,7 @@
                                         <p class="text-xs font-weight-bold mb-0">{{product.promotion.name}}</p>
                                     </td>
                                     <td class="align-middle">
-                                        <button routerLink="/pm/edit/{{product.id}}"
+                                        <button routerLink="/pm/editProduct/{{product.id}}"
                                            class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
                                            data-original-title="Edit user">
                                             Edit
