@@ -36,9 +36,14 @@ export class LoginComponent implements OnInit {
         this.tokenService.setNameKey(data.name);
         this.tokenService.setRoleKey(data.roles);
         this.tokenService.setAvatarKey(data.avatar);
-        this.router.navigate(['user-account']).then(() => {
-          window.location.reload();
-        });
+        this.tokenService.setCart(data.cart);
+        this.tokenService.setListCardDetail(data.cartDetailList);
+
+        // this.router.navigate(['index']).then(() => {
+        //   window.location.reload();
+        // });
+        console.log("data");
+        console.log(data);
       } else {
         this.isCheckLoginFailed = true;
         this.status = 'LOGIN FAILED! Please try again!';

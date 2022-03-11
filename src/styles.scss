@@ -187,4 +187,10 @@ label a{
   justify-content: center;
   align-items: center;
 }
-
+.image-slider{
+  background-image: url('assets/img/product image 1.png');
+  width: 500px;
+  height: 500px;
+  position: relative;
+  background-size: cover;
+}

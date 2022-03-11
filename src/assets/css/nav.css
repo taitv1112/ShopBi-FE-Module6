@@ -1,5 +1,6 @@
 *{
-    margin: 0;
+
+    margin: -7px;
     padding: 0;
     box-sizing: border-box;
     font-family: 'roboto', sans-serif;
@@ -48,6 +49,7 @@
 }
 
 .search-btn{
+    margin-top: 20px;
     width: 20%;
     height: 40px;
     padding: 10px 20px;

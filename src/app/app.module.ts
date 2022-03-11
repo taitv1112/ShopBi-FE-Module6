@@ -26,7 +26,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginComponent} from './form_login/login/login.component';
-import {UserAccountComponent} from './form_login/user-account/user-account.component';
+
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment.prod';
@@ -46,13 +46,17 @@ import {ShowListComponent} from './pm/CRUDProduct/show-list/show-list.component'
 import { IndexComponent } from './user/index/index.component';
 import {EditComponent} from './pm/CRUDProduct/edit/edit.component';
 import { CreateComponent } from './pm/CRUDProduct/create/create.component';
+import {ProductService} from './service/product.service';
+import {CategoryService} from './service/category.service';
+import { ListproductcategoryComponent } from './user/category/listproductcategory/listproductcategory.component';
+import { ProductDetailComponent } from './user/product-detail/product-detail.component';
 
 
 export const appRoutes: Routes = [
   {path: '', component: HomeComponent, data: {title: 'Home'}},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'user-account', component: UserAccountComponent},
+
   {path: 'change-avatar', component: ChangeAvatarComponent},
   {path: 'pm', component: PmComponent},
   {path: 'pm/list', component: ShowListComponent},
@@ -60,6 +64,8 @@ export const appRoutes: Routes = [
   {path: 'pm/create', component: CreateComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'index', component: UserComponent},
+  {path: 'showProductByCategory/:id', component: ListproductcategoryComponent},
+  {path: 'showProductDetail/:id', component: ProductDetailComponent},
 
   {
     path: 'guide/getting-started',
@@ -70,7 +76,7 @@ export const appRoutes: Routes = [
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, UploadAvatarComponent, ChangeAvatarComponent, AdminComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent,EditComponent, CreateComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UploadAvatarComponent, ChangeAvatarComponent, AdminComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent,EditComponent, CreateComponent, ListproductcategoryComponent, ProductDetailComponent],
   imports: [
     FormsModule,
     HttpClientModule,
@@ -92,7 +98,7 @@ export const appRoutes: Routes = [
     // tslint:disable-next-line:max-line-length
     RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, ReactiveFormsModule, MatProgressSpinnerModule, MatPaginatorModule, MatTableModule, MatDialogModule
   ],
-  providers: [httpInterceptorProvider],
+  providers: [httpInterceptorProvider,ProductService,CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

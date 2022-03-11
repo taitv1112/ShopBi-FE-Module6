@@ -4,6 +4,7 @@ import {ProductService} from '../../service/product.service';
 import {CategoryService} from '../../service/category.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {error} from 'ng-packagr/lib/utils/log';
+import {Category} from '../../model/category';
 
 @Component({
   selector: 'app-index',
@@ -11,28 +12,52 @@ import {error} from 'ng-packagr/lib/utils/log';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-  products: Product[];
+  bestProducts: Product[];
+  top1CategoryProducts: Product[];
+  categories:Category[];
 
   constructor(private productService: ProductService, private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
+    this.getBestSeller();
+    this.getTop3Categories();
   }
 
 
-  public getBestSeller(): void {
-
-    this.productService.getProductsBestSeller().subscribe(
-      data => {
-        this.products = data;
-        console.log('data');
-        console.log(data);
+  public getTop3Categories(): void {
+    this.categoryService.getTop3Categories().subscribe(
+      (data) => {
+        this.categories = data;
+        this.getTop1CategoryProducts();
       },
       (error: HttpErrorResponse) => {
         console.log(error.message);
       }
     );
 
+  }
+  public getBestSeller():void{
+    this.productService.getProductsBestSeller().subscribe(
+      (response)=>{
+        this.bestProducts = response.content;
+        console.log(this.bestProducts);
+      },
+      (error:HttpErrorResponse)=>{
+        alert(error.message);
+      }
+    );
+  }
+  public getTop1CategoryProducts():void{
+    this.productService.getProductsByCategoryOrderByQuantitySale(this.categories[0].id).subscribe(
+      (response)=>{
+        this.top1CategoryProducts = response.content;
+        console.log(this.top1CategoryProducts);
+      },
+      (error:HttpErrorResponse)=>{
+        alert(error.message);
+      }
+    );
   }
 
 }

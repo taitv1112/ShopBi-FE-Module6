@@ -16,20 +16,33 @@ export class ProductService {
 
   // @ts-ignore
   public getProductByID(idProduct: number): Observable<Product> {
-    this.httpClient.get(this.apilocal + 'index/detail/' + idProduct);
+    // @ts-ignore
+    return this.httpClient.get(this.apilocal + 'index/detail/' + idProduct);
   }
   // @ts-ignore
-  public getProductsByCategoryOrderByQuantitySale(idCateogory: number): Observable<Product[]> {
-    this.httpClient.get(this.apilocal + 'index/category/' + idCateogory);
+  public getProductsByCategoryOrderByQuantitySale(idCateogory: number): Observable<any> {
+    // @ts-ignore
+    return this.httpClient.get(this.apilocal + 'index/category/' + idCateogory);
   }
   // @ts-ignore
-  public getProductsByPM(idPm: number): Observable<Product[]> {
-    this.httpClient.get(this.apilocal + 'index/pm/' + idPm);
+  public getProductsByPM(idPm: number): Observable<any> {
+    // @ts-ignore
+    return this.httpClient.get(this.apilocal + 'index/pm/' + idPm);
   }
 
   // @ts-ignore
-  public getProductsBestSeller(): Observable<Product[]> {
-    this.httpClient.get(this.apilocal + '/index/bestSale');
+  public getProductsBestSeller(): Observable<any> {
+    // @ts-ignore
+    return this.httpClient.get(this.apilocal + 'index/bestSale');
+  }
+  // @ts-ignore
+  public getProductsBestSeller(): Observable<any> {
+    // @ts-ignore
+    return this.httpClient.get(this.apilocal + 'index/bestSale');
+  }
+  public getImgsByProductId(idProduct:any):Observable<any> {
+    // @ts-ignore
+    return this.httpClient.get(this.apilocal + 'pm/img/'+idProduct);
   }
 
 }
