@@ -42,10 +42,11 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { AdminComponent } from './admin/admin/admin.component';
 import { PmComponent } from './pm/pm/pm.component';
 import { UserComponent } from './user/user/user.component';
-import {ShowListComponent} from './pm/CRUDProduct/show-list/show-list.component';
+import {ShowListComponent} from './pm/CRUDProduct/showListProduct/show-list.component';
 import { IndexComponent } from './user/index/index.component';
-import {EditComponent} from './pm/CRUDProduct/edit/edit.component';
-import { CreateComponent } from './pm/CRUDProduct/create/create.component';
+import {EditComponent} from './pm/CRUDProduct/editProduct/edit.component';
+import { CreateComponent } from './pm/CRUDProduct/createProduct/create.component';
+import { DetailProductComponent } from './pm/CRUDProduct/detail-product/detail-product.component';
 
 
 export const appRoutes: Routes = [
@@ -55,9 +56,10 @@ export const appRoutes: Routes = [
   {path: 'user-account', component: UserAccountComponent},
   {path: 'change-avatar', component: ChangeAvatarComponent},
   {path: 'pm', component: PmComponent},
-  {path: 'pm/list', component: ShowListComponent},
-  {path: 'pm/edit/:id', component: EditComponent},
-  {path: 'pm/create', component: CreateComponent},
+  {path: 'pm/listProduct', component: ShowListComponent},
+  {path: 'pm/editProduct/:id', component: EditComponent},
+  {path: 'pm/createProduct', component: CreateComponent},
+  {path: 'pm/detailProduct/:id', component: DetailProductComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'index', component: UserComponent},
 
@@ -70,7 +72,7 @@ export const appRoutes: Routes = [
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, UploadAvatarComponent, ChangeAvatarComponent, AdminComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent,EditComponent, CreateComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, UploadAvatarComponent, ChangeAvatarComponent, AdminComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent,EditComponent, CreateComponent, DetailProductComponent],
   imports: [
     FormsModule,
     HttpClientModule,

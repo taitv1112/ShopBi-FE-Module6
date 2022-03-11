@@ -19,7 +19,7 @@ describe('UserAccountComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should createProduct', () => {
     expect(component).toBeTruthy();
   });
 });
