@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Product} from '../../../model/product';
 import {Category} from '../../../model/category';
 import {Promotion} from '../../../model/promotion';
+import {finalize} from 'rxjs/operators';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 @Component({
   selector: 'app-edit',
@@ -18,7 +20,13 @@ export class EditComponent implements OnInit {
   categoryList : Category[] = [];
   promotionList : Promotion[] = [];
 
-  constructor(private http: HttpClient, private routerActive : ActivatedRoute, private router : Router) {
+  @ViewChild('uploadFile',{static : true}) public avatarDom:ElementRef | undefined;
+
+  selectedImage : any = null;
+
+  arrayPicture = "";
+
+  constructor(private http: HttpClient, private routerActive : ActivatedRoute, private router : Router,private storage : AngularFireStorage) {
     this.routerActive.paramMap.subscribe((param)=>{
       this.id = Number(<string>param.get('id'));
     })
@@ -84,7 +92,25 @@ export class EditComponent implements OnInit {
       console.log(this.id)
 
     })
-    this.router.navigate(["/pm/list"])
+    this.router.navigate(["/pm/listProduct"])
+  }
+
+  submit(){
+    if (this.selectedImage != null){
+      const filePath = this.selectedImage.name;
+      const fileRef = this.storage.ref(filePath);
+      this.storage.upload(filePath,this.selectedImage).snapshotChanges().pipe(
+        finalize(()=>(fileRef.getDownloadURL().subscribe(url =>{this.arrayPicture = url;
+          console.log(url);
+        })))
+      ).subscribe()
+    }
+  }
+
+  uploadFileIMG(){
+    this.selectedImage = this.avatarDom?.nativeElement.files[0];
+    this.submit()
+
   }
 
 }

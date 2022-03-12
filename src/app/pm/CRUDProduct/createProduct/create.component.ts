@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {Product} from '../../../model/product';
 import {Router} from '@angular/router';
 import {Category} from '../../../model/category';
 import {Promotion} from '../../../model/promotion';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {finalize} from 'rxjs/operators';
+import * as url from 'url';
 
 @Component({
   selector: 'app-create',
@@ -13,7 +16,13 @@ import {Promotion} from '../../../model/promotion';
 })
 export class CreateComponent implements OnInit {
 
-  constructor(private http : HttpClient,private router : Router) {
+  @ViewChild('uploadFile',{static : true}) public avatarDom:ElementRef | undefined;
+
+  selectedImage : any = null;
+
+  arrayPicture = "";
+
+  constructor(private http : HttpClient,private router : Router,private storage : AngularFireStorage) {
     this.getListCategory()
     this.getListPromotion()
   }
@@ -54,10 +63,29 @@ export class CreateComponent implements OnInit {
 
   create(){
     console.log("vào đây k");
+    this.formCreate.value.coverPhoto = this.arrayPicture;
     this.http.post<Product>("http://localhost:8080/pm", this.formCreate.value).subscribe((data)=>{
       console.log(data);
     })
-    this.router.navigate(["/pm/list"])
+    this.router.navigate(["/pm/listProduct"])
+  }
+
+  submit(){
+    if (this.selectedImage != null){
+      const filePath = this.selectedImage.name;
+      const fileRef = this.storage.ref(filePath);
+      this.storage.upload(filePath,this.selectedImage).snapshotChanges().pipe(
+        finalize(()=>(fileRef.getDownloadURL().subscribe(url =>{this.arrayPicture = url;
+          console.log(url);
+        })))
+      ).subscribe()
+    }
+  }
+
+  uploadFileIMG(){
+    this.selectedImage = this.avatarDom?.nativeElement.files[0];
+    this.submit()
+
   }
 
 }
