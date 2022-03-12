@@ -1,81 +1,31 @@
-.docs-navbar-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 8px 16px;
-
-  > .mat-button {
-    &:last-child {
-      margin-left: auto;
-    }
-  }
+@import "C:/Users/Dang Hoa/Desktop/module6/MD5-C0821H1-GOC-FE-master - Copy/ShopBi-FE/src/assets/css/nav.css";
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'roboto', sans-serif;
 }
 
-a:hover {
-  color: #ffffff;
-  text-decoration: none! important;
+
+.dropdown {
+  position: relative;
+  display: inline-block;
 }
 
-.flex-spacer {
-  flex-grow: 1;
-}
-
-.docs-angular-logo {
-  height: 26px;
-  margin: 0 4px 3px 0;
-  vertical-align: middle;
-}
-
-.docs-github-logo {
-  height: 21px;
-  margin: 0 7px 2px 0;
-  vertical-align: middle;
-}
-
-.docs-navbar-link {
-  text-decoration: inherit;
-  flex: 1;
-}
-
-.docs-navbar {
+.dropdown-content {
   display: none;
-}
-
-.docs-navbar-show-small {
-  display: none;
-}
-
-.skip-link-wrapper {
   position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 5px;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
 }
 
-/**
-  * Rules for when the device is detected to be a small screen.
-  * Moves content two rows instead of one.
-  */
-@media (max-width: 720px) {
-  .docs-navbar-hide-small {
-    display: none;
-  }
-
-  .docs-navbar-show-small {
-    display: block;
-  }
-
-  .docs-navbar {
-    display: flex;
-  }
-
-  .docs-navbar--github-logo {
-    margin: 0;
-  }
+.dropdown:hover .dropdown-content {
+  display: block;
 }
-.image {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
+
+.desc {
+  padding: 15px;
+  text-align: center;
 }
