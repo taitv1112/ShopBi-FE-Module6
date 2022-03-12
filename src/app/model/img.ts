@@ -6,7 +6,6 @@ export class Img {
 
    product : Product;
 
-
   constructor(id: number, link: string, product: Product) {
     this.id = id;
     this.link = link;

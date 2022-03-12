@@ -47,6 +47,7 @@ import { IndexComponent } from './user/index/index.component';
 import {EditComponent} from './pm/CRUDProduct/editProduct/edit.component';
 import { CreateComponent } from './pm/CRUDProduct/createProduct/create.component';
 import { DetailProductComponent } from './pm/CRUDProduct/detail-product/detail-product.component';
+import {AngularFireAuthModule} from '@angular/fire/auth';
 
 
 export const appRoutes: Routes = [
@@ -89,7 +90,7 @@ export const appRoutes: Routes = [
     MatInputModule,
     NgxAudioPlayerModule,
     AngularFireStorageModule,
-
+    AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     // tslint:disable-next-line:max-line-length
     RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, ReactiveFormsModule, MatProgressSpinnerModule, MatPaginatorModule, MatTableModule, MatDialogModule
