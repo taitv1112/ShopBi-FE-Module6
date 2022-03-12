@@ -1,6 +1,6 @@
 *{
 
-    margin: -7px;
+    margin: 0px;
     padding: 0;
     box-sizing: border-box;
     font-family: 'roboto', sans-serif;
@@ -16,6 +16,7 @@
 }
 
 .nav{
+    width: 85%;
     padding: 10px 10vw;
     display: flex;
     justify-content: space-between;
@@ -31,6 +32,7 @@
 }
 
 .search{
+    margin-right: 10%;
     width: 500px;
     display: flex;
 }

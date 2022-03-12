@@ -12,9 +12,9 @@ import {Category} from '../../model/category';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-  bestProducts: Product[];
-  top1CategoryProducts: Product[];
-  categories:Category[];
+  bestProducts: Product[] = [];
+  top1CategoryProducts: Product[] = [];
+  categories:Category[] = [];
 
   constructor(private productService: ProductService, private categoryService: CategoryService) {
   }
