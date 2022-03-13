@@ -26,7 +26,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginComponent} from './form_login/login/login.component';
-import {UserAccountComponent} from './form_login/user-account/user-account.component';
+
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment.prod';
@@ -42,14 +42,33 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { AdminComponent } from './admin/admin/admin.component';
 import { PmComponent } from './pm/pm/pm.component';
 import { UserComponent } from './user/user/user.component';
+import {ShowListComponent} from './pm/CRUDProduct/showListProduct/show-list.component';
+import { IndexComponent } from './user/index/index.component';
+
+import {ProductService} from './service/product.service';
+import {CategoryService} from './service/category.service';
+import { ListproductcategoryComponent } from './user/category/listproductcategory/listproductcategory.component';
+import { ProductDetailComponent } from './user/product-detail/product-detail.component';
+import {EditComponent} from './pm/CRUDProduct/editProduct/edit.component';
+import { CreateComponent } from './pm/CRUDProduct/createProduct/create.component';
+import { DetailProductComponent } from './pm/CRUDProduct/detail-product/detail-product.component';
+
 
 export const appRoutes: Routes = [
   {path: '', component: HomeComponent, data: {title: 'Home'}},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'user-account', component: UserAccountComponent},
+
   {path: 'change-avatar', component: ChangeAvatarComponent},
   {path: 'pm', component: PmComponent},
+  {path: 'pm/listProduct', component: ShowListComponent},
+  {path: 'pm/editProduct/:id', component: EditComponent},
+  {path: 'pm/createProduct', component: CreateComponent},
+  {path: 'pm/detailProduct/:id', component: DetailProductComponent},
+  {path: 'admin', component: AdminComponent},
+  {path: 'index', component: UserComponent},
+  {path: 'showProductByCategory/:id', component: ListproductcategoryComponent},
+  {path: 'showProductDetail/:id', component: ProductDetailComponent},
 
   {
     path: 'guide/getting-started',
@@ -60,7 +79,7 @@ export const appRoutes: Routes = [
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UserAccountComponent, UploadAvatarComponent, ChangeAvatarComponent, AdminComponent, PmComponent, UserComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UploadAvatarComponent, ChangeAvatarComponent, AdminComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent,EditComponent, CreateComponent, ListproductcategoryComponent, ProductDetailComponent,DetailProductComponent],
   imports: [
     FormsModule,
     HttpClientModule,
@@ -77,6 +96,7 @@ export const appRoutes: Routes = [
     MatInputModule,
     NgxAudioPlayerModule,
     AngularFireStorageModule,
+
     AngularFireModule.initializeApp(environment.firebaseConfig),
     // tslint:disable-next-line:max-line-length
     RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, ReactiveFormsModule, MatProgressSpinnerModule, MatPaginatorModule, MatTableModule, MatDialogModule

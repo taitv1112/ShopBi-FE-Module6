@@ -1,82 +1,87 @@
-.docs-footer {
-  padding: 12px;
-  font-size: 12px;
+footer{
+  position: relative;
+  width: 100%;
+  padding: 40px 10vw;
+  padding-bottom: 80px;
+  background: #383838;
 }
 
-.docs-footer-list {
-  align-items: center;
+.footer-content{
   display: flex;
-  flex-flow: row wrap;
-  padding: 8px;
+  width: 100%;
+  justify-content: space-between;
 }
 
-.docs-footer-logo {
-  flex: 1;
+.footer-content .logo{
+  height: 160px;
 }
 
-.docs-footer-angular-logo {
-  height: 50px;
-}
-
-.docs-footer-version {
+.footer-ul-container{
+  width: 45%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-
-  .angular-material-logo {
-    height: 40px;
-    margin: 10px 0 10px 16px;
-  }
-  .version {
-    margin: 0 40px;
-  }
+  justify-content: space-between;
 }
 
-.docs-footer-copyright {
-  display: flex;
-  flex: 1;
-  justify-content: flex-end;
-  flex-direction: column;
-  min-width: 225px;
-  margin-top: 16px;
-
-  > div {
-    display: flex;
-    flex-direction: column;
-    align-self: flex-end;
-    text-align: center;
-  }
-
-  @media (min-width: 885px) {
-    margin-top: 0;
-  }
+.category{
+  width: 200px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  list-style: none;
 }
 
-.docs-footer-logo span {
-  display: inline-block;
-  line-height: 50px;
-  margin: 0 40px;
-  vertical-align: bottom;
-
-  a {
-    font-size: 16px;
-    padding: 0;
-  }
+.category-title{
+  grid-column: span 2;
+  text-transform: capitalize;
+  color: #fff;
+  font-size: 20px;
+  margin-bottom: 20px;
 }
 
-a {
+.category .footer-link{
   text-decoration: none;
-  color: inherit;
-
-  &:hover,
-  &:focus {
-    text-decoration: underline;
-  }
+  text-transform: capitalize;
+  color: rgba(255, 255, 255, 0.75);
 }
 
-@media screen and (max-width: 884px){
-  .docs-footer-list {
-    flex-direction: column;
-  }
+.footer-link:hover{
+  color: #fff;
+}
+
+.footer-title, .info{
+  color: rgba(255, 255, 255, 0.75);
+  margin: 20px 0;
+  text-transform: capitalize;
+}
+
+.footer-title{
+  margin-top: 80px;
+  color: #fff;
+}
+
+.footer-social-container{
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.social-link{
+  color: #fff;
+  margin-left: 20px;
+  text-transform: capitalize;
+}
+
+.social-link:nth-child(1){
+  margin-left: 0;
+}
+
+.footer-credit{
+  width: 100%;
+  padding: 10px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.2);
 }

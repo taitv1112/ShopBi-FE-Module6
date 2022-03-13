@@ -9046,6 +9046,8 @@ fieldset:disabled .btn {
 .my-4 {
   margin-top: 1.5rem !important;
   margin-bottom: 1.5rem !important;
+  margin-left: -300px;
+  width: 1100px;
 }
 
 .my-5 {
@@ -10315,7 +10317,7 @@ fieldset:disabled .btn {
 }
 
 .bg-gray-200 {
-  background-color: #f0f2f5 !important;
+  background-color: #fafafa !important
 }
 
 .bg-gray-300 {
@@ -25429,6 +25431,7 @@ p,
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.6;
+  text-align: center;
 }
 
 .lead {

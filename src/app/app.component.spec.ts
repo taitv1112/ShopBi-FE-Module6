@@ -10,7 +10,7 @@ describe('AppComponent', () => {
       providers: []
     }).compileComponents();
   }));
-  it('should create the ngx-audio-player-demo', waitForAsync(() => {
+  it('should createProduct the ngx-audio-player-demo', waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
