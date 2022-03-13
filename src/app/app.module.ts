@@ -42,15 +42,20 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { AdminComponent } from './admin/admin/admin.component';
 import { PmComponent } from './pm/pm/pm.component';
 import { UserComponent } from './user/user/user.component';
+// @ts-ignore
 import {ShowListComponent} from './pm/CRUDProduct/showListProduct/show-list.component';
 import { IndexComponent } from './user/index/index.component';
 
 import {ProductService} from './service/product.service';
 import {CategoryService} from './service/category.service';
+// @ts-ignore
 import { ListproductcategoryComponent } from './user/category/listproductcategory/listproductcategory.component';
 import { ProductDetailComponent } from './user/product-detail/product-detail.component';
+// @ts-ignore
 import {EditComponent} from './pm/CRUDProduct/editProduct/edit.component';
+// @ts-ignore
 import { CreateComponent } from './pm/CRUDProduct/createProduct/create.component';
+// @ts-ignore
 import { DetailProductComponent } from './pm/CRUDProduct/detail-product/detail-product.component';
 
 

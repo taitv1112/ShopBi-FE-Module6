@@ -12,9 +12,11 @@ import {Category} from '../../model/category';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-  bestProducts: Product[];
-  top1CategoryProducts: Product[];
-  categories:Category[];
+  checkLoadBestProducts = false;
+  checkLoadTopCategory = false;
+  bestProducts!: Product[];
+  top1CategoryProducts!: Product[];
+  categories!:Category[];
 
   constructor(private productService: ProductService, private categoryService: CategoryService) {
   }
@@ -26,22 +28,22 @@ export class IndexComponent implements OnInit {
 
 
   public getTop3Categories(): void {
-    this.categoryService.getTop3Categories().subscribe(
-      (data) => {
-        this.categories = data;
-        this.getTop1CategoryProducts();
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error.message);
-      }
-    );
+      this.categoryService.getTop3Categories().subscribe(
+        (data) => {
+          this.categories = data;
+          this.getTop1CategoryProducts();
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error.message);
+        }
+      );
 
   }
   public getBestSeller():void{
     this.productService.getProductsBestSeller().subscribe(
       (response)=>{
         this.bestProducts = response.content;
-        console.log(this.bestProducts);
+        this.checkLoadBestProducts = true;
       },
       (error:HttpErrorResponse)=>{
         alert(error.message);
@@ -53,6 +55,7 @@ export class IndexComponent implements OnInit {
       (response)=>{
         this.top1CategoryProducts = response.content;
         console.log(this.top1CategoryProducts);
+        this.checkLoadTopCategory = true;
       },
       (error:HttpErrorResponse)=>{
         alert(error.message);

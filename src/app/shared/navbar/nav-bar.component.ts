@@ -11,6 +11,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {TokenService} from '../../service/token.service';
 import {CategoryService} from '../../service/category.service';
 import {Category} from '../../model/category';
+import {CartDetail} from '../../model/cart-detail';
 
 @Component({
   selector: 'app-navbar',
@@ -18,6 +19,7 @@ import {Category} from '../../model/category';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit{
+  quantityCart :number = 0;
   categories:Category[];
   name: any;
   isCheckLogin = false;
@@ -29,11 +31,23 @@ export class NavBarComponent implements OnInit{
       this.isCheckLogin = true;
       this.name = this.tokenService.getNameKey();
       this.avatar = this.tokenService.getAvatarKey();
-      console.log(this.name);
-      console.log(this.isCheckLogin);
-      console.log(this.avatar);
+      // @ts-ignore
+     this.getQuantityCart();
     }
     this.getCategories();
+    this.narbarOption();
+  }
+  getQuantityCart(){
+    window.onload = () => {
+      let sum = 0;
+      let cartDetailList:CartDetail[] = this.tokenService.getListCardDetail();
+      console.log("cartDetailList");
+      console.log(cartDetailList);
+      for (let i = 0; i < cartDetailList.length; i++) {
+        sum += cartDetailList[i].quantity;
+      }
+      this.quantityCart = sum;
+    }
   }
 
   public getCategories(): void {
@@ -55,11 +69,48 @@ export class NavBarComponent implements OnInit{
       window.location.reload();
     });
   }
+
   showProductsByCategory(id:number) {
     window.sessionStorage.clear();
     this.router.navigate(['showProductByCategory',id]).then(() => {
       window.location.reload();
     });
+  }
+
+
+
+
+  narbarOption(){
+    const userImageButton = document.querySelector('#user-img');
+    const userPopup = document.querySelector('.login-logout-popup');
+    const popuptext = document.querySelector('.account-info');
+    const actionBtn = document.querySelector('#user-btn');
+
+    userImageButton.addEventListener('click', () => {
+      userPopup.classList.toggle('hide');
+    })
+
+    window.onload = () => {
+      let user = this.tokenService.getNameKey();
+      if(user != null){
+        this.isCheckLogin = true;
+        // means user is logged in
+        popuptext.innerHTML = `log in as, ${user}`;
+        actionBtn.innerHTML = 'log out';
+        actionBtn.addEventListener('click', () => {
+          this.logOut();
+        })
+      } else{
+        // user is logged out
+        popuptext.innerHTML = 'log in to place order';
+        actionBtn.innerHTML = 'log in';
+        actionBtn.addEventListener('click', () => {
+          this.router.navigate(['login']).then(() => {
+            window.location.reload();
+          });
+        })
+      }
+    }
   }
 }
 

@@ -6,17 +6,20 @@
 
 </style>
 <section class="product-details" >
-    <div class="image-slider" >
-        <div class="product-images" >
-            <img src="{{product.coverPhoto}}" class="active" alt="">
-            <img *ngFor="let img of imgList" src="{{img.link}}" alt="" >
+    <div #productImageSlide class="image-slider"  >
+        <div    class="product-images" >
+            <img  (click)="showPicture(product.coverPhoto)"   class="active" src="{{product.coverPhoto}}" alt="" >
+            <img  (click)="showPicture(img.link)"  *ngFor="let img of imgList"  class="active" src="{{img.link}}" alt="" >
         </div>
     </div>
     <div class="details">
         <h2 class="product-brand">{{product.name}}</h2>
+        <br>
+        <p class="product-brand">Available: {{product.quantity}}</p>
+        <br>
         <p class="product-short-des">{{product.description}}</p>
-        <span class="product-price">{{product.price}}</span>
-        <span class="product-actual-price">${{product.price*product.promotion.discount}}</span>
+        <span class="product-price">Price: {{product.price}}</span>
+        <span class="product-actual-price">Price sale: ${{product.price*product.promotion.discount}}</span>
         <span class="product-discount">( {{product.promotion.discount}}% off )</span>
         <BR>
         <button class="btn cart-btn" (click)="addToCart(product)">add to cart</button>

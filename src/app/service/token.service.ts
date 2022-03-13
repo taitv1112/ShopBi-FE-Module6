@@ -28,10 +28,6 @@ export class TokenService {
   }
   public setListCardDetail(cartDetails: any) {
     window.sessionStorage.removeItem(LIST_CART_DETAIL);
-    if( cartDetails === undefined  ){
-      cartDetails= this.cartDetails;
-    }
-    // @ts-ignore
     window.sessionStorage.setItem(LIST_CART_DETAIL, cartDetails);
   }
 
@@ -40,9 +36,6 @@ export class TokenService {
   }
   public setCart(cart: Cart) {
     window.sessionStorage.removeItem(CART);
-    if( cart === undefined  ){
-      cart= this.cart;
-    }
     // @ts-ignore
     window.sessionStorage.setItem(CART, cart);
   }

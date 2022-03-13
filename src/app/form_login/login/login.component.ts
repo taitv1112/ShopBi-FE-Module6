@@ -32,13 +32,13 @@ export class LoginComponent implements OnInit {
     this.authService.signIn(this.signInForm).subscribe(data => {
       // tslint:disable-next-line:triple-equals
       if (data.token != undefined) {
+
         this.tokenService.setTokenKey(data.token);
         this.tokenService.setNameKey(data.name);
         this.tokenService.setRoleKey(data.roles);
         this.tokenService.setAvatarKey(data.avatar);
         this.tokenService.setCart(data.cart);
-        this.tokenService.setListCardDetail(data.cartDetailList);
-
+        this.tokenService.setListCardDetail(data.cartDetails);
         this.router.navigate(['index']).then(() => {
           window.location.reload();
         });
@@ -46,9 +46,18 @@ export class LoginComponent implements OnInit {
         console.log(data);
       } else {
         this.isCheckLoginFailed = true;
-        this.status = 'LOGIN FAILED! Please try again!';
+        this.showAlert('LOGIN FAILED! Please try again!') ;
       }
     });
+  }
+  showAlert = (msg) => {
+    let alertBox = document.querySelector('.alert-box');
+    let alertMsg = document.querySelector('.alert-msg');
+    alertMsg.innerHTML = msg;
+    alertBox.classList.add('show');
+    setTimeout(() => {
+      alertBox.classList.remove('show');
+    }, 3000);
   }
 
 }

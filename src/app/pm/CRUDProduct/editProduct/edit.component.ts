@@ -84,7 +84,7 @@ export class EditComponent implements OnInit {
       console.log(this.id)
 
     })
-    this.router.navigate(["/pm/list"])
+    this.router.navigate(["/pm/listProduct"])
   }
 
 }

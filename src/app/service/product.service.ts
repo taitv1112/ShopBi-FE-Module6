@@ -45,4 +45,8 @@ export class ProductService {
     return this.httpClient.get(this.apilocal + 'pm/img/'+idProduct);
   }
 
+  public getCartDetailsByCartId(idCart:any):Observable<any> {
+    // @ts-ignore
+    return this.httpClient.get(this.apilocal + 'index/cartdetail/'+idCart);
+  }
 }

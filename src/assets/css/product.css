@@ -38,11 +38,13 @@
 }
 
 .details .product-brand{
+    text-align: left;
     text-transform: capitalize;
     font-size: 30px;
 }
 
 .details .product-short-des{
+    text-align: left;
     font-size: 25px;
     line-height: 30px;
     height: auto;
