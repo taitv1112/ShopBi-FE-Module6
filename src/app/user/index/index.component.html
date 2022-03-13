@@ -13,7 +13,7 @@
     <h2 class="product-category">best selling</h2>
     <button class="pre-btn"><img src="assets/img/arrow.png" alt=""></button>
     <button class="nxt-btn"><img src="assets/img/arrow.png" alt=""></button>
-    <div class="product-container">
+    <div class="product-container" *ngIf="checkLoadBestProducts">
         <div *ngFor="let product of bestProducts" class="product-card">
             <div class="product-image">
                 <span class="discount-tag">50% off</span>
@@ -48,11 +48,13 @@
     <h2 class="product-category">{{categories[0].name}}</h2>
     <button class="pre-btn"><img src="assets/img/arrow.png" alt=""></button>
     <button class="nxt-btn"><img src="assets/img/arrow.png" alt=""></button>
-    <div class="product-container">
+    <div class="product-container" *ngIf="checkLoadTopCategory ">
         <div *ngFor="let productC of top1CategoryProducts" class="product-card">
             <div class="product-image">
                 <span class="discount-tag">50% off</span>
-                <img src="{{productC.coverPhoto}}" class="product-thumb" alt="">
+                <a [routerLink]="['/showProductDetail',productC.id]">
+                    <img src="{{productC.coverPhoto}}" class="product-thumb" alt="">
+                </a>
                 <button class="card-btn">add to whislist</button>
             </div>
             <div class="product-info">

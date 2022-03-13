@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Product} from '../../model/product';
 import {HttpErrorResponse} from '@angular/common/http';
 import {ProductService} from '../../service/product.service';
@@ -16,7 +16,10 @@ import {User} from '../../model/user';
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss']
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit,AfterViewInit {
+  @ViewChild("productImages") productImages:ElementRef;
+  @ViewChild("productImageSlide") productImageSlide:ElementRef;
+
   cart = this.tokenService.getCard();
   cartDetails=this.tokenService.getListCardDetail();
   idProduct:any;
@@ -31,10 +34,13 @@ export class ProductDetailComponent implements OnInit {
     this.getProductById();
     this.getImgProductById();
 
+
   }
   public getProductById():void{
     this.productService.getProductByID(this.idProduct).subscribe((response)=>{
         this.product = response;
+        this.productImageSlide.nativeElement.style.backgroundImage = `url('${this.product.coverPhoto}')`
+
       },
       (error:HttpErrorResponse)=>{
         alert(error.message);
@@ -69,5 +75,10 @@ export class ProductDetailComponent implements OnInit {
     this.tokenService.setListCardDetail(this.cartDetails);
     console.log("this.cartDetails");
     console.log(this.cartDetails);
+  }
+  showPicture(img:string){
+        this.productImageSlide.nativeElement.style.backgroundImage = `url('${img}')`; // setting up image slider's background image
+  }
+  ngAfterViewInit(): void {
   }
 }

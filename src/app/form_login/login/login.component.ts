@@ -37,14 +37,11 @@ export class LoginComponent implements OnInit {
         this.tokenService.setNameKey(data.name);
         this.tokenService.setRoleKey(data.roles);
         this.tokenService.setAvatarKey(data.avatar);
-        // @ts-ignore
-        this.tokenService.setCart(JSON.stringify(data.cart));
-        // @ts-ignore
-        alert(JSON.stringify(data.cart));
-        this.tokenService.setListCardDetail(JSON.stringify(data.cartDetailList));
-        // this.router.navigate(['index']).then(() => {
-        //   window.location.reload();
-        // });
+        this.tokenService.setCart(data.cart);
+        this.tokenService.setListCardDetail(data.cartDetails);
+        this.router.navigate(['index']).then(() => {
+          window.location.reload();
+        });
         console.log("data");
         console.log(data);
       } else {

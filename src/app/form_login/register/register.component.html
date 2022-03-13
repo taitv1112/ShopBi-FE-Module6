@@ -58,17 +58,18 @@
     <img src="assets/img/dark-logo.png" class="logo" alt="">
 
     <div>
-        <form class="form-register" #f="ngForm" (ngSubmit)="f.form.valid &&ngSubmit()" novalidate>
-        <input type="text" autocomplete="off" id="name" placeholder="name" name="name" [(ngModel)]="form.name" #name="ngModel" minlength="3" maxlength="50" required>
-        <input type="text" autocomplete="off" id="number" placeholder="username" name="username" [(ngModel)]="form.username" #username="ngModel" minlength="3" maxlength="50" required>
-        <input type="email" autocomplete="off" id="email" placeholder="email" name="email" [(ngModel)]="form.email" [formControl]="emailFormControl" required>
-        <input type="password" autocomplete="off" id="password" placeholder="password" name="password" [(ngModel)]="form.password" minlength="6" maxlength="10" #password="ngModel" matInput [type]="hide ? 'password' : 'text'" required>
+        <form class="form-register" #f="ngForm" (ngSubmit)="registerFrom()"  novalidate>
+
+        <input type="text" autocomplete="off" #name id="name" placeholder="name" name="name" [(ngModel)]="form.name" #name="ngModel" minlength="3" maxlength="50" required>
+        <input type="text" autocomplete="off" #username id="number" placeholder="username" name="username" [(ngModel)]="form.username" #username="ngModel" minlength="3" maxlength="50" required>
+        <input type="email" autocomplete="off"  #email id="email" placeholder="email" name="email" [(ngModel)]="form.email" [formControl]="emailFormControl" required>
+        <input type="password" autocomplete="off" #password  id="password" placeholder="password" name="password" [(ngModel)]="form.password" minlength="6" maxlength="10" #password="ngModel" matInput [type]="hide ? 'password' : 'text'" required>
         <input type="checkbox" checked class="checkbox" id="terms-and-cond">
         <label for="terms-and-cond">agree to our <a href="">terms and conditions</a></label>
         <br>
         <input type="checkbox" class="checkbox" id="notification">
         <label for="notification">recieve upcoming offers and events mails</label>
-        <button class="submit-btn">create account</button>
+        <button #submitBtn class="submit-btn">create account</button>
         </form>
     </div>
     <a href="/login" class="link">already have an account? Log in here</a>
