@@ -11,7 +11,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {TokenService} from '../../service/token.service';
 import {CategoryService} from '../../service/category.service';
 import {Category} from '../../model/category';
-import {CartDetail} from '../../model/cart-detail';
+import {ProductService} from '../../service/product.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,36 +19,49 @@ import {CartDetail} from '../../model/cart-detail';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit{
-  quantityCart :number = 0;
+  quantityCart :any = 0;
   categories:Category[];
   name: any;
   isCheckLogin = false;
   avatar: any;
-  constructor(private tokenService: TokenService, private categoryService: CategoryService, private router: Router) {
+  constructor(private tokenService: TokenService,private productService:ProductService,private categoryService: CategoryService, private router: Router) {
   }
   ngOnInit(): void {
     if(this.tokenService.getTokenKey()){
       this.isCheckLogin = true;
       this.name = this.tokenService.getNameKey();
       this.avatar = this.tokenService.getAvatarKey();
-      // @ts-ignore
-     this.getQuantityCart();
+     this.tokenService.currentQuantityCart.subscribe((quantityCart)=>{
+       this.quantityCart = quantityCart;
+       console.log("quantityCart");
+       console.log(quantityCart);
+     })
     }
     this.getCategories();
     this.narbarOption();
   }
-  getQuantityCart(){
-    window.onload = () => {
-      let sum = 0;
-      let cartDetailList:CartDetail[] = this.tokenService.getListCardDetail();
-      console.log("cartDetailList");
-      console.log(cartDetailList);
-      for (let i = 0; i < cartDetailList.length; i++) {
-        sum += cartDetailList[i].quantity;
-      }
-      this.quantityCart = sum;
-    }
-  }
+  // getQuantityCart(){
+  //     let sum = 0;
+  //     let cartDetailList;
+  //   this.productService.getCartDetailsByCartId(JSON.parse(this.tokenService.getCard())).subscribe(
+  //       (data) => {
+  //         cartDetailList = data;
+  //         this.tokenService.setListCardDetail(cartDetailList);
+  //         console.log('data');
+  //         console.log(data);
+  //         for (let i = 0; i < this.tokenService.getListCardDetail().length; i++) {
+  //           sum += cartDetailList[i].quantity;
+  //         }
+  //         this.quantityCart = sum;
+  //         console.log("this.quantityCart");
+  //         console.log(this.quantityCart);
+  //       },
+  //       (error: HttpErrorResponse) => {
+  //         console.log(error.message);
+  //       }
+  //     );
+  //
+  // }
 
   public getCategories(): void {
     this.categoryService.getCategories().subscribe(

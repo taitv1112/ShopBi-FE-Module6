@@ -32,18 +32,17 @@ export class LoginComponent implements OnInit {
     this.authService.signIn(this.signInForm).subscribe(data => {
       // tslint:disable-next-line:triple-equals
       if (data.token != undefined) {
-
         this.tokenService.setTokenKey(data.token);
         this.tokenService.setNameKey(data.name);
         this.tokenService.setRoleKey(data.roles);
         this.tokenService.setAvatarKey(data.avatar);
         this.tokenService.setCart(data.cart);
-        this.tokenService.setListCardDetail(data.cartDetails);
+        this.tokenService.setListCardDetail(data.cartDetailList);
+
         this.router.navigate(['index']).then(() => {
           window.location.reload();
         });
-        console.log("data");
-        console.log(data);
+
       } else {
         this.isCheckLoginFailed = true;
         this.showAlert('LOGIN FAILED! Please try again!') ;

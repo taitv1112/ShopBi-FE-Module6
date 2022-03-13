@@ -19,7 +19,7 @@ import {User} from '../../model/user';
 export class ProductDetailComponent implements OnInit,AfterViewInit {
   @ViewChild("productImages") productImages:ElementRef;
   @ViewChild("productImageSlide") productImageSlide:ElementRef;
-
+  quantityProductNow:number;
   cart = this.tokenService.getCard();
   cartDetails=this.tokenService.getListCardDetail();
   idProduct:any;
@@ -34,11 +34,29 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
     this.getProductById();
     this.getImgProductById();
 
-
   }
   public getProductById():void{
     this.productService.getProductByID(this.idProduct).subscribe((response)=>{
         this.product = response;
+        this.quantityProductNow = this.product.quantity;
+
+        let cartDetailList = this.tokenService.getListCardDetail();
+        console.log("cartDetailList");
+        console.log(cartDetailList);
+        if(cartDetailList!==null){
+          for (const listCardDetailElement of cartDetailList) {
+            if(listCardDetailElement.product.id== this.product.id){
+              if(this.quantityProductNow<listCardDetailElement.quantity){
+                this.quantityProductNow=0;
+                listCardDetailElement.quantity = this.product.quantityMax;
+                this.tokenService.setListCardDetail(cartDetailList);
+              }else {
+                this.quantityProductNow = this.quantityProductNow-listCardDetailElement.quantity;
+              }
+
+            }
+          }
+        }
         this.productImageSlide.nativeElement.style.backgroundImage = `url('${this.product.coverPhoto}')`
 
       },
@@ -59,22 +77,27 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
   public addToCart(product:Product){
     let flag = true;
 
-    if(this.cartDetails!==null && (typeof this.cartDetails == undefined) ){
+    if(this.cartDetails!==null){
       console.log(this.cartDetails)
       for (let i = 0; i < this.cartDetails.length; i++) {
-        if(product.id == this.cartDetails[i].product.id){
-          this.tokenService.getListCardDetail()[i].quantity += 1;
+        if(product.id == this.cartDetails[i].product.id && this.quantityProductNow>0){
+          this.quantityProductNow --;
+          this.cartDetails[i].quantity += 1;
           flag = false;
         }
       }
     }
-    if(flag){
-      this.cartDetails = [];
-      this.cartDetails.push(new CartDetail(this.cart,product,1))
+    if(flag && this.quantityProductNow>0){
+      if(this.cartDetails == null){
+        this.cartDetails = [];
+        this.cartDetails.push(new CartDetail(this.cart,product,1))
+      }else {
+        this.cartDetails.push(new CartDetail(this.cart,product,1))
+      }
+      this.quantityProductNow--;
     }
     this.tokenService.setListCardDetail(this.cartDetails);
-    console.log("this.cartDetails");
-    console.log(this.cartDetails);
+    this.tokenService.changeQuantityCart(this.tokenService.getQuantityCartProduct());
   }
   showPicture(img:string){
         this.productImageSlide.nativeElement.style.backgroundImage = `url('${img}')`; // setting up image slider's background image

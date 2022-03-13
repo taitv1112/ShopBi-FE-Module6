@@ -43,6 +43,7 @@
 }
 
 .product-container{
+    height: 500px;
     padding: 0 10vw;
     display: flex;
     overflow-x: auto;

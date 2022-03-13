@@ -14,7 +14,7 @@ import {MatCardModule} from '@angular/material/card';
 
 import {HomeComponent} from './pages/home/home.component';
 import {GettingStartedComponent} from './pages/gettingstarted/gettingstarted.component';
-
+import * as $ from 'jquery/dist/jquery.min.js';
 import {HttpClientModule} from '@angular/common/http';
 import {NgxAudioPlayerModule} from 'projects/ngx-audio-player/src/public_api';
 import {MatButtonModule} from '@angular/material/button';
@@ -57,6 +57,7 @@ import {EditComponent} from './pm/CRUDProduct/editProduct/edit.component';
 import { CreateComponent } from './pm/CRUDProduct/createProduct/create.component';
 // @ts-ignore
 import { DetailProductComponent } from './pm/CRUDProduct/detail-product/detail-product.component';
+import { ShowCartComponent } from './user/show-cart/show-cart.component';
 
 
 export const appRoutes: Routes = [
@@ -74,6 +75,7 @@ export const appRoutes: Routes = [
   {path: 'index', component: UserComponent},
   {path: 'showProductByCategory/:id', component: ListproductcategoryComponent},
   {path: 'showProductDetail/:id', component: ProductDetailComponent},
+  {path: 'showCartDetail', component: ShowCartComponent},
 
   {
     path: 'guide/getting-started',
@@ -84,7 +86,7 @@ export const appRoutes: Routes = [
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UploadAvatarComponent, ChangeAvatarComponent, AdminComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent,EditComponent, CreateComponent, ListproductcategoryComponent, ProductDetailComponent,DetailProductComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UploadAvatarComponent, ChangeAvatarComponent, AdminComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent,EditComponent, CreateComponent, ListproductcategoryComponent, ProductDetailComponent,DetailProductComponent, ShowCartComponent],
   imports: [
     FormsModule,
     HttpClientModule,

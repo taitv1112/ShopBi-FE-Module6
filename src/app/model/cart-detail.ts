@@ -9,7 +9,6 @@ export class CartDetail {
 
 
   constructor( cart: Cart, product: Product, quantity: number) {
-
     this.cart = cart;
     this.product = product;
     this.quantity = quantity;

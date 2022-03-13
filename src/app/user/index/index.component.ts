@@ -54,7 +54,6 @@ export class IndexComponent implements OnInit {
     this.productService.getProductsByCategoryOrderByQuantitySale(this.categories[0].id).subscribe(
       (response)=>{
         this.top1CategoryProducts = response.content;
-        console.log(this.top1CategoryProducts);
         this.checkLoadTopCategory = true;
       },
       (error:HttpErrorResponse)=>{

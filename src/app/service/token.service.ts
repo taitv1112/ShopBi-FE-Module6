@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {CartDetail} from '../model/cart-detail';
 import {Cart} from '../model/cart';
+import {BehaviorSubject} from 'rxjs';
 
 const NAME_KEY = 'Name_Key';
 const TOKEN_KEY = 'Token_Key';
@@ -14,10 +15,14 @@ const CART = 'Cart_Key';
 })
 export class TokenService {
   cartDetails:CartDetail[];
+   private  quantityCart = new BehaviorSubject(this.getQuantityCartProduct())
+  currentQuantityCart = this.quantityCart.asObservable();
   cart:Cart;
   constructor() {
   }
-
+  public changeQuantityCart(quantityCart:number){
+    this.quantityCart.next(quantityCart);
+  }
   public setNameKey(name: string) {
     window.sessionStorage.removeItem(NAME_KEY);
     window.sessionStorage.setItem(NAME_KEY, name);
@@ -26,22 +31,33 @@ export class TokenService {
   public getNameKey(): string {
     return window.sessionStorage.getItem(NAME_KEY);
   }
-  public setListCardDetail(cartDetails: any) {
+  public setListCardDetail(cartDetails: CartDetail[]) {
     window.sessionStorage.removeItem(LIST_CART_DETAIL);
-    window.sessionStorage.setItem(LIST_CART_DETAIL, cartDetails);
+    // @ts-ignore
+    window.sessionStorage.setItem(LIST_CART_DETAIL,JSON.stringify(cartDetails));
   }
 
   public getListCardDetail(): any {
-    return window.sessionStorage.getItem(LIST_CART_DETAIL);
+    return  JSON.parse(window.sessionStorage.getItem(LIST_CART_DETAIL));
   }
   public setCart(cart: Cart) {
     window.sessionStorage.removeItem(CART);
     // @ts-ignore
-    window.sessionStorage.setItem(CART, cart);
+    window.sessionStorage.setItem(CART, JSON.stringify(cart));
   }
 
   public getCard(): any {
-    return window.sessionStorage.getItem(CART);
+    return JSON.parse(window.sessionStorage.getItem(CART));
+  }
+
+  public getQuantityCartProduct(){
+    let sum = 0 ;
+    if(this.getListCardDetail()!== null){
+      for (const listCardDetailElement of this.getListCardDetail()) {
+        sum+=listCardDetailElement.quantity;
+      }
+    }
+    return sum;
   }
 
 
