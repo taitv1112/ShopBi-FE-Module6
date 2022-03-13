@@ -233,9 +233,12 @@
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">
                                         Quantity
                                     </th>
+
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                        Total
+                                    </th>
+
 <!--                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">-->
-<!--                                        Total Bill-->
-<!--                                    </th><th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">-->
 <!--                                    Address-->
 <!--                                </th>-->
 
@@ -254,6 +257,9 @@
                                     </td>
                                     <td>
                                         <p class="text-xs font-weight-bold mb-0">{{orderDetail.quantity}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">{{orderDetail.quantity*(orderDetail.product.price - (orderDetail.product.price*orderDetail.product.promotion.discount/100))}}</p>
                                     </td>
                                     <!--                                    <td class="align-middle">-->
                                     <!--                                        <button routerLink="/pm/editProduct/{{order.id}}"-->
