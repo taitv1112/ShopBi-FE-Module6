@@ -60,6 +60,9 @@ import { DetailProductComponent } from './pm/CRUDProduct/detail-product/detail-p
 import { OrderInPmComponent } from './pm/orderInPm/order-in-pm/order-in-pm.component';
 import { DetailOrderInPmComponent } from './pm/orderInPm/detail-order-in-pm/detail-order-in-pm.component';
 import { ShowCartComponent } from './user/show-cart/show-cart.component';
+import {HomeAdminComponent} from './admin/home-admin/home-admin.component';
+import {ShowListUserComponent} from './admin/show-list-user/show-list-user.component';
+import { EditUserComponent } from './admin/edit-user/edit-user.component';
 
 
 export const appRoutes: Routes = [
@@ -80,6 +83,9 @@ export const appRoutes: Routes = [
   {path: 'showCartDetail', component: ShowCartComponent},
   {path: 'pm/orders', component: OrderInPmComponent},
   {path: 'pm/detailOrder/:orderId', component: DetailOrderInPmComponent},
+  {path: 'admin', component: HomeAdminComponent},
+  {path: 'admin/showUser', component: ShowListUserComponent},
+  {path: 'admin/editUser', component: EditUserComponent},
 
   {
     path: 'guide/getting-started',
@@ -90,7 +96,7 @@ export const appRoutes: Routes = [
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UploadAvatarComponent, ChangeAvatarComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent,EditComponent, CreateComponent, ListproductcategoryComponent, ProductDetailComponent,DetailProductComponent, OrderInPmComponent, DetailOrderInPmComponent,ShowCartComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UploadAvatarComponent, ChangeAvatarComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent,EditComponent, CreateComponent, ListproductcategoryComponent, ProductDetailComponent,DetailProductComponent, OrderInPmComponent, DetailOrderInPmComponent,ShowCartComponent,ShowListUserComponent,HomeAdminComponent, EditUserComponent],
   imports: [
     FormsModule,
     HttpClientModule,

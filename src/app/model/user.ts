@@ -1,3 +1,5 @@
+import {Roles} from './roles';
+
 export class User {
  id! : number;
  name! :string;
@@ -7,11 +9,12 @@ export class User {
  avatar! :string;
   phone! : string;
  address! :string;
-  name_store! :string;
-  rate_number! :number;
+  nameStore! :string;
+  rateNNumber! :number;
+  roles:Roles[]
 
 
-  constructor(id: number, name: string, username: string, email: string, password: string, avatar: string, phone: string, address: string, name_store: string, rate_number: number) {
+  constructor(id: number, name: string, username: string, email: string, password: string, avatar: string, phone: string, address: string, nameStore: string, rateNNumber: number, roles: Roles[]) {
     this.id = id;
     this.name = name;
     this.username = username;
@@ -20,7 +23,8 @@ export class User {
     this.avatar = avatar;
     this.phone = phone;
     this.address = address;
-    this.name_store = name_store;
-    this.rate_number = rate_number;
+    this.nameStore = nameStore;
+    this.rateNNumber = rateNNumber;
+    this.roles = roles;
   }
 }

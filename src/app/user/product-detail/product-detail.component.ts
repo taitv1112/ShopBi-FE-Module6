@@ -24,7 +24,7 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
   cartDetails=this.tokenService.getListCardDetail();
   idProduct:any;
   product =  new Product(0,"","",0,0,0,0,0,0,"",
-    new Category(0,"",""), new User(0,"","","","","","","","",0),
+    new Category(0,"",""), new User(0,"","","","","","","","",0,[]),
     new Promotion(0,"",0));
   imgList:Img[];
   constructor(private productService: ProductService,private router:ActivatedRoute,private tokenService:TokenService) { }
