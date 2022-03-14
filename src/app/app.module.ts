@@ -39,7 +39,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 
 import {MatDialogModule} from '@angular/material/dialog';
-import { AdminComponent } from './admin/admin/admin.component';
+
 import { PmComponent } from './pm/pm/pm.component';
 import { UserComponent } from './user/user/user.component';
 // @ts-ignore
@@ -57,10 +57,12 @@ import {EditComponent} from './pm/CRUDProduct/editProduct/edit.component';
 import { CreateComponent } from './pm/CRUDProduct/createProduct/create.component';
 // @ts-ignore
 import { DetailProductComponent } from './pm/CRUDProduct/detail-product/detail-product.component';
+import { OrderInPmComponent } from './pm/orderInPm/order-in-pm/order-in-pm.component';
+import { DetailOrderInPmComponent } from './pm/orderInPm/detail-order-in-pm/detail-order-in-pm.component';
 
 
 export const appRoutes: Routes = [
-  {path: '', component: HomeComponent, data: {title: 'Home'}},
+  {path: '', component: UserComponent, data: {title: 'Home'}},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
 
@@ -70,10 +72,12 @@ export const appRoutes: Routes = [
   {path: 'pm/editProduct/:id', component: EditComponent},
   {path: 'pm/createProduct', component: CreateComponent},
   {path: 'pm/detailProduct/:id', component: DetailProductComponent},
-  {path: 'admin', component: AdminComponent},
+
   {path: 'index', component: UserComponent},
   {path: 'showProductByCategory/:id', component: ListproductcategoryComponent},
   {path: 'showProductDetail/:id', component: ProductDetailComponent},
+  {path: 'pm/orders', component: OrderInPmComponent},
+  {path: 'pm/detailOrder/:orderId', component: DetailOrderInPmComponent},
 
   {
     path: 'guide/getting-started',
@@ -84,7 +88,7 @@ export const appRoutes: Routes = [
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UploadAvatarComponent, ChangeAvatarComponent, AdminComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent,EditComponent, CreateComponent, ListproductcategoryComponent, ProductDetailComponent,DetailProductComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UploadAvatarComponent, ChangeAvatarComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent,EditComponent, CreateComponent, ListproductcategoryComponent, ProductDetailComponent,DetailProductComponent, OrderInPmComponent, DetailOrderInPmComponent],
   imports: [
     FormsModule,
     HttpClientModule,
