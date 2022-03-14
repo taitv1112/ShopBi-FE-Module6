@@ -1,13 +1,13 @@
 <header id="site-header">
     <div class="container">
-        <h1>Shopping cart <span>[</span> <em><a [routerLink]="['/index']" target="_blank">Home</a></em> <span class="last-span is-open">]</span></h1>
+        <h1>Shopping cart <span>[</span> <em><a [routerLink]="['/index']" >Home</a></em> <span class="last-span is-open">]</span></h1>
     </div>
 </header>
 
 <div class="container">
 
-    <section id="cart">
-        <article class="product" *ngFor="let cartDetail of cartDetails">
+    <section id="cart" *ngFor="let cartDetail of cartDetails">
+        <article class="product" >
             <header>
                 <a class="remove">
                     <img src="{{cartDetail.product.coverPhoto}}" alt="">
@@ -28,15 +28,15 @@
 
             <footer class="content">
                 <span class="qt-minus">-</span>
-                <span class="qt">2</span>
+                <span class="qt">{{cartDetail.quantity}}</span>
                 <span class="qt-plus">+</span>
 
                 <h2 #fullPrice class="full-price">
-                    29.98$
+                    {{cartDetail.product.priceSale}}
                 </h2>
 
                 <h2 class="price">
-                    14.99$
+                    {{cartDetail.product.price}}
                 </h2>
             </footer>
         </article>
