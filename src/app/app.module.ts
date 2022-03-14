@@ -60,6 +60,7 @@ import { DetailProductComponent } from './pm/CRUDProduct/detail-product/detail-p
 import { OrderInPmComponent } from './pm/orderInPm/order-in-pm/order-in-pm.component';
 import { DetailOrderInPmComponent } from './pm/orderInPm/detail-order-in-pm/detail-order-in-pm.component';
 import { ShowCartComponent } from './user/show-cart/show-cart.component';
+import {AngularFireAuthModule} from '@angular/fire/auth';
 
 
 export const appRoutes: Routes = [
@@ -107,7 +108,7 @@ export const appRoutes: Routes = [
     MatInputModule,
     NgxAudioPlayerModule,
     AngularFireStorageModule,
-
+    AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     // tslint:disable-next-line:max-line-length
     RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, ReactiveFormsModule, MatProgressSpinnerModule, MatPaginatorModule, MatTableModule, MatDialogModule
