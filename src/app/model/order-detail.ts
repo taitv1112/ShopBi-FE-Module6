@@ -1,4 +1,4 @@
-import Order = jasmine.Order;
+
 import {Product} from './product';
 
 export class OrderDetail {

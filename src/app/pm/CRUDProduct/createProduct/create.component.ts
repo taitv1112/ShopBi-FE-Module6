@@ -57,7 +57,6 @@ export class CreateComponent implements OnInit {
     this.http.post<Product>("http://localhost:8080/pm", this.formCreate.value).subscribe((data)=>{
       console.log(data);
     })
-    this.router.navigate(["/pm/list"])
+    this.router.navigate(["/pm/listProduct"])
   }
-
 }
