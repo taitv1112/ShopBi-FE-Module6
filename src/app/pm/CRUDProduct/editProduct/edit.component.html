@@ -143,7 +143,7 @@
         </div>
         <div class="form-group">
             <label >cover_photo:</label>
-            <input type="text" class="form-control" placeholder="Enter cover_photo" formControlName="coverPhoto">
+            <input type="file" #uploadFile (change)="uploadFileIMG()" class="form-control" placeholder="Enter cover_photo" formControlName="coverPhoto">
         </div>
         <div class="form-group">
             <label >Category</label>

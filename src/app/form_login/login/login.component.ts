@@ -38,7 +38,8 @@ export class LoginComponent implements OnInit {
         this.tokenService.setAvatarKey(data.avatar);
         this.tokenService.setCart(data.cart);
         this.tokenService.setListCardDetail(data.cartDetailList);
-
+        console.log("this.tokenService.getListCardDetail()");
+        console.log(this.tokenService.getListCardDetail());
         this.router.navigate(['index']).then(() => {
           window.location.reload();
         });

@@ -63,6 +63,7 @@ import { ShowCartComponent } from './user/show-cart/show-cart.component';
 import {HomeAdminComponent} from './admin/home-admin/home-admin.component';
 import {ShowListUserComponent} from './admin/show-list-user/show-list-user.component';
 import { EditUserComponent } from './admin/edit-user/edit-user.component';
+import {AngularFireAuthModule} from '@angular/fire/auth';
 
 
 export const appRoutes: Routes = [
@@ -113,7 +114,7 @@ export const appRoutes: Routes = [
     MatInputModule,
     NgxAudioPlayerModule,
     AngularFireStorageModule,
-
+    AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     // tslint:disable-next-line:max-line-length
     RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, ReactiveFormsModule, MatProgressSpinnerModule, MatPaginatorModule, MatTableModule, MatDialogModule
