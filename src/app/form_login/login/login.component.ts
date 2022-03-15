@@ -38,11 +38,12 @@ export class LoginComponent implements OnInit {
         this.tokenService.setAvatarKey(data.avatar);
         this.tokenService.setCart(data.cart);
         this.tokenService.setListCardDetail(data.cartDetailList);
-        console.log("this.tokenService.getListCardDetail()");
-        console.log(this.tokenService.getListCardDetail());
-        this.router.navigate(['index']).then(() => {
-          window.location.reload();
-        });
+        this.tokenService.setUserNameKey(data.username);
+        console.log("this.authService.loggedInUser()");
+        console.log(this.authService.loggedInUser());
+          this.router.navigate(['index']).then(() => {
+            window.location.reload();
+          });
 
       } else {
         this.isCheckLoginFailed = true;
@@ -57,7 +58,7 @@ export class LoginComponent implements OnInit {
     alertBox.classList.add('show');
     setTimeout(() => {
       alertBox.classList.remove('show');
-    }, 3000);
+    }, 1500);
   }
 
 }
