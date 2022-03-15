@@ -10,6 +10,7 @@ const ROLE_KEY = 'Role_Key';
 const AVATAR_KEY = 'Avatar_Key';
 const LIST_CART_DETAIL = 'CartDetails_Key';
 const CART = 'Cart_Key';
+const ADDRESS = 'ADDRESS';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,13 @@ export class TokenService {
     window.sessionStorage.setItem(USER_NAME_KEY, username);
   }
 
+  public setAddressKey(address: string) {
+    window.sessionStorage.removeItem(ADDRESS);
+    window.sessionStorage.setItem(ADDRESS, address);
+  }
+  public getAddressKey(): string {
+    return window.sessionStorage.getItem(ADDRESS);
+  }
   public getUserNameKey(): string {
     return window.sessionStorage.getItem(USER_NAME_KEY);
   }
