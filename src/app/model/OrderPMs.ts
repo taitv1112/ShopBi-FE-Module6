@@ -3,10 +3,15 @@ import {User} from './user';
 
 export class OrderPMs{
   cartDetails:CartDetail[];
-  user:User;
-
-  constructor(cartDetails: CartDetail[], user: User) {
+  usernameSaler:string;
+  billTotal:number;
+  address_ship:string;
+  usernameBuyer:string;
+  constructor(cartDetails: CartDetail[], usernameSaler: string ,billTotal:number,address_ship:string, usernameBuyer:string) {
     this.cartDetails = cartDetails;
-    this.user = user;
+    this.usernameSaler = usernameSaler;
+    this.billTotal = billTotal;
+    this.address_ship = address_ship;
+    this.usernameBuyer = usernameBuyer;
   }
 }

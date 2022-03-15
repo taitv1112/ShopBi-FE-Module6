@@ -40,28 +40,7 @@ export class NavBarComponent implements OnInit{
     this.getCategories();
     this.narbarOption();
   }
-  // getQuantityCart(){
-  //     let sum = 0;
-  //     let cartDetailList;
-  //   this.productService.getCartDetailsByCartId(JSON.parse(this.tokenService.getCard())).subscribe(
-  //       (data) => {
-  //         cartDetailList = data;
-  //         this.tokenService.setListCardDetail(cartDetailList);
-  //         console.log('data');
-  //         console.log(data);
-  //         for (let i = 0; i < this.tokenService.getListCardDetail().length; i++) {
-  //           sum += cartDetailList[i].quantity;
-  //         }
-  //         this.quantityCart = sum;
-  //         console.log("this.quantityCart");
-  //         console.log(this.quantityCart);
-  //       },
-  //       (error: HttpErrorResponse) => {
-  //         console.log(error.message);
-  //       }
-  //     );
-  //
-  // }
+
 
   public getCategories(): void {
     this.categoryService.getCategories().subscribe(

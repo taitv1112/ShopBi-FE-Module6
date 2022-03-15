@@ -3,9 +3,16 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {TokenService} from '../../service/token.service';
 import * as $ from 'jquery';
+// @ts-ignore
 import {OrderPMs} from '../../model/OrderPMs';
 import {CartDetail} from '../../model/cart-detail';
 import {User} from '../../model/user';
+import {FormGroup} from '@angular/forms';
+import {OrderServiceService} from '../../service/order-service.service';
+import {OrderForm} from '../../model/OrderForm';
+import {Orders} from '../../model/orders';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-show-cart',
@@ -14,12 +21,16 @@ import {User} from '../../model/user';
 
 })
 export class ShowCartComponent implements OnInit, AfterViewInit {
+  address:string;
   quantityEdit: any;
   userPm = null;
+  billTotal :number;
   @ViewChild('fullPrice') fullPrice: ElementRef;
   cartDetails: CartDetail[] = this.tokenService.getListCardDetail();
 
-  constructor(private tokenService: TokenService) {
+  constructor(private tokenService: TokenService, private orderService:OrderServiceService,private router:Router) {
+    this.address = this.tokenService.getAddressKey();
+
   }
 
   orderPmList: OrderPMs[] = [];
@@ -171,11 +182,11 @@ export class ShowCartComponent implements OnInit, AfterViewInit {
             if (this.cartDetails[h].product.user.id == this.userPm[g].id) {
               if (this.orderPm !== null) {
                 this.orderPm.cartDetails.push(this.cartDetails[h]);
-                this.orderPm.user = this.userPm[g];
+                this.orderPm.usernameSaler = this.userPm[g].username;
               } else {
-                this.orderPm = new OrderPMs([], null);
+                this.orderPm = new OrderPMs([], null,0,"","");
                 this.orderPm.cartDetails.push(this.cartDetails[h]);
-                this.orderPm.user = this.userPm[g];
+                this.orderPm.usernameSaler = this.userPm[g].username;
               }
             }
           }
@@ -209,21 +220,67 @@ export class ShowCartComponent implements OnInit, AfterViewInit {
       for (const cartDetailE of this.cartDetails) {
         if (cartDetailE.product.id == cartDetail.product.id) {
           if (quantityEdit < cartDetailE.product.quantityMax) {
-            cartDetail.quantity = quantityEdit;
+            cartDetailE.quantity = quantityEdit;
           } else {
-            cartDetail.quantity = cartDetailE.product.quantityMax;
+            cartDetailE.quantity = cartDetailE.product.quantityMax;
           }
         }
       }
       this.tokenService.setListCardDetail(this.cartDetails);
+      console.log("this.tokenService.getListCardDetail()");
+      console.log(this.tokenService.getListCardDetail());
+      this.tokenService.changeQuantityCart(this.tokenService.getQuantityCartProduct());
     }else {
       this.orderPmList[indexListOrderPMs].cartDetails.splice(indexOrderPmsCartdetail,1);
-      this.cartDetails = this.cartDetails.filter(item=>item !== cartDetail );
+      let index  = -1 ;
+      for (let i = 0; i < this.cartDetails.length; i++) {
+        if(cartDetail.product.id == this.cartDetails[i].product.id){
+          index = i;
+        }
+      }
+      if(index >-1 ){
+        this.cartDetails.splice(index,1);
+      }
       console.log("this.cartDetails");
       console.log(this.cartDetails);
       this.tokenService.setListCardDetail(this.cartDetails);
+      this.tokenService.changeQuantityCart(this.tokenService.getQuantityCartProduct());
     }
     console.log(this.cartDetails);
     console.log(this.orderPmList);
+  }
+  getTotalBillByPm(cartDeatails:CartDetail[]):number{
+    let sum = 0;
+    for (const cartDeatail of cartDeatails) {
+      sum+= (cartDeatail.quantity*cartDeatail.product.priceSale)
+    }
+    return sum;
+  }
+  createOrders (orderPms:OrderPMs[]){
+    for (const orderPm1 of orderPms) {
+        orderPm1.usernameBuyer = this.tokenService.getUserNameKey();
+        orderPm1.address_ship = this.address;
+        orderPm1.billTotal = this.getTotalBillByPm(orderPm1.cartDetails);
+        this.orderService.createOrder(orderPm1).subscribe((data)=>{
+          console.log("Create order successful");
+          console.log(data);
+
+        },
+          (error:HttpErrorResponse)=>{
+            alert(error.message);
+          }
+          )
+    }
+    this.cartDetails = null;
+    this.tokenService.setListCardDetail(this.cartDetails);
+    this.router.navigate(["user/showOrders"]);
+  }
+
+  getTotalBill(orderPmList: OrderPMs[]) {
+    let sum = 0;
+    for (const orderPM of orderPmList) {
+      sum += this.getTotalBillByPm(orderPM.cartDetails);
+    }
+    return sum;
   }
 }
