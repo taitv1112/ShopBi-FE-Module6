@@ -91,7 +91,8 @@ export const appRoutes: Routes = [
   {path: 'pm/detailOrder/:orderId', component: DetailOrderInPmComponent},
   {path: 'admin', component: HomeAdminComponent},
   {path: 'admin/showUser', component: ShowListUserComponent},
-  {path: 'admin/editUser', component: EditUserComponent},
+  {path: 'admin/editUser/:id', component: EditUserComponent},
+
 
   {
     path: 'guide/getting-started',
