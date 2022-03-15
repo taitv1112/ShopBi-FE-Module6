@@ -98,8 +98,10 @@
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
 
         <div class="form-group">
-            <label >Search:</label>
-            <input type="text" class="form-control" >
+
+            <input type="text" class="form-control" placeholder="search" [(ngModel)]="emailFind" >
+            <label ><button type="button" class="btn btn-primary" (click)="findByEmail()" >Search</button>
+            </label>
         </div>
 <!--        <div class="container-fluid py-1 px-3">-->
 <!--            <nav aria-label="breadcrumb">-->
@@ -264,7 +266,7 @@
                                         <button class="btn btn-warning" *ngIf="!checkRole(user)" (click)="upToPm(user.id)">Trở thành người bán hàng</button>
                                     </td>
                                     <td class="align-middle">
-                                        <button class="btn btn-danger" *ngIf="user.id !=1" (click)="downToUser(user.id)">Block</button>
+                                        <button class="btn btn-danger" *ngIf="user.id !=1" (click)="downToUser(user.id)">Trở về User</button>
                                     </td>
 
                                 </tr>

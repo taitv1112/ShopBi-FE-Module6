@@ -12,6 +12,7 @@ import {isFakeMousedownFromScreenReader} from '@angular/cdk/a11y';
 })
 export class ShowListUserComponent implements OnInit {
   listUser:User[] =[]
+  emailFind ='';
 
   constructor(private  http:HttpClient) {
     this.getListUser()
@@ -53,6 +54,13 @@ export class ShowListUserComponent implements OnInit {
         this.getListUser()
       })
     }
+  }
+  findByEmail(){
+    console.log(this.emailFind);
+    this.http.get("http://localhost:8080/admin/findByEmail?email="+this.emailFind).subscribe((data)=>{
+      this.listUser = data['content']
+      console.log("list in findBYEMail",this.listUser);
+    })
   }
 
 }
