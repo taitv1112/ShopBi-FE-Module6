@@ -12,6 +12,7 @@ export class AuthPmGuard implements CanActivate {
   }
   canActivate(): boolean  {
     if(this.authService.loggedInPM() ){
+
       return true
     }else {
       this.router.navigate(["login"]);
