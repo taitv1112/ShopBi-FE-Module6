@@ -273,6 +273,14 @@
 
                                 </tbody>
                             </table>
+
+                            <div style="margin-top: 30px"><button type="button" class="btn btn-outline-danger" style=" font-size: 11px "  (click)="backPage()"> << </button>
+                                <button type="button" class="btn btn-outline-danger" style=" font-size: 11px " (click)="getListUser(page=0)" > 1</button>
+                                <button type="button" class="btn btn-outline-danger" style=" font-size: 11px " > ...</button>
+                                <button type="button" class="btn btn-outline-danger" style=" font-size: 11px "  (click)="getListUser(page = totalPages-2)"> {{totalPages-1}}</button>
+                                <button type="button" class="btn btn-outline-danger" style=" font-size: 11px "  (click)="getListUser(page =totalPages-1)"> {{totalPages}}</button>
+                                <button type="button" class="btn btn-outline-danger" style=" font-size: 11px " (click)="nextPage()"> >> </button>
+                            </div>
                         </div>
                     </div>
                 </div>
