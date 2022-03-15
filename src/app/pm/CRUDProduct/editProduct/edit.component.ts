@@ -16,7 +16,7 @@ import {AngularFireStorage} from '@angular/fire/storage';
 export class EditComponent implements OnInit {
   id! : number;
   formEdit! : FormGroup;
-
+  checkUpload = false;
   categoryList : Category[] = [];
   promotionList : Promotion[] = [];
 
@@ -80,6 +80,7 @@ export class EditComponent implements OnInit {
         category: new FormControl(data.category),
         promotion: new FormControl(data.promotion)
       })
+      this.arrayPicture = data.coverPhoto
       console.log("vao show editProduct",this.formEdit.value)
 
     })
@@ -87,7 +88,9 @@ export class EditComponent implements OnInit {
 
   edit(){
     console.log("vao editProduct",this.formEdit.value)
+    this.formEdit.value.coverPhoto = this.arrayPicture;
     this.http.put<Product>("http://localhost:8080/pm" , this.formEdit.value).subscribe((data)=>{
+      console.log("data", data);
       console.log("hdhdhdh");
       console.log(this.id)
 
@@ -96,11 +99,14 @@ export class EditComponent implements OnInit {
   }
 
   submit(){
+    this.checkUpload = true;
     if (this.selectedImage != null){
       const filePath = this.selectedImage.name;
       const fileRef = this.storage.ref(filePath);
       this.storage.upload(filePath,this.selectedImage).snapshotChanges().pipe(
-        finalize(()=>(fileRef.getDownloadURL().subscribe(url =>{this.arrayPicture = url;
+        finalize(()=>(fileRef.getDownloadURL().subscribe(url =>{
+          this.arrayPicture = url;
+          this.checkUpload=false;
           console.log(url);
         })))
       ).subscribe()
@@ -109,6 +115,7 @@ export class EditComponent implements OnInit {
 
   uploadFileIMG(){
     this.selectedImage = this.avatarDom?.nativeElement.files[0];
+
     this.submit()
 
   }

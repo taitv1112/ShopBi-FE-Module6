@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Product} from '../../../model/product';
 import {Category} from '../../../model/category';
 import {Promotion} from '../../../model/promotion';
 import {User} from '../../../model/user';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {Img} from '../../../model/img';
+import {finalize} from 'rxjs/operators';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 @Component({
   selector: 'app-detail-product',
@@ -21,8 +23,14 @@ export class DetailProductComponent implements OnInit {
 
   id! : number;
 
-  constructor(private router : ActivatedRoute, private http : HttpClient) {
-      this.router.paramMap.subscribe((param)=>{
+  selectedImage : any = null;
+
+  arrayPicture = [];
+
+  @ViewChild('uploadFile',{static : true}) public avatarDom:ElementRef | undefined;
+
+  constructor(private routerActive : ActivatedRoute, private http : HttpClient,private router : Router,private storage : AngularFireStorage) {
+      this.routerActive.paramMap.subscribe((param)=>{
         this.id = Number(<string>param.get('id'));
         this.detailProduct();
         this.getListImg();
@@ -30,18 +38,26 @@ export class DetailProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   getListImg(){
     this.http.get<Img[]>("http://localhost:8080/pm/img/" + this.id).subscribe((data)=>{
       this.listImg = data
+      console.log( "this.listImg");
+      console.log( this.listImg);
     })
   }
 
   detailProduct(){
     this.http.get<Product>("http://localhost:8080/pm/" + this.id).subscribe((data)=>{
       this.product = data
+
     })
   }
+
+
+
+
 
 }

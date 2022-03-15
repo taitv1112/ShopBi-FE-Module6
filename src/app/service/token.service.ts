@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core';
 import {CartDetail} from '../model/cart-detail';
 import {Cart} from '../model/cart';
 import {BehaviorSubject} from 'rxjs';
-
+import jwt_decode from 'jwt-decode';
 const NAME_KEY = 'Name_Key';
+const USER_NAME_KEY = 'User_Name_Key';
 const TOKEN_KEY = 'Token_Key';
 const ROLE_KEY = 'Role_Key';
 const AVATAR_KEY = 'Avatar_Key';
@@ -30,6 +31,14 @@ export class TokenService {
 
   public getNameKey(): string {
     return window.sessionStorage.getItem(NAME_KEY);
+  }
+  public setUserNameKey(username: string) {
+    window.sessionStorage.removeItem(USER_NAME_KEY);
+    window.sessionStorage.setItem(USER_NAME_KEY, username);
+  }
+
+  public getUserNameKey(): string {
+    return window.sessionStorage.getItem(USER_NAME_KEY);
   }
   public setListCardDetail(cartDetails: CartDetail[]) {
     window.sessionStorage.removeItem(LIST_CART_DETAIL);
@@ -87,14 +96,19 @@ export class TokenService {
 
   public getRoleKey(): string[] {
     const roles = [];
-    console.log('ROLE_KEY ---> ', sessionStorage.getItem(ROLE_KEY));
-    console.log('ROLE KEY SAU KHI PARSE ==> ', JSON.parse(sessionStorage.getItem(ROLE_KEY)));
     if (sessionStorage.getItem(TOKEN_KEY)) {
       JSON.parse(sessionStorage.getItem(ROLE_KEY)).forEach(role => {
-        console.log('ROLE SAU KHI FOR EARCH ---> ', role);
         roles.push(role.authority);
       });
     }
     return roles;
+  }
+
+  getDecodedAccessToken(): any {
+    try {
+      return jwt_decode(this.getTokenKey());
+    } catch(Error) {
+      return null;
+    }
   }
 }

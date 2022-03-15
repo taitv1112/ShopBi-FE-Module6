@@ -59,11 +59,16 @@ import { CreateComponent } from './pm/CRUDProduct/createProduct/create.component
 import { DetailProductComponent } from './pm/CRUDProduct/detail-product/detail-product.component';
 import { OrderInPmComponent } from './pm/orderInPm/order-in-pm/order-in-pm.component';
 import { DetailOrderInPmComponent } from './pm/orderInPm/detail-order-in-pm/detail-order-in-pm.component';
+// @ts-ignore
 import { ShowCartComponent } from './user/show-cart/show-cart.component';
 import {HomeAdminComponent} from './admin/home-admin/home-admin.component';
 import {ShowListUserComponent} from './admin/show-list-user/show-list-user.component';
 import { EditUserComponent } from './admin/edit-user/edit-user.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import {TokenService} from './service/token.service';
+import {AuthRouterGuard} from './service/auth-router.guard';
+import {AuthService} from './service/auth.service';
+import {AuthPmGuard} from './service/auth-pm.guard';
 
 
 export const appRoutes: Routes = [
@@ -72,16 +77,16 @@ export const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
 
   {path: 'change-avatar', component: ChangeAvatarComponent},
-  {path: 'pm', component: PmComponent},
-  {path: 'pm/listProduct', component: ShowListComponent},
-  {path: 'pm/editProduct/:id', component: EditComponent},
-  {path: 'pm/createProduct', component: CreateComponent},
-  {path: 'pm/detailProduct/:id', component: DetailProductComponent},
+  {path: 'pm', component: PmComponent,canActivate:[AuthPmGuard]},
+  {path: 'pm/listProduct', component: ShowListComponent,canActivate:[AuthPmGuard]},
+  {path: 'pm/editProduct/:id', component: EditComponent,canActivate:[AuthPmGuard]},
+  {path: 'pm/createProduct', component: CreateComponent,canActivate:[AuthPmGuard]},
+  {path: 'pm/detailProduct/:id', component: DetailProductComponent ,canActivate:[AuthPmGuard]},
 
   {path: 'index', component: UserComponent},
   {path: 'showProductByCategory/:id', component: ListproductcategoryComponent},
-  {path: 'showProductDetail/:id', component: ProductDetailComponent},
-  {path: 'showCartDetail', component: ShowCartComponent},
+  {path: 'showProductDetail/:id', component: ProductDetailComponent,canActivate:[AuthRouterGuard]},
+  {path: 'showCartDetail', component: ShowCartComponent,canActivate:[AuthRouterGuard]},
   {path: 'pm/orders', component: OrderInPmComponent},
   {path: 'pm/detailOrder/:orderId', component: DetailOrderInPmComponent},
   {path: 'admin', component: HomeAdminComponent},
@@ -119,7 +124,7 @@ export const appRoutes: Routes = [
     // tslint:disable-next-line:max-line-length
     RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, ReactiveFormsModule, MatProgressSpinnerModule, MatPaginatorModule, MatTableModule, MatDialogModule
   ],
-  providers: [httpInterceptorProvider],
+  providers: [httpInterceptorProvider,TokenService,AuthRouterGuard,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
