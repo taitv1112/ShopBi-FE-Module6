@@ -16,7 +16,7 @@ import {AngularFireStorage} from '@angular/fire/storage';
 })
 export class DetailProductComponent implements OnInit {
   product = new Product(0,"","",0,0,0,0,0,0,"",
-    new Category(0,"",""), new User(0,"","","","","","","",0),
+    new Category(0,"",""), new User(0,"","","","","","","","",0,[]),
     new Promotion(0,"",0));
 
   listImg : Img[] = []
