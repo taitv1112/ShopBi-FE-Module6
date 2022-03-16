@@ -273,7 +273,9 @@ export class ShowCartComponent implements OnInit, AfterViewInit {
     }
     this.cartDetails = null;
     this.tokenService.setListCardDetail(this.cartDetails);
-    this.router.navigate(["user/showOrders"]);
+    this.router.navigate(["user/showOrders"]).then(() => {
+      window.location.reload();
+    });
   }
 
   getTotalBill(orderPmList: OrderPMs[]) {

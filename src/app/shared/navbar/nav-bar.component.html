@@ -10,10 +10,12 @@
                     <img src="assets/img/user.png" id="user-img" alt="">
                     <div class="login-logout-popup hide">
                         <p class="account-info">Log in as, name</p>
+                        <button class="btn" id="user-btn2">Purchase order</button>
                         <button class="btn" id="user-btn">Log out</button>
                     </div>
                 </a>
-                <a [routerLink]="['/showCartDetail']"><p style="color: red; bottom: 1px">{{quantityCart}}</p><img src="assets/img/cart.png" alt=""></a>
+                <a *ngIf="quantityCart == 0"><p style="color: red; bottom: 1px">{{quantityCart}}</p><img src="assets/img/cart.png" alt=""></a>
+                <a *ngIf="quantityCart > 0" [routerLink]="['/showCartDetail']"><p style="color: red; bottom: 1px">{{quantityCart}}</p><img src="assets/img/cart.png" alt=""></a>
             </div>
         </div>
         <ul class="links-container">
