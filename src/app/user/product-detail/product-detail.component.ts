@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Product} from '../../model/product';
-import {HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {ProductService} from '../../service/product.service';
 import {ActivatedRoute} from '@angular/router';
 import {Img} from '../../model/img';
@@ -10,6 +10,8 @@ import {Category} from '../../model/category';
 
 import {Promotion} from '../../model/promotion';
 import {User} from '../../model/user';
+import {data} from 'jquery';
+import {Comment} from '../../model/comment';
 
 @Component({
   selector: 'app-product-detail',
@@ -27,13 +29,20 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
     new Category(0,"",""), new User(0,"","","","","","","",0,[]),
     new Promotion(0,"",0));
   imgList:Img[];
-  constructor(private productService: ProductService,private router:ActivatedRoute,private tokenService:TokenService) { }
-
+  listComment:Comment[] = []
+  constructor(private productService: ProductService,private router:ActivatedRoute,private tokenService:TokenService,private http:HttpClient) { }
+  userOnline:User =  new User(0,"","","","","","","",0,[])
+  contentComment :string ='';
   ngOnInit(): void {
     this.idProduct = this.router.snapshot.paramMap.get('id');
     this.getProductById();
     this.getImgProductById();
+    this.getListComment()
+    this.getUserByUserName()
 
+    console.log("ListComment",this.listComment);
+    console.log("User",this.userOnline);
+    console.log("user name",this.tokenService.getUserNameKey());
   }
   public getProductById():void{
     this.productService.getProductByID(this.idProduct).subscribe((response)=>{
@@ -104,4 +113,25 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
   }
   ngAfterViewInit(): void {
   }
+
+    getListComment(){
+      this.http.get<Comment[]>("http://localhost:8080/comment/"+this.idProduct).subscribe((data)=>{
+        this.listComment = data;
+      })
+    }
+    getUserByUserName(){
+    this.http.get<User>("http://localhost:8080/comment/user/"+this.tokenService.getUserNameKey()).subscribe((data)=>{
+        this.userOnline = data;
+    })
+    }
+
+    saveComment(){
+    if (confirm("Bạn có chắc chắn không ?")){
+      let  comment = new Comment(this.contentComment,this.userOnline,this.product)
+      this.http.post("http://localhost:8080/comment",comment).subscribe((data)=>{
+        this.getListComment()
+      })
+    }
+
+    }
 }

@@ -26,9 +26,40 @@
     </div>
 </section>
 
-<section class="detail-des">
-    <h2 class="heading">description</h2>
-    <p class="des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, magnam. Reprehenderit necessitatibus veritatis iure perferendis quae distinctio optio obcaecati cum aliquid voluptatum in nesciunt, quidem assumenda totam ipsa, maiores hic exercitationem tempore! Sequi, consequatur amet aspernatur ipsum pariatur exercitationem possimus, quaerat corporis eius nesciunt impedit rerum itaque ab nobis. Molestiae quis accusamus, nisi aspernatur eligendi odio asperiores incidunt debitis laborum magnam. Non laudantium provident quae aspernatur sunt quis, accusantium rerum, iure nesciunt quam distinctio dicta eius at a. Dolorem, obcaecati molestias. Laboriosam consectetur voluptatibus tempore adipisci vitae nam soluta. Hic deleniti, similique dignissimos sint quas animi veniam, odit rem aut suscipit tenetur nihil autem fugiat nam provident temporibus sunt error iure sed voluptatum quisquam libero placeat maiores natus. Dolorem nostrum necessitatibus illo explicabo ducimus labore aperiam quos ratione saepe assumenda quod, minus maxime quis quam aut recusandae est in laboriosam iusto placeat! Natus nulla molestias, eos corporis corrupti at error magni hic amet dolore explicabo veritatis dolor atque vitae ipsum exercitationem neque voluptas perspiciatis aut ea? Illo, dolorem dolor a cum non numquam? Laboriosam vero at voluptate esse similique id, neque incidunt quis saepe qui quisquam aliquid optio earum animi cum tempora corrupti molestias aspernatur placeat atque magnam, possimus nostrum minima nulla. Minima quasi blanditiis doloribus unde nam! Libero consequuntur doloremque magnam ad. Aliquid, doloremque. Placeat eum animi quos temporibus! Eum excepturi magnam vel, inventore doloribus, natus voluptatem suscipit et voluptates odit facere alias eius sint provident quam consequatur beatae, autem impedit tempora? Et architecto similique a tempore labore sed eos provident temporibus quibusdam qui, modi, aspernatur dicta ipsa eligendi blanditiis dolores culpa nihil adipisci eaque, saepe consequatur. Quod eveniet reprehenderit labore, provident, excepturi laboriosam officia vel pariatur perferendis consequuntur animi blanditiis, dolorem molestias laborum sapiente aliquid maiores. Quae perspiciatis voluptate ipsam nemo modi a illum doloribus rerum quas beatae.</p>
+    <section class="detail-des">
+        <h2 class="heading">Reviews</h2>
+        <div class="container d-flex justify-content-center mt-100 mb-100">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Recent Comments</h4>
+                            <h6 class="card-subtitle">Latest Comments section by users</h6>
+                        </div>
+                        <div class="comment-widgets m-b-20">
+                            <div class="d-flex flex-row comment-row" *ngFor="let comment of listComment">
+                                <div class="p-2"><span class="round"><img src="{{comment.userComment.avatar}}" alt="user" width="50"></span></div>
+                                <div class="comment-text w-100">
+                                    <h5>{{comment.userComment.name}}</h5>
+                                    <p class="m-b-5 m-t-10">{{comment.content}}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div>
+                            <div class="d-flex flex-row comment-row" >
+                                <div class="p-2"><span class="round"><img src="{{userOnline.avatar}}" alt="user" width="50"></span></div>
+                                <div class="comment-text w-100">
+                                    <h5>{{userOnline.name}}</h5>
+                                    <textarea name="" [(ngModel)]="contentComment" cols="30" rows="10" placeholder="Enter Comment"></textarea>
+                                    <button (click)="saveComment()">AddComent</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </section>
 
 <!-- card-container -->
