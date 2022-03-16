@@ -38,11 +38,11 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/virtual-reality.html">
+                <a class="nav-link text-white " routerLink="pm/listUser">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">view_in_ar</i>
                     </div>
-                    <span class="nav-link-text ms-1">Virtual Reality</span>
+                    <span class="nav-link-text ms-1">List Users</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -126,21 +126,7 @@
             <input type="text" class="form-control" placeholder="Enter quantity" formControlName="quantity">
             <p *ngIf="!formEdit?.get('quantity')?.valid" style="color: red">Không được nhập chữ</p>
         </div>
-        <div class="form-group">
-            <label >quantity_sale:</label>
-            <input type="text" class="form-control" placeholder="Enter quantity_sale" formControlName="quantitySale">
-            <p *ngIf="!formEdit?.get('quantitySale')?.valid" style="color: red">Không được nhập chữ</p>
-        </div>
-        <div class="form-group">
-            <label >quantity_max:</label>
-            <input type="text" class="form-control" placeholder="Enter quantity_max" formControlName="quantityMax">
-            <p *ngIf="!formEdit?.get('quantityMax')?.valid" style="color: red">Không được nhập chữ</p>
-        </div>
-        <div class="form-group">
-            <label >quantity_min:</label>
-            <input type="text" class="form-control" placeholder="Enter quantity_min" formControlName="quantityMin">
-            <p *ngIf="!formEdit?.get('quantityMin')?.valid" style="color: red">Không được nhập chữ</p>
-        </div>
+
         <div class="form-group">
             <label >cover_photo:</label>
             <input type="file" #uploadFile (change)="uploadFileIMG()" class="form-control" placeholder="Enter cover_photo" formControlName="coverPhoto">

@@ -69,6 +69,9 @@ import {TokenService} from './service/token.service';
 import {AuthRouterGuard} from './service/auth-router.guard';
 import {AuthService} from './service/auth.service';
 import {AuthPmGuard} from './service/auth-pm.guard';
+import { ListUserInPmComponent } from './pm/ListUserInPm/list-user-in-pm/list-user-in-pm.component';
+import { ListOrderInUserBuyerComponent } from './pm/ListUserInPm/list-order-in-user-buyer/list-order-in-user-buyer.component';
+import { ListOrderDetailInBuyerComponent } from './pm/ListUserInPm/list-order-detail-in-buyer/list-order-detail-in-buyer.component';
 
 
 export const appRoutes: Routes = [
@@ -81,6 +84,9 @@ export const appRoutes: Routes = [
   {path: 'pm/listProduct', component: ShowListComponent,canActivate:[AuthPmGuard]},
   {path: 'pm/editProduct/:id', component: EditComponent,canActivate:[AuthPmGuard]},
   {path: 'pm/createProduct', component: CreateComponent,canActivate:[AuthPmGuard]},
+  {path: 'pm/listUser', component: ListUserInPmComponent,canActivate:[AuthPmGuard]},
+  {path: 'pm/listUserBuyer/:id', component: ListOrderInUserBuyerComponent,canActivate:[AuthPmGuard]},
+  {path: 'pm/orderDetail/:id', component: ListOrderDetailInBuyerComponent,canActivate:[AuthPmGuard]},
   {path: 'pm/detailProduct/:id', component: DetailProductComponent ,canActivate:[AuthPmGuard]},
 
   {path: 'index', component: UserComponent},
@@ -103,7 +109,7 @@ export const appRoutes: Routes = [
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UploadAvatarComponent, ChangeAvatarComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent,EditComponent, CreateComponent, ListproductcategoryComponent, ProductDetailComponent,DetailProductComponent, OrderInPmComponent, DetailOrderInPmComponent,ShowCartComponent,ShowListUserComponent,HomeAdminComponent, EditUserComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UploadAvatarComponent, ChangeAvatarComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent,EditComponent, CreateComponent, ListproductcategoryComponent, ProductDetailComponent,DetailProductComponent, OrderInPmComponent, DetailOrderInPmComponent,ShowCartComponent,ShowListUserComponent,HomeAdminComponent, EditUserComponent, ListUserInPmComponent, ListOrderInUserBuyerComponent, ListOrderDetailInBuyerComponent],
   imports: [
     FormsModule,
     HttpClientModule,

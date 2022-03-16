@@ -35,7 +35,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white " routerLink="/pm/listUser">
+                <a class="nav-link text-white active bg-gradient-primary"  routerLink="/pm/listUser">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">view_in_ar</i>
                     </div>
@@ -43,7 +43,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white active bg-gradient-primary" routerLink="/pm/orders">
+                <a class="nav-link text-white " routerLink="/pm/orders">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
                     </div>
@@ -216,7 +216,7 @@
                 <div class="card my-4">
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                            <h6 class="text-white text-capitalize ps-3">List Order</h6>
+                            <h6 class="text-white text-capitalize ps-3">List User Bought</h6>
                         </div>
                     </div>
                     <div class="card-body px-0 pb-2">
@@ -225,59 +225,38 @@
                                 <thead>
                                 <tr>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">
-                                        Id
+                                        Product Name
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">
-                                        User
+                                        Quantity
                                     </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">
-                                        Status
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Total Bill
-                                    </th><th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Address
-                                    </th>
-
                                     <th class="text-secondary opacity-7"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr *ngFor="let order of orderList">
+                                <tr *ngFor="let orders of orderDetail">
                                     <td>
-                                        <div class="d-flex px-2 py-1">
+                                        <a routerLink="/pm/detailProduct/{{orders.product.id}}"><p class="text-xs font-weight-bold mb-0">{{orders.product.name}}</p></a>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">{{orders.quantity}}</p>
+                                    </td>
 
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <a routerLink="/pm/detailOrder/{{order.id}}"><h6 class="mb-0 text-sm">{{order.id}}</h6></a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">{{order.user.username}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">{{order.status}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">{{order.totalBill}}</p>
-                                    </td>
-                                    <td>
-                                        <p class="text-xs font-weight-bold mb-0">{{order.address_ship}}</p>
-                                    </td>
-<!--                                    <td class="align-middle">-->
-<!--                                        <button routerLink="/pm/editProduct/{{order.id}}"-->
-<!--                                                class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"-->
-<!--                                                data-original-title="Edit user">-->
-<!--                                            Edit-->
-<!--                                        </button>-->
-<!--                                    </td>-->
-<!--                                    <td class="align-middle">-->
-<!--                                        <button (click)="delete(product.id)"-->
-<!--                                                class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"-->
-<!--                                                data-original-title="Edit user">-->
-<!--                                            Delete-->
-<!--                                        </button>-->
-<!--                                    </td>-->
+
+                                    <!--                                    <td class="align-middle">-->
+                                    <!--                                        <button routerLink="/pm/editProduct/{{order.id}}"-->
+                                    <!--                                                class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"-->
+                                    <!--                                                data-original-title="Edit user">-->
+                                    <!--                                            Edit-->
+                                    <!--                                        </button>-->
+                                    <!--                                    </td>-->
+                                    <!--                                    <td class="align-middle">-->
+                                    <!--                                        <button (click)="delete(product.id)"-->
+                                    <!--                                                class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"-->
+                                    <!--                                                data-original-title="Edit user">-->
+                                    <!--                                            Delete-->
+                                    <!--                                        </button>-->
+                                    <!--                                    </td>-->
 
                                 </tr>
                                 </tbody>

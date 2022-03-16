@@ -45,9 +45,9 @@ export class LoginComponent implements OnInit {
         console.log(this.authService.loggedInPM());
         console.log("this.authService.loggedInAdmin()");
         console.log(this.authService.loggedInAdmin());
-          // this.router.navigate(['index']).then(() => {
-          //   window.location.reload();
-          // });
+          this.router.navigate(['index']).then(() => {
+            window.location.reload();
+          });
 
       } else {
         this.isCheckLoginFailed = true;

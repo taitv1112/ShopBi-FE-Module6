@@ -18,7 +18,7 @@ export class OrderInPmComponent implements OnInit {
   }
 
   getListOrderPending(){
-    this.http.get<Orders[]>("http://localhost:8080/orderInPm/listOrder/2?status="+status).subscribe((data)=>{
+    this.http.get<Orders[]>("http://localhost:8080/orderInPm/listOrder/admin?status="+status).subscribe((data)=>{
       this.orderList= data
     })
   }
