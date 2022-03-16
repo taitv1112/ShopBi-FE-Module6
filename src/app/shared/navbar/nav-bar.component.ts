@@ -77,6 +77,7 @@ export class NavBarComponent implements OnInit{
     const userPopup = document.querySelector('.login-logout-popup');
     const popuptext = document.querySelector('.account-info');
     const actionBtn = document.querySelector('#user-btn');
+    const actionBtn2 = document.querySelector('#user-btn2');
 
     userImageButton.addEventListener('click', () => {
       userPopup.classList.toggle('hide');
@@ -91,6 +92,11 @@ export class NavBarComponent implements OnInit{
         actionBtn.innerHTML = 'log out';
         actionBtn.addEventListener('click', () => {
           this.logOut();
+        })
+        actionBtn2.addEventListener('click', () => {
+          this.router.navigate(["user/showOrders"]).then(() => {
+            window.location.reload();
+          })
         })
       } else{
         // user is logged out

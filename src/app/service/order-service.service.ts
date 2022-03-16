@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment.prod';
 import {OrderPMs} from '../model/OrderPMs';
+import {RateProduct} from '../model/rate-product';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,9 @@ export class OrderServiceService {
   public createOrder(orderPMs:OrderPMs):Observable<OrderPMs>{
     return this.http.post<OrderPMs>(this.apilocal+"index/checkOutOrder", orderPMs);
   }
+  public createRateProduct(rateProduct:RateProduct):Observable<RateProduct>{
+    return this.http.post<RateProduct>(this.apilocal+"index/RateOrder", rateProduct);
+  }
 
   public getListOrderBuyer(username:any):Observable<any> {
     // @ts-ignore
@@ -22,5 +26,9 @@ export class OrderServiceService {
   public getListOrderDetailByOrderId(id:any):Observable<any> {
     // @ts-ignore
     return this.http.get(this.apilocal + 'index/findOrderDetail/'+id);
+  }
+  public getRate(id:any):Observable<any> {
+    // @ts-ignore
+    return this.http.get(this.apilocal + 'index/findRateProduct/'+id);
   }
 }
