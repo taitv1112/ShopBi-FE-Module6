@@ -17,7 +17,8 @@ export class Product {
   category: Category;
 
   user: User;
-
+  createAt:Date;
+  modifyAt:Date;
   promotion: Promotion;
 
 
@@ -35,6 +36,7 @@ export class Product {
     this.category = category;
     this.user = user;
     this.promotion = promotion;
+
   }
 
 

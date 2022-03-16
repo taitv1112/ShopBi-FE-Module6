@@ -7,21 +7,24 @@
     <table class="table table-striped" id="main-container">
         <thead>
         <tr>
+            <th>#</th>
             <th>Order Number</th>
-            <th>Saler</th>
+            <th>Store</th>
             <th>Avartar</th>
             <th>Address</th>
             <th>Bill</th>
             <th>Status</th>
             <th>Rate</th>
+            <th>Create At</th>
             <th></th>
             <th></th>
         </tr>
         </thead>
         <tbody *ngFor="let orders of orderList;let i = index">
         <tr>
+            <td>{{i}}</td>
             <td>{{orders.id}}</td>
-            <td>{{orders.userPm.name}}</td>
+            <td>{{orders.userPm.nameStore}}</td>
             <td><img src="{{orders.userPm.avatar}}" height="200" width="200px"></td>
             <td>{{orders.address_ship}}</td>
             <td> {{orders.totalBill}} </td>
@@ -71,7 +74,9 @@
                     <label for="1">☆</label>
                 </div>
             </td>
+
             <td *ngIf="orders.rate == null">Please Rate</td>
+            <td></td>
             <td>
                 <a (click)="onOpenModal(orders, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"> Detail<i class="fa fa-pencil"></i> </a>
             </td>
