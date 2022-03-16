@@ -24,7 +24,7 @@
                 <button class="card-btn">add to whislist</button>
             </div>
             <div class="product-info">
-                <h2 class="product-brand">{{product.category.name}}</h2>
+                <h2 class="product-brand">{{product.name}}</h2>
                 <p class="product-short-des">{{product.description}}</p>
                 <span class="price"></span><span class="actual-price">${{product.priceSale}}</span>
             </div>
@@ -34,7 +34,7 @@
 </section>
 <div>
     <!-- collections -->
-    <section class="collection-container" >
+    <section class="collection-container" *ngIf="checkCategory">
         <a [routerLink]="['/showProductByCategory',category.id]" class="collection" *ngFor="let category of categories">
             <img src="{{category.imgCate}}" alt="">
             <p class="collection-title">{{category.name}} <br> apparels</p>
@@ -44,7 +44,7 @@
 </div>
 
 <!-- card-container -->
-<section class="product">
+<section class="product" *ngIf="checkCategory">
     <h2 class="product-category">{{categories[0].name}}</h2>
     <button class="pre-btn"><img src="assets/img/arrow.png" alt=""></button>
     <button class="nxt-btn"><img src="assets/img/arrow.png" alt=""></button>
@@ -58,7 +58,7 @@
                 <button class="card-btn">add to whislist</button>
             </div>
             <div class="product-info">
-                <h2 class="product-brand">{{productC.category.name}}</h2>
+                <h2 class="product-brand">{{productC.name}}</h2>
                 <p class="product-short-des">{{productC.description}}</p>
                 <span class="price"></span><span class="actual-price">${{productC.priceSale}}</span>
             </div>

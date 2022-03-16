@@ -2,7 +2,7 @@
 <body>
 
 <div >
-    <a routerLink="index"><h2>Home</h2></a>
+    <a [routerLink]="['/index']"><h2>Home</h2></a>
     <h4 style="text-align: center; color: green">Welcome to {{this.tokenService.getNameKey()}}</h4>
     <table class="table table-striped" id="main-container">
         <thead>
@@ -27,48 +27,47 @@
             <td> {{orders.totalBill}} </td>
             <td> {{orders.status}} </td>
             <td *ngIf="! (orders.rate == null)">
-                <div class="rating" *ngIf="orders?.rate?.rateStar == 5">
+                <div class="rating" *ngIf="orders.rate.rateStar == 5">
                     <div class="rating">
-                        <input type="radio" name="{{orders?.rate?.rateStar}}" value="5" id="15" checked>
+                        <input type="radio" name="{{orders.id}}" value="5" id="15" checked>
                         <label for="15">☆</label>
-                        <input type="radio" name="{{orders?.rate?.rateStar}}" value="4" id="14">
+                        <input type="radio" name="{{orders.id}}" value="4" id="14">
                         <label for="14">☆</label>
-                        <input type="radio" name="{{orders?.rate?.rateStar}}" value="3" id="13">
+                        <input type="radio" name="{{orders.id}}" value="3" id="13">
                         <label for="13">☆</label>
-                        <input type="radio" name="{{orders?.rate?.rateStar}}" value="2" id="12">
+                        <input type="radio" name="{{orders.id}}" value="2" id="12">
                         <label for="12">☆</label>
-                        <input type="radio" name="{{orders?.rate?.rateStar}}" value="1" id="11">
+                        <input type="radio" name="{{orders.id}}" value="1" id="11">
                         <label for="11">☆</label>
                     </div>
                 </div>
                 <div class="rating" *ngIf="orders.rate.id == 4">
-                    <input type="radio" name="{{orders?.rate?.rateStar}}" value="3" id="114" checked>
+                    <input type="radio" name="{{orders.id}}" value="3" id="114" checked>
                     <label for="114">☆</label>
-                    <input type="radio" name="{{orders?.rate?.rateStar}}" value="3" id="113">
+                    <input type="radio" name="{{orders.id}}" value="3" id="113">
                     <label for="113">☆</label>
-                    <input type="radio" name="{{orders?.rate?.rateStar}}" value="2" id="112">
+                    <input type="radio" name="{{orders.id}}" value="2" id="112">
                     <label for="112">☆</label>
-                    <input type="radio" name="{{orders?.rate?.rateStar}}" value="1" id="111">
+                    <input type="radio" name="{{orders.id}}" value="1" id="111">
                     <label for="111">☆</label>
                 </div>
                 <div class="rating" *ngIf="orders.rate.id == 3">
-                    <input type="radio" name="{{orders?.rate?.rateStar}}" value="3" id="1113" checked>
+                    <input type="radio" name="{{orders.id}}" value="3" id="1113" checked>
                     <label for="1">☆</label>
-                    <input type="radio" name="{{orders?.rate?.rateStar}}" value="2" id="1112">
+                    <input type="radio" name="{{orders.id}}" value="2" id="1112">
                     <label for="1112">☆</label>
-                    <input type="radio" name="{{orders?.rate?.rateStar}}" value="1" id="1111">
+                    <input type="radio" name="{{orders.id}}" value="1" id="1111">
                     <label for="1111">☆</label>
                 </div>
-
                 <div class="rating" *ngIf="orders.rate.id == 2" >
-                    <input type="radio" name="{{orders?.rate?.rateStar}}" value="2" id="11112" checked>
+                    <input type="radio" name="{{orders.id}}" value="2" id="11112" checked>
                     <label for="11112">☆</label>
-                    <input type="radio" name="{{orders?.rate?.rateStar}}" value="1" id="11111">
+                    <input type="radio" name="{{orders.id}}" value="1" id="11111">
                     <label for="11111">☆</label>
                 </div>
                 <div class="rating" *ngIf="orders.rate.id == 1">
 
-                    <input type="radio" name="{{orders?.rate?.rateStar}}" value="1" id="111111">
+                    <input type="radio" name="{{orders.id}}" value="1" id="111111">
                     <label for="1">☆</label>
                 </div>
             </td>
@@ -78,7 +77,7 @@
             </td>
             <td>
 <!--                <a *ngIf="orders.status == 'Pending'" (click)="onOpenModal(orders, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"> Delete<i class="fa fa-times"></i></a>-->
-                <a *ngIf="orders.status == 'Done' && (orders.rate == null)" (click)="onOpenModal(orders, 'add')" class="btn btn-warning" data-placement="top" data-original-title="Edit"> Rating<i class="fa fa-star checked"></i> </a>
+                <a *ngIf="orders.status == 'Done' && (orders.rate == null)" (click)="onOpenModal(orders, 'add')" class="btn btn-warning" > Rating<i class="fa fa-star checked"></i> </a>
             </td>
 
         </tr>
@@ -90,7 +89,10 @@
             <div class="modal-content" style="background:green">
                     <div class="container d-flex justify-content-center mt-5">
                     <div class="card text-center mb-5" *ngIf="checkOrder">
-                        <div class="circle-image"> <img src="{{this.orderCurrent.userPm.avatar}}" width="50"> </div> <span class="dot"></span> <span class="name mb-1 fw-500">{{this.orderCurrent.userPm.nameStore}}</span> <small class="text-black-50">Order ID</small> <small class="text-black-50 font-weight-bold">{{this.orderCurrent.id}}</small>
+                        <div class="circle-image"> <img src="{{this.orderCurrent.userPm.avatar}}" width="50"> </div>
+                        <span class="dot"></span> <span class="name mb-1 fw-500">{{this.orderCurrent.userPm.nameStore}}</span>
+                        <small class="text-black-50">Order ID</small>
+                        <small class="text-black-50 font-weight-bold">{{this.orderCurrent.id}}</small>
                         <div class="location mt-4" *ngFor="let cartDetail of orderDetailList">
                             <span class="d-block">
                                 <i class="fa fa-map-marker start"></i>
@@ -130,7 +132,9 @@
         <div class="modal-dialog modal-xl"  role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="updateProductModalLabel">Show OrderDetail {{this.tokenService.getUserNameKey()}}</h5>
+                    <h5 class="modal-title" id="updateProductModalLabel">
+                        Show OrderDetail {{this.tokenService.getUserNameKey()}}
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -150,14 +154,14 @@
                                 <th>Bill</th>
                             </tr>
                             </thead>
-                            <tbody *ngFor="let cartDetail of orderDetailList;let i = index">
+                            <tbody *ngFor="let orderDetail of orderDetailListEdit;let i = index">
                             <tr>
-                                <td>{{cartDetail.product.name}}</td>
-                                <td><img src="{{cartDetail.product.coverPhoto}}" height="200" width="200px"></td>
-                                <td>{{cartDetail.quantity}}</td>
-                                <td>{{cartDetail.product.priceSale}}</td>
-                                <td>{{cartDetail.product.priceSale*cartDetail.quantity}}</td>
-                                <td>{{cartDetail.product.priceSale*cartDetail.quantity}}</td>
+                                <td>{{orderDetail.product.name}}</td>
+                                <td><img src="{{orderDetail.product.coverPhoto}}" height="200" width="200px"></td>
+                                <td>{{orderDetail.quantity}}</td>
+                                <td>{{orderDetail.product.priceSale}}</td>
+                                <td>{{orderDetail.product.priceSale*orderDetail.quantity}}</td>
+                                <td>{{orderDetail.product.priceSale*orderDetail.quantity}}</td>
                             </tr>
                             </tbody>
                         </table>

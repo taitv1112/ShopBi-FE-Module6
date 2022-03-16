@@ -14,11 +14,13 @@ import {Category} from '../../model/category';
 export class IndexComponent implements OnInit {
   checkLoadBestProducts = false;
   checkLoadTopCategory = false;
+  checkCategory = false;
   bestProducts!: Product[];
   top1CategoryProducts!: Product[];
   categories!:Category[];
 
   constructor(private productService: ProductService, private categoryService: CategoryService) {
+    this.getTop1CategoryProducts();
   }
 
   ngOnInit(): void {
@@ -31,13 +33,12 @@ export class IndexComponent implements OnInit {
       this.categoryService.getTop3Categories().subscribe(
         (data) => {
           this.categories = data;
-          this.getTop1CategoryProducts();
+          this.checkCategory = true;
         },
         (error: HttpErrorResponse) => {
           console.log(error.message);
         }
       );
-
   }
   public getBestSeller():void{
     this.productService.getProductsBestSeller().subscribe(
@@ -51,15 +52,23 @@ export class IndexComponent implements OnInit {
     );
   }
   public getTop1CategoryProducts():void{
-    this.productService.getProductsByCategoryOrderByQuantitySale(this.categories[0].id).subscribe(
-      (response)=>{
-        this.top1CategoryProducts = response.content;
-        this.checkLoadTopCategory = true;
+    this.categoryService.getTop3Categories().subscribe(
+      (data) => {
+        this.productService.getProductsByCategoryOrderByQuantitySale(data[0].id).subscribe(
+          (response)=>{
+            this.top1CategoryProducts = response.content;
+            this.checkLoadTopCategory = true;
+          },
+          (error:HttpErrorResponse)=>{
+            alert(error.message);
+          }
+        );
       },
-      (error:HttpErrorResponse)=>{
-        alert(error.message);
+      (error: HttpErrorResponse) => {
+        console.log(error.message);
       }
     );
+
   }
 
 }

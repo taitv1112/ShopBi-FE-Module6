@@ -21,6 +21,7 @@ export class OrderBuyerComponent implements OnInit,AfterViewInit {
   orderCurrent:Orders;
   cancelOrder: OrderDetail[];
   orderDetailList:OrderDetail[];
+  orderDetailListEdit:OrderDetail[];
   checkOrder = false;
   constructor(private orderService:OrderServiceService, private tokenService:TokenService) {
     this.getListOrder();
@@ -47,9 +48,23 @@ export class OrderBuyerComponent implements OnInit,AfterViewInit {
   }
   getListOrderDetailById(id:number){
     this.orderService.getListOrderDetailByOrderId(id).subscribe((response)=>{
-         this.orderDetailList = response;
+        this.orderDetailListEdit = response;
+        console.log("this.orderDetailList trong get list");
+        console.log(this.orderDetailList);
         this.checkLoad = true;
+      },
+      (error:HttpErrorResponse)=>{
+        alert(error.message);
+      })
+  }
+  getListOrderDetailById2(id:number){
+    this.orderService.getListOrderDetailByOrderId(id).subscribe((response)=>{
+        this.orderDetailList = response;
+        console.log("this.orderDetailList trong get list");
+        console.log(this.orderDetailList);
         this.checkOrder = true;
+        console.log("co vao day ko ");
+
       },
       (error:HttpErrorResponse)=>{
         alert(error.message);
@@ -75,14 +90,14 @@ export class OrderBuyerComponent implements OnInit,AfterViewInit {
     if (mode === 'add') {
       this.orderCurrent = order;
       // @ts-ignore
-      this.orderDetailList = this.getListOrderDetailById(order.id);
+       this.getListOrderDetailById2(order.id);
       button.setAttribute('data-target', '#addProductModal');
     }
     if (mode === 'edit') {
       // @ts-ignore
-      this.orderDetailList = this.getListOrderDetailById(order.id);
+       this.getListOrderDetailById(order.id);
       console.log("this.orderDetailList");
-      console.log(this.orderDetailList);
+      console.log(this.orderDetailListEdit);
       console.log("this.checkLoad");
       console.log(this.checkLoad);
       button.setAttribute('data-target', '#updateProductModal');
@@ -99,9 +114,9 @@ export class OrderBuyerComponent implements OnInit,AfterViewInit {
     button.click();
   }
 
-  getTotalBillByPm(cartDeatails: OrderDetail[]):number{
+  getTotalBillByPm(orderDetails: OrderDetail[]):number{
     let sum = 0;
-    for (const cartDeatail of cartDeatails) {
+    for (const cartDeatail of orderDetails) {
       sum+= (cartDeatail.quantity*cartDeatail.product.priceSale)
     }
     return sum;
@@ -129,6 +144,7 @@ export class OrderBuyerComponent implements OnInit,AfterViewInit {
         for (const cartDetail of orderDetailList) {
           this.createRateProduct(new RateProduct(orderCurrent,cartDetail.product,new Rate(radios,radios)))
         }
+        window.location.reload();
       },
       (error:HttpErrorResponse)=>{
         alert(error.message);

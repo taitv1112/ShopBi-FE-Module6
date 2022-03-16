@@ -23,10 +23,10 @@
         <button class="btn cart-btn" (click)="addToCart(product)">add to cart</button>
     </div>
 </section>
-
+<!--comment-->
     <section class="detail-des">
         <h2 class="heading">Reviews</h2>
-        <div class="container d-flex justify-content-center mt-100 mb-100">
+        <div >
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -39,18 +39,18 @@
                                 <div class="p-2"><span class="round"><img src="{{comment.userComment.avatar}}" alt="user" width="50"></span></div>
                                 <div class="comment-text w-100">
                                     <h5>{{comment.userComment.name}}</h5>
-                                    <p class="m-b-5 m-t-10">{{comment.content}}</p>
+                                    <p class="m-b-5 m-t-10" style="text-align: left;color: green;font-size: x-large">{{comment.content}}</p>
                                 </div>
                             </div>
 
                         </div>
                         <div>
-                            <div class="d-flex flex-row comment-row" >
+                            <div >
                                 <div class="p-2"><span class="round"><img src="{{userOnline.avatar}}" alt="user" width="50"></span></div>
                                 <div class="comment-text w-100">
                                     <h5>{{userOnline.name}}</h5>
-                                    <textarea name="" [(ngModel)]="contentComment" cols="30" rows="10" placeholder="Enter Comment"></textarea>
-                                    <button (click)="saveComment()">AddComent</button>
+                                    <textarea style="width: 100%;height: 50px ; font-size: x-large" name="" [(ngModel)]="contentComment" cols="30" rows="10" placeholder="Enter Comment"></textarea>
+                                    <button (click)="saveComment()" class="btn btn-warning">AddComent</button>
                                 </div>
                             </div>
                         </div>
@@ -59,6 +59,8 @@
             </div>
         </div>
 </section>
+
+
 
 <!-- card-container -->
 <section class="product">
