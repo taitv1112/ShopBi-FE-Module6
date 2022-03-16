@@ -7,11 +7,12 @@ export class JwtResponse {
   token: string;
   roles: string[];
   avatar: string;
+  address:string;
   cart:Cart;
   cartDetailList:CartDetail[];
 
 
-  constructor(name: string, token: string, avatar: string, roles: string[], cart:Cart, cartDetailList:CartDetail[],username: string) {
+  constructor(name: string, token: string, avatar: string, roles: string[], cart:Cart, cartDetailList:CartDetail[],username: string,address:string) {
     this.name = name;
     this.token = token;
     this.avatar = avatar;
@@ -19,6 +20,7 @@ export class JwtResponse {
     this.cart=cart;
     this.cartDetailList = cartDetailList;
     this.username = username;
+    this.address = address;
   }
 
 }
