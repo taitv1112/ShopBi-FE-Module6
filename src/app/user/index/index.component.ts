@@ -15,8 +15,10 @@ export class IndexComponent implements OnInit {
   checkLoadBestProducts = false;
   checkLoadTopCategory = false;
   checkCategory = false;
+  checkProductsNew = false;
   bestProducts!: Product[];
   top1CategoryProducts!: Product[];
+  productsNew!: Product[];
   categories!:Category[];
 
   constructor(private productService: ProductService, private categoryService: CategoryService) {
@@ -28,7 +30,18 @@ export class IndexComponent implements OnInit {
     this.getTop3Categories();
   }
 
+  public getProductNew():void{
+    this.productService.getProductNew().subscribe(
+      (data) => {
+        this.productsNew = data;
+        this.checkProductsNew = true;
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message);
+      }
+    );
 
+  }
   public getTop3Categories(): void {
       this.categoryService.getTop3Categories().subscribe(
         (data) => {
