@@ -66,12 +66,9 @@ import {ShowListUserComponent} from './admin/show-list-user/show-list-user.compo
 import { EditUserComponent } from './admin/edit-user/edit-user.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {TokenService} from './service/token.service';
-// @ts-ignore
 import {AuthRouterGuard} from './service/auth-router.guard';
 import {AuthService} from './service/auth.service';
 import {AuthPmGuard} from './service/auth-pm.guard';
-import { OrderBuyerComponent } from './user/order-buyer/order-buyer.component';
-import {OrderServiceService} from './service/order-service.service';
 
 
 export const appRoutes: Routes = [
@@ -84,6 +81,9 @@ export const appRoutes: Routes = [
   {path: 'pm/listProduct', component: ShowListComponent,canActivate:[AuthPmGuard]},
   {path: 'pm/editProduct/:id', component: EditComponent,canActivate:[AuthPmGuard]},
   {path: 'pm/createProduct', component: CreateComponent,canActivate:[AuthPmGuard]},
+  {path: 'pm/listUser', component: ListUserInPmComponent,canActivate:[AuthPmGuard]},
+  {path: 'pm/listUserBuyer/:id', component: ListOrderInUserBuyerComponent,canActivate:[AuthPmGuard]},
+  {path: 'pm/orderDetail/:id', component: ListOrderDetailInBuyerComponent,canActivate:[AuthPmGuard]},
   {path: 'pm/detailProduct/:id', component: DetailProductComponent ,canActivate:[AuthPmGuard]},
 
   {path: 'index', component: UserComponent},
@@ -106,7 +106,7 @@ export const appRoutes: Routes = [
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UploadAvatarComponent, ChangeAvatarComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent,EditComponent, CreateComponent, ListproductcategoryComponent, ProductDetailComponent,DetailProductComponent, OrderInPmComponent, DetailOrderInPmComponent,ShowCartComponent,ShowListUserComponent,HomeAdminComponent, EditUserComponent,OrderBuyerComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UploadAvatarComponent, ChangeAvatarComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent,EditComponent, CreateComponent, ListproductcategoryComponent, ProductDetailComponent,DetailProductComponent, OrderInPmComponent, DetailOrderInPmComponent,ShowCartComponent,ShowListUserComponent,HomeAdminComponent, EditUserComponent, ListUserInPmComponent, ListOrderInUserBuyerComponent, ListOrderDetailInBuyerComponent,OrderBuyerComponent],
 
   imports: [
     FormsModule,
@@ -129,7 +129,7 @@ export const appRoutes: Routes = [
     // tslint:disable-next-line:max-line-length
     RouterModule.forRoot(appRoutes, {useHash: false}), MatFormFieldModule, ReactiveFormsModule, MatProgressSpinnerModule, MatPaginatorModule, MatTableModule, MatDialogModule
   ],
-  providers: [httpInterceptorProvider,TokenService,AuthRouterGuard,AuthService,OrderServiceService],
+  providers: [httpInterceptorProvider,TokenService,AuthRouterGuard,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

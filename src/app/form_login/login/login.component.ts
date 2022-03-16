@@ -42,6 +42,10 @@ export class LoginComponent implements OnInit {
         this.tokenService.setAddressKey(data.address);
         console.log("this.authService.loggedInUser()");
         console.log(this.authService.loggedInUser());
+        console.log("this.authService.loggedInPM()");
+        console.log(this.authService.loggedInPM());
+        console.log("this.authService.loggedInAdmin()");
+        console.log(this.authService.loggedInAdmin());
           this.router.navigate(['index']).then(() => {
             window.location.reload();
           });

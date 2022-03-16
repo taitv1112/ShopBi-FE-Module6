@@ -8,6 +8,8 @@ import {Promotion} from '../../../model/promotion';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
 import {ImgForm} from '../../../model/ImgForm';
+import {User} from '../../../model/user';
+import {TokenService} from '../../../service/token.service';
 
 
 @Component({
@@ -19,14 +21,16 @@ export class CreateComponent implements OnInit {
 
   @ViewChild('uploadFile',{static : true}) public avatarDom:ElementRef | undefined;
   @ViewChild('uploadFileChild',{static : true}) public avatarDomChild:ElementRef | undefined;
-
   selectedImage : any = null;
   selectedImage2 : any = null;
 
   arrayPicture = "";
   arrayPictureChild = [];
 
-  constructor(private http : HttpClient,private router : Router,private storage : AngularFireStorage) {
+  checkUpload = false;
+
+  constructor(private http : HttpClient,private router : Router,private storage : AngularFireStorage,private tokenservice: TokenService) {
+
     this.getListCategory()
     this.getListPromotion()
   }
@@ -67,7 +71,7 @@ export class CreateComponent implements OnInit {
 
   create(){
     this.formCreate.value.coverPhoto = this.arrayPicture;
-    this.http.post<Product>("http://localhost:8080/pm", this.formCreate.value).subscribe((data)=>{
+    this.http.post<Product>("http://localhost:8080/pm?username="+this.tokenservice.getUserNameKey(), this.formCreate.value).subscribe((data)=>{
       console.log(data);
       this.imgForm = new ImgForm(this.arrayPictureChild,data);
       this.http.post<ImgForm>("http://localhost:8080/img",this.imgForm).subscribe((data)=>{
@@ -81,13 +85,15 @@ export class CreateComponent implements OnInit {
   }
 
   submit(){
+    this.checkUpload = true;
     if (this.selectedImage != null){
       const filePath = this.selectedImage.name;
       const fileRef = this.storage.ref(filePath);
       this.storage.upload(filePath,this.selectedImage).snapshotChanges().pipe(
-        finalize(()=>(fileRef.getDownloadURL().subscribe(url =>{this.arrayPicture = url;
-          this.arrayPictureChild.push(url)
-          console.log(this.arrayPictureChild);
+        finalize(()=>(fileRef.getDownloadURL().subscribe(url =>{
+          this.arrayPicture = url;
+          this.checkUpload=false;
+          console.log(url);
         })))
       ).subscribe()
     }

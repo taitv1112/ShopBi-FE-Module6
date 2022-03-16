@@ -38,11 +38,11 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white " href="../pages/virtual-reality.html">
+                <a class="nav-link text-white " routerLink="/pm/listUser">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">view_in_ar</i>
                     </div>
-                    <span class="nav-link-text ms-1">Virtual Reality</span>
+                    <span class="nav-link-text ms-1">List Users</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -183,15 +183,11 @@
                         </div>
                         <p class="product-description">{{product.description}}</p>
                         <h4 class="price">Price : <span>$ {{product.price}}</span></h4>
-                        <h4 class="price">Quantity : <span>$ {{product.quantity}}</span></h4>
-                        <h4 class="price">Quantity Sale : <span>$ {{product.quantitySale}}</span></h4>
-                        <h4 class="price">Quantity Max : <span>$ {{product.quantityMax}}</span></h4>
-                        <h4 class="price">Quantity Min : <span>$ {{product.quantityMin}}</span></h4>
+                        <h4 class="price">Price Sale: <span>$ {{product.priceSale}}</span></h4>
+                        <h4 class="price">Quantity : <span> {{product.quantity}}</span></h4>
+                        <h4 class="price">Sold : <span> {{product.quantitySale}}</span></h4>
                         <h4 class="price">Category : <span>{{product.category.name}}</span></h4>
-                        <h4 class="price">Promotion : <span>{{product.promotion.name}}</span></h4>
-                        <h4 class="price">Shop Name : <span>{{product?.user?.name}}</span></h4>
-
-
+                        <h4 class="price">Shop Name : <span>{{product.user.nameStore}}</span></h4>
 
                     </div>
                 </div>

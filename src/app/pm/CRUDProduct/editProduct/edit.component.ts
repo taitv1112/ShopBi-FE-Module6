@@ -7,6 +7,7 @@ import {Category} from '../../../model/category';
 import {Promotion} from '../../../model/promotion';
 import {finalize} from 'rxjs/operators';
 import {AngularFireStorage} from '@angular/fire/storage';
+import {TokenService} from '../../../service/token.service';
 
 @Component({
   selector: 'app-edit',
@@ -26,7 +27,7 @@ export class EditComponent implements OnInit {
 
   arrayPicture = "";
 
-  constructor(private http: HttpClient, private routerActive : ActivatedRoute, private router : Router,private storage : AngularFireStorage) {
+  constructor(private http: HttpClient, private routerActive : ActivatedRoute, private router : Router,private storage : AngularFireStorage,private tokenservice: TokenService) {
     this.routerActive.paramMap.subscribe((param)=>{
       this.id = Number(<string>param.get('id'));
     })
@@ -89,7 +90,7 @@ export class EditComponent implements OnInit {
   edit(){
     console.log("vao editProduct",this.formEdit.value)
     this.formEdit.value.coverPhoto = this.arrayPicture;
-    this.http.put<Product>("http://localhost:8080/pm" , this.formEdit.value).subscribe((data)=>{
+    this.http.put<Product>("http://localhost:8080/pm?username="+this.tokenservice.getUserNameKey() , this.formEdit.value).subscribe((data)=>{
       console.log("data", data);
       console.log("hdhdhdh");
       console.log(this.id)
@@ -115,7 +116,6 @@ export class EditComponent implements OnInit {
 
   uploadFileIMG(){
     this.selectedImage = this.avatarDom?.nativeElement.files[0];
-
     this.submit()
 
   }

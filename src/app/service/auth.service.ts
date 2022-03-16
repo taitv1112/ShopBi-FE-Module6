@@ -45,6 +45,12 @@ export class AuthService {
     }
   }
   loggedInPM():boolean{
+    console.log("this.tokenService.getDecodedAccessToken().sub == this.tokenService.getUserNameKey()  ");
+    console.log(this.tokenService.getUserNameKey());
+    console.log(this.tokenService.getDecodedAccessToken().sub == this.tokenService.getUserNameKey());
+    console.log("this.tokenService.getRoleKey()");
+    console.log(this.tokenService.getRoleKey());
+
     if(this.tokenService.getDecodedAccessToken()!== null && this.tokenService.getDecodedAccessToken().sub == this.tokenService.getUserNameKey()){
       for (const argument of this.tokenService.getRoleKey()) {
         if(argument == "PM"){
