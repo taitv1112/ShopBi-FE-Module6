@@ -21,6 +21,7 @@ import {Comment} from '../../model/comment';
 export class ProductDetailComponent implements OnInit,AfterViewInit {
   @ViewChild("productImages") productImages:ElementRef;
   @ViewChild("productImageSlide") productImageSlide:ElementRef;
+  rates = [1,2,3,4,5];
   quantityProductNow:number;
   cart = this.tokenService.getCard();
   cartDetails=this.tokenService.getListCardDetail();
@@ -29,6 +30,7 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
   findByPmAndCate:Product[];
   checkFindByPmAndCate = false;
   idProduct:any;
+  rateAvgPm :number;
   product =  new Product(0,"","",0,0,0,0,0,0,"",
     new Category(0,"",""), new User(0,"","","","","","","",0,[]),
     new Promotion(0,"",0));
@@ -56,7 +58,7 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
     this.productService.getProductByID(this.idProduct).subscribe((response)=>{
         this.product = response;
         this.quantityProductNow = this.product.quantity;
-
+        this.getAvgPmRate(this.product.user.id);
         let cartDetailList = this.tokenService.getListCardDetail();
         console.log("cartDetailList");
         console.log(cartDetailList);
@@ -164,5 +166,17 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
     // @ts-ignore
     this.tokenService.changeProductDetail(product.id);
     this.router1.navigate(["showProductDetail"]).then()
+  }
+
+  getAvgPmRate(id :any){
+    this.productService.avgPmRate(id).subscribe(
+      (data)=>{
+        this.rateAvgPm = data;
+      },
+    (error:HttpErrorResponse)=>{
+      console.log(error);
+    }
+
+    )
   }
 }

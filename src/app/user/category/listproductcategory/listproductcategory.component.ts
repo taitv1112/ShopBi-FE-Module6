@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Product} from '../../../model/product';
 import {identity} from 'rxjs';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {TokenService} from '../../../service/token.service';
 
 @Component({
   selector: 'app-listproductcategory',
@@ -13,11 +14,15 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 export class ListproductcategoryComponent implements OnInit {
   idCategory :any;
   products:Product[];
-  constructor(private productService:ProductService, private router:ActivatedRoute,private  http:HttpClient) { }
+  constructor(private productService:ProductService, private router:ActivatedRoute,private  http:HttpClient,private router1:Router,private tokenService:TokenService) { }
 
   ngOnInit(): void {
-    this.idCategory = this.router.snapshot.paramMap.get('id');
-    this.getListProductByCategoryID(0);
+
+    this.tokenService.idCategoryCurrent.subscribe((idCategory)=>{
+      this.idCategory = idCategory;
+      this.getListProductByCategoryID(0);
+    })
+
   }
 
   // public getProducts():void{
@@ -60,6 +65,11 @@ export class ListproductcategoryComponent implements OnInit {
       this.totalPages = data['totalPages']
       console.log(this.products);
     })
+  }
+
+  showProductDetail(id: number) {
+    this.tokenService.changeProductDetail(id);
+    this.router1.navigate(["showProductDetail"]).then()
   }
 
 }

@@ -3,8 +3,8 @@
             <a [routerLink]="['/index']"><img src="assets/img/dark-logo.png" class="brand-logo" alt=""></a>
             <div class="nav-items">
                 <div class="search">
-                    <input #search  type="text" class="search-box" placeholder="search brand, product">
-                    <button class="search-btn" (click)="Search()">search</button>
+                    <input #search (change)="searchProduct()" type="text" class="search-box" placeholder="search brand, product">
+                    <button class="search-btn" (click)="searchProduct()">search</button>
                 </div>
                 <a>
                     <img src="assets/img/user.png" id="user-img" alt="">
@@ -14,6 +14,8 @@
                         <button class="btn" id="user-btn">Log out</button>
                     </div>
                 </a>
+                <a *ngIf="isCheckLogin" [routerLink]="['/index/inforComponent']"><p> Register Seller</p></a>
+                <a *ngIf="isCheckLogin" [routerLink]="['/user/showOrders']"><p> My Orders</p></a>
                 <a *ngIf="quantityCart == 0"><p style="color: red; bottom: 1px">{{quantityCart}}</p><img src="assets/img/cart.png" alt=""></a>
                 <a *ngIf="quantityCart > 0" [routerLink]="['/showCartDetail']"><p style="color: red; bottom: 1px">{{quantityCart}}</p><img src="assets/img/cart.png" alt=""></a>
             </div>

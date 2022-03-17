@@ -64,9 +64,8 @@ export class NavBarComponent implements OnInit,AfterViewInit{
   }
 
   showProductsByCategory(id:number) {
-    this.router.navigate(['showProductByCategory',id]).then(() => {
-      window.location.reload();
-    });
+    this.tokenService.changeCategoryId(id);
+    this.router.navigate(["showProductByCategory"]).then()
   }
 
 
@@ -111,13 +110,14 @@ export class NavBarComponent implements OnInit,AfterViewInit{
     }
   }
 
-  Search() {
+  searchProduct() {
     this.tokenService.changeSearch(this.search.nativeElement.value)
     this.router.navigate(['index/showOrders']).then();
   }
 
   ngAfterViewInit(): void {
   }
+
 }
 
 @NgModule({

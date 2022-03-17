@@ -35,7 +35,7 @@
 <div>
     <!-- collections -->
     <section class="collection-container" *ngIf="checkCategory">
-        <a [routerLink]="['/showProductByCategory',category.id]" class="collection" *ngFor="let category of categories">
+        <a (click)="showProductBYCategoryId(category.id)"  class="collection" *ngFor="let category of categories">
             <img src="{{category.imgCate}}" alt="">
             <p class="collection-title">{{category.name}} <br> apparels</p>
         </a>
@@ -45,7 +45,7 @@
 
 <!-- card-container -->
 <section class="product" *ngIf="checkCategory">
-    <h2 class="product-category">{{categories[0].name}}</h2>
+  <a (click)="showProductBYCategoryId(categories[0].id) "> <h2 class="product-category">{{categories[0].name}}</h2>></a>
     <button class="pre-btn"><img src="assets/img/arrow.png" alt=""></button>
     <button class="nxt-btn"><img src="assets/img/arrow.png" alt=""></button>
     <div class="product-container" *ngIf="checkLoadTopCategory ">

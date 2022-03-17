@@ -19,9 +19,9 @@ export class OrderServiceService {
     return this.http.post<RateProduct>(this.apilocal+"index/RateOrder", rateProduct);
   }
 
-  public getListOrderBuyer(username:any):Observable<any> {
+  public getListOrderBuyer(username:any,page:any):Observable<any> {
     // @ts-ignore
-    return this.http.get(this.apilocal + 'index/findOrder/'+username);
+    return this.http.get(this.apilocal + 'index/findOrder/'+username +"?pageNumber=" + page);
   }
   public getListOrderDetailByOrderId(id:any):Observable<any> {
     // @ts-ignore

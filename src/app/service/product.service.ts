@@ -3,6 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Product} from '../model/product';
 import {environment} from '../../environments/environment.prod';
+import {RateProduct} from '../model/rate-product';
+import {User} from '../model/user';
 
 
 @Injectable({
@@ -65,6 +67,23 @@ export class ProductService {
   public findByPmAndCate(idU:any,idC:any):Observable<any> {
     // @ts-ignore
     return this.httpClient.get(this.apilocal + 'index/findByPmAndCate/'+idU +"?idC="+idC);
+  }
+
+  public findUserByUserName(username:any):Observable<any> {
+    // @ts-ignore
+    return this.httpClient.get(this.apilocal + 'index/findUserByUserName/'+username);
+  }
+
+  public avgPmRate(id:any):Observable<any> {
+    // @ts-ignore
+    return this.httpClient.get(this.apilocal + 'index/avgPmRate/'+id);
+  }
+  public updateUser(user:User):Observable<User>{
+    return this.httpClient.put<User>(this.apilocal+"index/userEdit", user);
+  }
+
+  public sendRequestUpSaller(user:User):Observable<User>{
+    return this.httpClient.post<User>(this.apilocal+"index/sendRequestUpSaller", user);
   }
 
 

@@ -1,3 +1,33 @@
+.search-btn-right{
+  margin-top: 20px;
+  width: 20%;
+  height: 40px;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: #383838;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 15px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.search-btn-left{
+  margin-top: 20px;
+  width: 20%;
+  height: 40px;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: #383838;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 15px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
 .example-h2 {
   margin: 10px;
 }

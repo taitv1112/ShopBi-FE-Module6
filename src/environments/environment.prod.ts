@@ -1,8 +1,7 @@
 export const environment = {
   //API_LOCAL
   API_LOCAL: 'http://localhost:8080/',
-  //API_SERVER
-  API_SERVER: 'https://c0821h1.herokuapp.com/api/',
+
   production: true,
    firebaseConfig : {
     apiKey: "AIzaSyDtl2oC1K1Oi1OS1MzEXknOd97CEseCzDI",

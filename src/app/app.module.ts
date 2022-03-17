@@ -75,6 +75,7 @@ import {ListOrderInUserBuyerComponent} from './pm/ListUserInPm/list-order-in-use
 import {ListUserInPmComponent} from './pm/ListUserInPm/list-user-in-pm/list-user-in-pm.component';
 import {AuthAdminGuard} from './service/auth-admin.guard';
 import { SearchByNameComponent } from './user/search-by-name/search-by-name.component';
+import { InforUserComponent } from './user/infor-user/infor-user.component';
 
 
 // @ts-ignore
@@ -94,7 +95,7 @@ export const appRoutes: Routes = [
   {path: 'pm/detailProduct/:id', component: DetailProductComponent ,canActivate:[AuthPmGuard]},
 
   {path: 'index', component: UserComponent},
-  {path: 'showProductByCategory/:id', component: ListproductcategoryComponent},
+  {path: 'showProductByCategory', component: ListproductcategoryComponent},
   {path: 'showProductDetail', component: ProductDetailComponent},
   {path: 'showCartDetail', component: ShowCartComponent,canActivate:[AuthRouterGuard]},
   {path: 'admin', component: HomeAdminComponent,canActivate:[AuthAdminGuard]},
@@ -104,6 +105,7 @@ export const appRoutes: Routes = [
   {path: 'pm/detailOrder/:orderId', component: DetailOrderInPmComponent ,canActivate:[AuthPmGuard]},
   {path: 'user/showOrders', component: OrderBuyerComponent,canActivate:[AuthRouterGuard]},
   {path: 'index/showOrders', component: SearchByNameComponent},
+  {path: 'index/inforComponent', component: InforUserComponent,canActivate:[AuthRouterGuard]},
 
   {
     path: 'guide/getting-started',
@@ -114,7 +116,7 @@ export const appRoutes: Routes = [
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UploadAvatarComponent, ChangeAvatarComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent,EditComponent, CreateComponent, ListproductcategoryComponent, ProductDetailComponent,DetailProductComponent, OrderInPmComponent, DetailOrderInPmComponent,ShowCartComponent,ShowListUserComponent,HomeAdminComponent, EditUserComponent, ListUserInPmComponent, ListOrderInUserBuyerComponent, ListOrderDetailInBuyerComponent,OrderBuyerComponent, SearchByNameComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UploadAvatarComponent, ChangeAvatarComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent,EditComponent, CreateComponent, ListproductcategoryComponent, ProductDetailComponent,DetailProductComponent, OrderInPmComponent, DetailOrderInPmComponent,ShowCartComponent,ShowListUserComponent,HomeAdminComponent, EditUserComponent, ListUserInPmComponent, ListOrderInUserBuyerComponent, ListOrderDetailInBuyerComponent,OrderBuyerComponent, SearchByNameComponent, InforUserComponent],
 
   imports: [
     FormsModule,

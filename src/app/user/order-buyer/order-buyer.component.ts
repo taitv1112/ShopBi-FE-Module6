@@ -24,7 +24,7 @@ export class OrderBuyerComponent implements OnInit,AfterViewInit {
   orderDetailListEdit:OrderDetail[];
   checkOrder = false;
   constructor(private orderService:OrderServiceService, private tokenService:TokenService) {
-    this.getListOrder();
+    this.getListOrder(0);
   }
 
   ngAfterViewInit(): void {
@@ -34,10 +34,13 @@ export class OrderBuyerComponent implements OnInit,AfterViewInit {
   ngOnInit(): void {
 
   }
-  getListOrder(){
-    this.orderService.getListOrderBuyer(this.tokenService.getUserNameKey().toLowerCase()).subscribe(
+  getListOrder(page:number){
+    this.orderService.getListOrderBuyer(this.tokenService.getUserNameKey().toLowerCase(),page).subscribe(
       (response)=>{
-        this.orderList = response;
+        console.log("response");
+        console.log(response);
+        this.orderList = response['content'];
+        this.totalPages = response['totalPages']
         console.log(this.orderList);
         console.log("this.orderList");
       },
@@ -45,6 +48,29 @@ export class OrderBuyerComponent implements OnInit,AfterViewInit {
         alert(error.message);
       }
     )
+  }
+
+  page:number = 0;
+  totalPages : number = 1
+  nextPage():void{
+    this.page++
+    this.getListOrder(this.page)
+    if(this.page > this.totalPages-1){
+      this.page = this.totalPages-1
+      console.log('page')
+      console.log(this.page)
+      this.getListOrder(this.page)
+    }
+
+  }
+  backPage():void{
+
+    if(this.page >0){
+      this.page --;
+      this.getListOrder(this.page)
+      console.log(this.page)
+    }
+
   }
   getListOrderDetailById(id:number){
     this.orderService.getListOrderDetailByOrderId(id).subscribe((response)=>{

@@ -5,7 +5,7 @@ export class User {
  name! :string;
  username! :string;
   email! :string;
-
+  password:string;
  avatar! :string;
   phone! : string;
  address! :string;

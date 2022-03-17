@@ -27,6 +27,12 @@ export class TokenService {
 
   constructor() {
   }
+  private idCategory = new BehaviorSubject(1);
+  idCategoryCurrent = this.idCategory.asObservable();
+
+  public changeCategoryId(idCategory:number){
+    this.idCategory.next(idCategory);
+  }
   public changeProductDetail(idProduct:number){
     this.idProduct.next(idProduct);
   }

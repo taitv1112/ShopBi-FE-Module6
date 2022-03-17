@@ -93,4 +93,8 @@ export class IndexComponent implements OnInit {
     this.tokenService.changeProductDetail(id);
     this.router.navigate(["showProductDetail"]).then()
   }
+  showProductBYCategoryId(id: number) {
+    this.tokenService.changeCategoryId(id);
+    this.router.navigate(["showProductByCategory"]).then()
+  }
 }

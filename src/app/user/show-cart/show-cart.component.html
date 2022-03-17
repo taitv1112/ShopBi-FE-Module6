@@ -2,7 +2,7 @@
 <body>
 
 <div >
-    <h2>Shopping Cart</h2>
+    <a [routerLink]="['/index']"><h2>Shopping Cart</h2></a>
     <h4 style="text-align: center; color: green">Welcome to {{this.tokenService.getNameKey()}}</h4>
     <table class="table table-striped" *ngFor="let orderPMs of orderPmList;let a = index">
         <thead>
