@@ -48,4 +48,11 @@ export class OrderInPmComponent implements OnInit {
     })
   }
 
+  checkDone(id:number){
+    if (confirm("Bán có chắc chắn không ?")){
+      this.http.get("http://localhost:8080/orderInPm/checkDone/"+id).subscribe((data)=>{
+        this.getListOrder()
+      })
+    }
+  }
 }
