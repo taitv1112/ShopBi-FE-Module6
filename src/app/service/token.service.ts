@@ -17,10 +17,21 @@ const ADDRESS = 'ADDRESS';
 })
 export class TokenService {
   cartDetails:CartDetail[];
+  private search = new BehaviorSubject('')
+  searchNow = this.search.asObservable();
    private  quantityCart = new BehaviorSubject(this.getQuantityCartProduct())
   currentQuantityCart = this.quantityCart.asObservable();
   cart:Cart;
+  private idProduct = new BehaviorSubject(1);
+  idProductCurrent = this.idProduct.asObservable();
+
   constructor() {
+  }
+  public changeProductDetail(idProduct:number){
+    this.idProduct.next(idProduct);
+  }
+  public changeSearch(search:string){
+    this.search.next(search);
   }
   public changeQuantityCart(quantityCart:number){
     this.quantityCart.next(quantityCart);

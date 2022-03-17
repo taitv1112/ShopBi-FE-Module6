@@ -5,6 +5,8 @@ import {CategoryService} from '../../service/category.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {error} from 'ng-packagr/lib/utils/log';
 import {Category} from '../../model/category';
+import {TokenService} from '../../service/token.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -21,7 +23,7 @@ export class IndexComponent implements OnInit {
   productsNew!: Product[];
   categories!:Category[];
 
-  constructor(private productService: ProductService, private categoryService: CategoryService) {
+  constructor(private productService: ProductService, private categoryService: CategoryService, private tokenService:TokenService,private router:Router) {
     this.getTop1CategoryProducts();
   }
 
@@ -84,4 +86,8 @@ export class IndexComponent implements OnInit {
 
   }
 
+  showDetail(id: number) {
+    this.tokenService.changeProductDetail(id);
+    this.router.navigate(["showProductDetail"]).then()
+  }
 }

@@ -38,11 +38,15 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
   userOnline:User =  new User(0,"","","","","","","",0,[])
   contentComment :string ='';
   ngOnInit(): void {
-    this.idProduct = this.router.snapshot.paramMap.get('id');
-    this.getProductById();
-    this.getImgProductById();
-    this.getListComment()
-    this.getUserByUserName()
+    this.tokenService.idProductCurrent.subscribe((idProduct)=>{
+      this.idProduct = idProduct;
+      this.getProductById();
+      this.getImgProductById();
+      this.getListComment()
+      this.getUserByUserName()
+    })
+
+
 
     console.log("ListComment",this.listComment);
     console.log("User",this.userOnline);

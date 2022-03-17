@@ -3,8 +3,8 @@
             <a [routerLink]="['/index']"><img src="assets/img/dark-logo.png" class="brand-logo" alt=""></a>
             <div class="nav-items">
                 <div class="search">
-                    <input type="text" class="search-box" placeholder="search brand, product">
-                    <button class="search-btn">search</button>
+                    <input #search  type="text" class="search-box" placeholder="search brand, product">
+                    <button class="search-btn" (click)="Search()">search</button>
                 </div>
                 <a>
                     <img src="assets/img/user.png" id="user-img" alt="">

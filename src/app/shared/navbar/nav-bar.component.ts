@@ -1,4 +1,4 @@
-import {Component, NgModule, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, NgModule, OnInit, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
@@ -18,7 +18,8 @@ import {ProductService} from '../../service/product.service';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent implements OnInit{
+export class NavBarComponent implements OnInit,AfterViewInit{
+  @ViewChild("search") search:ElementRef;
   quantityCart :any = 0;
   categories:Category[];
   name: any;
@@ -63,7 +64,6 @@ export class NavBarComponent implements OnInit{
   }
 
   showProductsByCategory(id:number) {
-    window.sessionStorage.clear();
     this.router.navigate(['showProductByCategory',id]).then(() => {
       window.location.reload();
     });
@@ -109,6 +109,14 @@ export class NavBarComponent implements OnInit{
         })
       }
     }
+  }
+
+  Search() {
+    this.tokenService.changeSearch(this.search.nativeElement.value)
+    this.router.navigate(['index/showOrders']).then();
+  }
+
+  ngAfterViewInit(): void {
   }
 }
 

@@ -76,7 +76,7 @@
         <div *ngFor="let product of productsNew" class="product-card">
             <div class="product-image">
                 <span class="discount-tag">50% off</span>
-                <a [routerLink]="['/showProductDetail',product.id]">
+                <a (click)="showDetail(product.id)" >
                     <img src="{{product.coverPhoto}}" class="product-thumb" alt="">
                 </a>
 
