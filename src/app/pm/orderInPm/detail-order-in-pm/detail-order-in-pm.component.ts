@@ -22,9 +22,11 @@ export class DetailOrderInPmComponent implements OnInit {
   ngOnInit(): void {
   }
   getListOrderDetail(){
-    this.http.get<OrderDetail[]>("http://localhost:8080/orderInPm/detailOrder/"+this.id+"?userId=1").subscribe((data)=>{
+    this.http.get<OrderDetail[]>("http://localhost:8080/orderInPm/detailOrderInPm/"+this.id).subscribe((data)=>{
       this.listOrderDetail = data
+      console.log("listOrderDetail",this.listOrderDetail);
     })
   }
+
 
 }

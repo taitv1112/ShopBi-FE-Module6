@@ -70,11 +70,12 @@ import {AuthRouterGuard} from './service/auth-router.guard';
 import {AuthService} from './service/auth.service';
 import {AuthPmGuard} from './service/auth-pm.guard';
 import {OrderBuyerComponent} from './user/order-buyer/order-buyer.component';
-import {ListOrderDetailInBuyerComponent} from './pm/ListUserInPm/list-order-detail-in-buyer/list-order-detail-in-buyer.component';
+
 import {ListOrderInUserBuyerComponent} from './pm/ListUserInPm/list-order-in-user-buyer/list-order-in-user-buyer.component';
 import {ListUserInPmComponent} from './pm/ListUserInPm/list-user-in-pm/list-user-in-pm.component';
 import {AuthAdminGuard} from './service/auth-admin.guard';
 import { SearchByNameComponent } from './user/search-by-name/search-by-name.component';
+import {ListOrderDetailInBuyerComponent} from './pm/ListUserInPm/list-order-detail-in-buyer/list-order-detail-in-buyer.component';
 
 
 // @ts-ignore
