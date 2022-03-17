@@ -2,9 +2,7 @@
     <app-navbar></app-navbar>
 </nav>
 
-<style>
 
-</style>
 <section class="product-details" >
     <div #productImageSlide class="image-slider"  >
         <div    class="product-images" >
@@ -25,10 +23,10 @@
         <button class="btn cart-btn" (click)="addToCart(product)">add to cart</button>
     </div>
 </section>
-
+<!--comment-->
     <section class="detail-des">
         <h2 class="heading">Reviews</h2>
-        <div class="container d-flex justify-content-center mt-100 mb-100">
+        <div >
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -41,18 +39,18 @@
                                 <div class="p-2"><span class="round"><img src="{{comment.userComment.avatar}}" alt="user" width="50"></span></div>
                                 <div class="comment-text w-100">
                                     <h5>{{comment.userComment.name}}</h5>
-                                    <p class="m-b-5 m-t-10">{{comment.content}}</p>
+                                    <p class="m-b-5 m-t-10" style="text-align: left;color: green;font-size: x-large">{{comment.content}}</p>
                                 </div>
                             </div>
 
                         </div>
                         <div>
-                            <div class="d-flex flex-row comment-row" >
+                            <div >
                                 <div class="p-2"><span class="round"><img src="{{userOnline.avatar}}" alt="user" width="50"></span></div>
                                 <div class="comment-text w-100">
                                     <h5>{{userOnline.name}}</h5>
-                                    <textarea name="" [(ngModel)]="contentComment" cols="30" rows="10" placeholder="Enter Comment"></textarea>
-                                    <button (click)="saveComment()">AddComent</button>
+                                    <textarea style="width: 100%;height: 50px ; font-size: x-large" name="" [(ngModel)]="contentComment" cols="30" rows="10" placeholder="Enter Comment"></textarea>
+                                    <button (click)="saveComment()" class="btn btn-warning">AddComent</button>
                                 </div>
                             </div>
                         </div>
@@ -62,211 +60,51 @@
         </div>
 </section>
 
+
+
 <!-- card-container -->
 <section class="product">
-    <h2 class="product-category">Shirts</h2>
+    <h2 class="product-category">{{product.user.nameStore}}</h2>
     <button class="pre-btn"><img src="assets/img/arrow.png" alt=""></button>
     <button class="nxt-btn"><img src="assets/img/arrow.png" alt=""></button>
-    <div class="product-container">
-        <div class="product-card">
+    <div class="product-container" *ngIf="top15ProductsalePm">
+        <div *ngFor="let product of top15ProductsalePm" class="product-card">
             <div class="product-image">
                 <span class="discount-tag">50% off</span>
-                <img src="assets/img/card5.png" class="product-thumb" alt="">
-                <button class="card-btn">add to whislist</button>
+                <a (click)="goProduct(product)">
+                    <img src="{{product.coverPhoto}}" class="product-thumb" alt="">
+                </a>
+
+<!--                <button class="card-btn">add to whislist</button>-->
             </div>
             <div class="product-info">
-                <h2 class="product-brand">brand</h2>
-                <p class="product-short-des">A short line about the dress..</p>
-                <span class="price">$20</span> <span class="actual-price">$40</span>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-image">
-                <span class="discount-tag">50% off</span>
-                <img src="assets/img/card6.png" class="product-thumb" alt="">
-                <button class="card-btn">add to whislist</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">brand</h2>
-                <p class="product-short-des">A short line about the dress..</p>
-                <span class="price">$20</span> <span class="actual-price">$40</span>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-image">
-                <span class="discount-tag">50% off</span>
-                <img src="assets/img/card7.png" class="product-thumb" alt="">
-                <button class="card-btn">add to whislist</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">brand</h2>
-                <p class="product-short-des">A short line about the dress..</p>
-                <span class="price">$20</span> <span class="actual-price">$40</span>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-image">
-                <span class="discount-tag">50% off</span>
-                <img src="assets/img/card8.png" class="product-thumb" alt="">
-                <button class="card-btn">add to whislist</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">brand</h2>
-                <p class="product-short-des">A short line about the dress..</p>
-                <span class="price">$20</span> <span class="actual-price">$40</span>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-image">
-                <span class="discount-tag">50% off</span>
-                <img src="assets/img/card9.png" class="product-thumb" alt="">
-                <button class="card-btn">add to whislist</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">brand</h2>
-                <p class="product-short-des">A short line about the dress..</p>
-                <span class="price">$20</span> <span class="actual-price">$40</span>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-image">
-                <span class="discount-tag">50% off</span>
-                <img src="assets/img/card10.png" class="product-thumb" alt="">
-                <button class="card-btn">add to whislist</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">brand</h2>
-                <p class="product-short-des">A short line about the dress..</p>
-                <span class="price">$20</span> <span class="actual-price">$40</span>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-image">
-                <span class="discount-tag">50% off</span>
-                <img src="assets/img/card11.png" class="product-thumb" alt="">
-                <button class="card-btn">add to whislist</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">brand</h2>
-                <p class="product-short-des">A short line about the dress..</p>
-                <span class="price">$20</span> <span class="actual-price">$40</span>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-image">
-                <span class="discount-tag">50% off</span>
-                <img src="assets/img/card12.png" class="product-thumb" alt="">
-                <button class="card-btn">add to whislist</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">brand</h2>
-                <p class="product-short-des">A short line about the dress..</p>
-                <span class="price">$20</span> <span class="actual-price">$40</span>
+                <a (click)="goProduct(product)">  <h2 class="product-brand">{{product.name}}</h2></a>
+                <p class="product-short-des">{{product.description}}</p>
+                <span class="price"></span><span class="actual-price">${{product.priceSale}}</span>
             </div>
         </div>
     </div>
 </section>
 
 <!-- card-container -->
-<section class="product">
-    <h2 class="product-category">Shoes</h2>
+<section class="product" >
+   <a [routerLink]="['/showProductByCategory',product.category.id]"> <h2 class="product-category">{{product.category.name}}</h2></a>
     <button class="pre-btn"><img src="assets/img/arrow.png" alt=""></button>
     <button class="nxt-btn"><img src="assets/img/arrow.png" alt=""></button>
-    <div class="product-container">
-        <div class="product-card">
+    <div class="product-container" *ngIf="checkFindByPmAndCate">
+        <div *ngFor="let product of findByPmAndCate" class="product-card">
             <div class="product-image">
                 <span class="discount-tag">50% off</span>
-                <img src="assets/img/card9.png" class="product-thumb" alt="">
-                <button class="card-btn">add to whislist</button>
+                <a (click)="goProduct(product)">
+                    <img src="{{product.coverPhoto}}" class="product-thumb" alt="">
+                </a>
+
+<!--                <button class="card-btn">add to whislist</button>-->
             </div>
             <div class="product-info">
-                <h2 class="product-brand">brand</h2>
-                <p class="product-short-des">A short line about the dress..</p>
-                <span class="price">$20</span> <span class="actual-price">$40</span>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-image">
-                <span class="discount-tag">50% off</span>
-                <img src="assets/img/card10.png" class="product-thumb" alt="">
-                <button class="card-btn">add to whislist</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">brand</h2>
-                <p class="product-short-des">A short line about the dress..</p>
-                <span class="price">$20</span> <span class="actual-price">$40</span>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-image">
-                <span class="discount-tag">50% off</span>
-                <img src="assets/img/card11.png" class="product-thumb" alt="">
-                <button class="card-btn">add to whislist</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">brand</h2>
-                <p class="product-short-des">A short line about the dress..</p>
-                <span class="price">$20</span> <span class="actual-price">$40</span>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-image">
-                <span class="discount-tag">50% off</span>
-                <img src="assets/img/card12.png" class="product-thumb" alt="">
-                <button class="card-btn">add to whislist</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">brand</h2>
-                <p class="product-short-des">A short line about the dress..</p>
-                <span class="price">$20</span> <span class="actual-price">$40</span>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-image">
-                <span class="discount-tag">50% off</span>
-                <img src="assets/img/card1.png" class="product-thumb" alt="">
-                <button class="card-btn">add to whislist</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">brand</h2>
-                <p class="product-short-des">A short line about the dress..</p>
-                <span class="price">$20</span> <span class="actual-price">$40</span>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-image">
-                <span class="discount-tag">50% off</span>
-                <img src="assets/img/card2.png" class="product-thumb" alt="">
-                <button class="card-btn">add to whislist</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">brand</h2>
-                <p class="product-short-des">A short line about the dress..</p>
-                <span class="price">$20</span> <span class="actual-price">$40</span>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-image">
-                <span class="discount-tag">50% off</span>
-                <img src="assets/img/card3.png" class="product-thumb" alt="">
-                <button class="card-btn">add to whislist</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">brand</h2>
-                <p class="product-short-des">A short line about the dress..</p>
-                <span class="price">$20</span> <span class="actual-price">$40</span>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-image">
-                <span class="discount-tag">50% off</span>
-                <img src="assets/img/card4.png" class="product-thumb" alt="">
-                <button class="card-btn">add to whislist</button>
-            </div>
-            <div class="product-info">
-                <h2 class="product-brand">brand</h2>
-                <p class="product-short-des">A short line about the dress..</p>
-                <span class="price">$20</span> <span class="actual-price">$40</span>
+                <h2 class="product-brand">{{product.name}}</h2>
+                <p class="product-short-des">{{product.description}}</p>
+                <span class="price"></span><span class="actual-price">${{product.priceSale}}</span>
             </div>
         </div>
     </div>

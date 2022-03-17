@@ -167,7 +167,7 @@
                                         <button class="btn btn-warning" *ngIf="!checkRole(user)" (click)="upToPm(user.id)">Trở thành người bán hàng</button>
                                     </td>
                                     <td class="align-middle">
-                                        <button class="btn btn-danger" *ngIf="user.id !=1" (click)="downToUser(user.id)">Trở về User</button>
+                                        <button class="btn btn-danger" *ngIf="checkroleUser(user)" (click)="downToUser(user.id)">Trở về User</button>
                                     </td>
 
                                 </tr>

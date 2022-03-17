@@ -2,7 +2,7 @@ import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/
 import {Product} from '../../model/product';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {ProductService} from '../../service/product.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Img} from '../../model/img';
 import {TokenService} from '../../service/token.service';
 import {CartDetail} from '../../model/cart-detail';
@@ -24,21 +24,29 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
   quantityProductNow:number;
   cart = this.tokenService.getCard();
   cartDetails=this.tokenService.getListCardDetail();
+  top15ProductsalePm:Product[];
+  checkTop15ProductsalePm= false;
+  findByPmAndCate:Product[];
+  checkFindByPmAndCate = false;
   idProduct:any;
   product =  new Product(0,"","",0,0,0,0,0,0,"",
     new Category(0,"",""), new User(0,"","","","","","","",0,[]),
     new Promotion(0,"",0));
   imgList:Img[];
   listComment:Comment[] = []
-  constructor(private productService: ProductService,private router:ActivatedRoute,private tokenService:TokenService,private http:HttpClient) { }
+  constructor(private productService: ProductService,private router:ActivatedRoute,private tokenService:TokenService,private http:HttpClient,private router1:Router) { }
   userOnline:User =  new User(0,"","","","","","","",0,[])
   contentComment :string ='';
   ngOnInit(): void {
-    this.idProduct = this.router.snapshot.paramMap.get('id');
-    this.getProductById();
-    this.getImgProductById();
-    this.getListComment()
-    this.getUserByUserName()
+    this.tokenService.idProductCurrent.subscribe((idProduct)=>{
+      this.idProduct = idProduct;
+      this.getProductById();
+      this.getImgProductById();
+      this.getListComment()
+      this.getUserByUserName()
+    })
+
+
 
     console.log("ListComment",this.listComment);
     console.log("User",this.userOnline);
@@ -67,12 +75,29 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
           }
         }
         this.productImageSlide.nativeElement.style.backgroundImage = `url('${this.product.coverPhoto}')`
+        this.productService.getTop15ProductsalePm(this.product.user.id).subscribe(
+          (data) => {
+            this.top15ProductsalePm = data;
+            this.checkTop15ProductsalePm = true;
+          },
+          (error: HttpErrorResponse) => {
+            console.log(error.message);
+          }
+        )
+      this.productService.findByPmAndCate(this.product.user.id,this.product.category.id).subscribe(
+        (data) => {
+          this.findByPmAndCate = data;
+          this.checkFindByPmAndCate = true;
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error.message);
+        }
 
+      )
       },
       (error:HttpErrorResponse)=>{
         alert(error.message);
       })
-
   }
   public getImgProductById():void{
     this.productService.getImgsByProductId(this.idProduct).subscribe((response)=>{
@@ -134,4 +159,10 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
     }
 
     }
+
+  goProduct(product: Product) {
+    // @ts-ignore
+    this.tokenService.changeProductDetail(product.id);
+    this.router1.navigate(["showProductDetail"]).then()
+  }
 }

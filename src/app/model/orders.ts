@@ -1,4 +1,5 @@
 import {User} from './user';
+import {Rate} from './rate';
 
 export class Orders {
    id! : number;
@@ -7,7 +8,9 @@ export class Orders {
     status: string;
    userBuyer:User;
    userPm :User;
-
+  rate : Rate;
+  createAt:Date;
+  modifyAt:Date;
 
 
   constructor( address_ship: string, totalBill: number, status: string, userBuyer:User, userPm :User) {

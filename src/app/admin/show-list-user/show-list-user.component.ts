@@ -82,5 +82,14 @@ export class ShowListUserComponent implements OnInit {
 
     })
   }
+  checkroleUser(user:User){
+    let  flag = false;
+    for (let i = 0; i <user.roles.length ; i++) {
+      if (user.roles[i].id ===2 ){
+        flag = true
+      }
+    }
+    return flag;
+  }
 
 }

@@ -5,6 +5,8 @@ import {CategoryService} from '../../service/category.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {error} from 'ng-packagr/lib/utils/log';
 import {Category} from '../../model/category';
+import {TokenService} from '../../service/token.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -14,34 +16,51 @@ import {Category} from '../../model/category';
 export class IndexComponent implements OnInit {
   checkLoadBestProducts = false;
   checkLoadTopCategory = false;
+  checkCategory = false;
+  checkProductsNew = false;
   bestProducts!: Product[];
   top1CategoryProducts!: Product[];
+  productsNew!: Product[];
   categories!:Category[];
 
-  constructor(private productService: ProductService, private categoryService: CategoryService) {
+  constructor(private productService: ProductService, private categoryService: CategoryService, private tokenService:TokenService,private router:Router) {
+    this.getTop1CategoryProducts();
   }
 
   ngOnInit(): void {
     this.getBestSeller();
     this.getTop3Categories();
+    this.getProductNew();
   }
 
+  public getProductNew():void{
+    this.productService.getProductNew().subscribe(
+      (data) => {
 
+        this.productsNew = data;
+        this.checkProductsNew = true;
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error.message);
+      }
+    );
+
+  }
   public getTop3Categories(): void {
       this.categoryService.getTop3Categories().subscribe(
         (data) => {
           this.categories = data;
-          this.getTop1CategoryProducts();
+          this.checkCategory = true;
         },
         (error: HttpErrorResponse) => {
           console.log(error.message);
         }
       );
-
   }
   public getBestSeller():void{
     this.productService.getProductsBestSeller().subscribe(
       (response)=>{
+
         this.bestProducts = response.content;
         this.checkLoadBestProducts = true;
       },
@@ -51,15 +70,27 @@ export class IndexComponent implements OnInit {
     );
   }
   public getTop1CategoryProducts():void{
-    this.productService.getProductsByCategoryOrderByQuantitySale(this.categories[0].id).subscribe(
-      (response)=>{
-        this.top1CategoryProducts = response.content;
-        this.checkLoadTopCategory = true;
+    this.categoryService.getTop3Categories().subscribe(
+      (data) => {
+        this.productService.getProductsByCategoryOrderByQuantitySale(data[0].id).subscribe(
+          (response)=>{
+            this.top1CategoryProducts = response.content;
+            this.checkLoadTopCategory = true;
+          },
+          (error:HttpErrorResponse)=>{
+            alert(error.message);
+          }
+        );
       },
-      (error:HttpErrorResponse)=>{
-        alert(error.message);
+      (error: HttpErrorResponse) => {
+        console.log(error.message);
       }
     );
+
   }
 
+  showDetail(id: number) {
+    this.tokenService.changeProductDetail(id);
+    this.router.navigate(["showProductDetail"]).then()
+  }
 }

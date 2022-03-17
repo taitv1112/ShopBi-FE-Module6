@@ -12,8 +12,7 @@ export class RateProduct {
  rate :Rate;
 
 
-  constructor(id: number, orders: Orders, product: Product, rate: Rate) {
-    this.id = id;
+  constructor( orders: Orders, product: Product, rate: Rate) {
     this.orders = orders;
     this.product = product;
     this.rate = rate;
