@@ -12,10 +12,13 @@ import {data} from 'jquery';
 })
 export class ListUserInPmComponent implements OnInit {
 
-  constructor(private http : HttpClient,private tokenservice: TokenService) { }
+  constructor(private http : HttpClient,private tokenservice: TokenService) {
+    this.getListUserInPm();
+
+  }
 
   ngOnInit(): void {
-    this.getListUserInPm();
+
   }
 
 
@@ -27,6 +30,7 @@ export class ListUserInPmComponent implements OnInit {
   getListUserInPm(){
     this.http.get<User[]>("http://localhost:8080/orderInPm/listUserInPm/" +this.tokenservice.getUserNameKey()).subscribe((data)=>{
       this.listUserInPm = data;
+
     })
   }
 
