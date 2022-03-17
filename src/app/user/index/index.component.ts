@@ -30,11 +30,13 @@ export class IndexComponent implements OnInit {
   ngOnInit(): void {
     this.getBestSeller();
     this.getTop3Categories();
+    this.getProductNew();
   }
 
   public getProductNew():void{
     this.productService.getProductNew().subscribe(
       (data) => {
+
         this.productsNew = data;
         this.checkProductsNew = true;
       },
@@ -58,6 +60,7 @@ export class IndexComponent implements OnInit {
   public getBestSeller():void{
     this.productService.getProductsBestSeller().subscribe(
       (response)=>{
+
         this.bestProducts = response.content;
         this.checkLoadBestProducts = true;
       },

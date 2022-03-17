@@ -162,9 +162,7 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
 
   goProduct(product: Product) {
     // @ts-ignore
-    let productDetail = 'showProductDetail/'+product.id;
-    this.router1.navigate([productDetail]).then(() => {
-      window.location.reload();
-    });
+    this.tokenService.changeProductDetail(product.id);
+    this.router1.navigate(["showProductDetail"]).then()
   }
 }

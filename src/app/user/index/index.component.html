@@ -17,7 +17,7 @@
         <div *ngFor="let product of bestProducts" class="product-card">
             <div class="product-image">
                 <span class="discount-tag">50% off</span>
-                <a [routerLink]="['/showProductDetail',product.id]">
+                <a (click)="showDetail(product.id)" >
                     <img src="{{product.coverPhoto}}" class="product-thumb" alt="">
                 </a>
 
@@ -52,7 +52,7 @@
         <div *ngFor="let productC of top1CategoryProducts" class="product-card">
             <div class="product-image">
                 <span class="discount-tag">50% off</span>
-                <a [routerLink]="['/showProductDetail',productC.id]">
+                <a (click)="showDetail(productC.id)" >
                     <img src="{{productC.coverPhoto}}" class="product-thumb" alt="">
                 </a>
                 <button class="card-btn">add to whislist</button>
