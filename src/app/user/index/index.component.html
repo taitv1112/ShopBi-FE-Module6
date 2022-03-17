@@ -14,8 +14,8 @@
     <button class="pre-btn"><img src="assets/img/arrow.png" alt=""></button>
     <button class="nxt-btn"><img src="assets/img/arrow.png" alt=""></button>
     <div class="product-container" *ngIf="checkLoadBestProducts">
-        <div *ngFor="let product of bestProducts" class="product-card">
-            <div class="product-image">
+        <div  *ngFor="let product of bestProducts" class="product-card" >
+            <div class="product-image"  >
                 <span class="discount-tag">50% off</span>
                 <a (click)="showDetail(product.id)" >
                     <img src="{{product.coverPhoto}}" class="product-thumb" alt="">

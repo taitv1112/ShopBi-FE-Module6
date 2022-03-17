@@ -27,6 +27,13 @@ export class TokenService {
 
   constructor() {
   }
+  private idPM = new BehaviorSubject(1);
+  idPmCurrent = this.idPM.asObservable();
+
+  public changePMId(idPM:number){
+    this.idPM.next(idPM);
+  }
+
   private idCategory = new BehaviorSubject(1);
   idCategoryCurrent = this.idCategory.asObservable();
 

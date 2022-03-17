@@ -25,6 +25,7 @@ export class NavBarComponent implements OnInit,AfterViewInit{
   name: any;
   isCheckLogin = false;
   avatar: any;
+  checkPM = true;
   constructor(private tokenService: TokenService,private productService:ProductService,private categoryService: CategoryService, private router: Router) {
   }
   ngOnInit(): void {
@@ -36,10 +37,15 @@ export class NavBarComponent implements OnInit,AfterViewInit{
        this.quantityCart = quantityCart;
        console.log("quantityCart");
        console.log(quantityCart);
+       for (const argument of this.tokenService.getRoleKey()) {
+         if(argument == "PM" || argument == "ADMIN"){
+           this.checkPM = false;
+         }
+       }
      })
     }
     this.getCategories();
-    this.narbarOption();
+    // this.narbarOption();
   }
 
 
@@ -57,10 +63,32 @@ export class NavBarComponent implements OnInit,AfterViewInit{
   }
 
   logOut() {
-    window.sessionStorage.clear();
-    this.router.navigate(['login']).then(() => {
-      window.location.reload();
-    });
+    if(confirm("Are you sign out ?")){
+      let idCart = this.tokenService.cart.getId();
+      this.productService.deleteCartDetail(idCart).subscribe((data)=>{
+          console.log(data);
+        let cartDetails = this.tokenService.getListCardDetail();
+        for (const cartDetail of cartDetails) {
+          this.productService.saveCartDetail(cartDetail).subscribe((data)=>{
+              console.log(data);
+            },
+            (error:HttpErrorResponse) => {
+              console.log(error);
+            }
+          )
+        }
+          window.sessionStorage.clear();
+          this.router.navigate(['login']).then(() => {
+            window.location.reload();
+          })
+        },
+        (error:HttpErrorResponse) => {
+          console.log(error);
+        }
+      )
+
+      ;
+    }
   }
 
   showProductsByCategory(id:number) {
@@ -71,44 +99,44 @@ export class NavBarComponent implements OnInit,AfterViewInit{
 
 
 
-  narbarOption(){
-    const userImageButton = document.querySelector('#user-img');
-    const userPopup = document.querySelector('.login-logout-popup');
-    const popuptext = document.querySelector('.account-info');
-    const actionBtn = document.querySelector('#user-btn');
-    const actionBtn2 = document.querySelector('#user-btn2');
-
-    userImageButton.addEventListener('click', () => {
-      userPopup.classList.toggle('hide');
-    })
-
-    window.onload = () => {
-      let user = this.tokenService.getNameKey();
-      if(user != null){
-        this.isCheckLogin = true;
-        // means user is logged in
-        popuptext.innerHTML = `log in as, ${user}`;
-        actionBtn.innerHTML = 'log out';
-        actionBtn.addEventListener('click', () => {
-          this.logOut();
-        })
-        actionBtn2.addEventListener('click', () => {
-          this.router.navigate(["user/showOrders"]).then(() => {
-            window.location.reload();
-          })
-        })
-      } else{
-        // user is logged out
-        popuptext.innerHTML = 'log in to place order';
-        actionBtn.innerHTML = 'log in';
-        actionBtn.addEventListener('click', () => {
-          this.router.navigate(['login']).then(() => {
-            window.location.reload();
-          });
-        })
-      }
-    }
-  }
+  // narbarOption(){
+  //   const userImageButton = document.querySelector('#user-img');
+  //   const userPopup = document.querySelector('.login-logout-popup');
+  //   const popuptext = document.querySelector('.account-info');
+  //   const actionBtn = document.querySelector('#user-btn');
+  //   const actionBtn2 = document.querySelector('#user-btn2');
+  //
+  //   userImageButton.addEventListener('click', () => {
+  //     userPopup.classList.toggle('hide');
+  //   })
+  //
+  //   window.onload = () => {
+  //     let user = this.tokenService.getNameKey();
+  //     if(user != null){
+  //       this.isCheckLogin = true;
+  //       // means user is logged in
+  //       popuptext.innerHTML = `log in as, ${user}`;
+  //       actionBtn.innerHTML = 'log out';
+  //       actionBtn.addEventListener('click', () => {
+  //         this.logOut();
+  //       })
+  //       actionBtn2.addEventListener('click', () => {
+  //         this.router.navigate(["user/showOrders"]).then(() => {
+  //           window.location.reload();
+  //         })
+  //       })
+  //     } else{
+  //       // user is logged out
+  //       popuptext.innerHTML = 'log in to place order';
+  //       actionBtn.innerHTML = 'log in';
+  //       actionBtn.addEventListener('click', () => {
+  //         this.router.navigate(['login']).then(() => {
+  //           window.location.reload();
+  //         });
+  //       })
+  //     }
+  //   }
+  // }
 
   searchProduct() {
     this.tokenService.changeSearch(this.search.nativeElement.value)

@@ -5,6 +5,7 @@ import {Product} from '../model/product';
 import {environment} from '../../environments/environment.prod';
 import {RateProduct} from '../model/rate-product';
 import {User} from '../model/user';
+import {CartDetail} from '../model/cart-detail';
 
 
 @Injectable({
@@ -85,6 +86,13 @@ export class ProductService {
   public sendRequestUpSaller(user:User):Observable<User>{
     return this.httpClient.post<User>(this.apilocal+"index/sendRequestUpSaller", user);
   }
+  public saveCartDetail(cartDetail:CartDetail):Observable<CartDetail>{
+    return this.httpClient.post<CartDetail>(this.apilocal+"index/saveCartDetail", cartDetail);
+  }
+  public deleteCartDetail(idCart:any):Observable<any>{
+    return this.httpClient.delete<any>(this.apilocal+"index/deleteCartDetail/" +idCart, null);
+  }
+
 
 
 }

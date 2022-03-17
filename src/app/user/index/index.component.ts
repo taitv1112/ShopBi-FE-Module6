@@ -22,9 +22,11 @@ export class IndexComponent implements OnInit {
   top1CategoryProducts!: Product[];
   productsNew!: Product[];
   categories!:Category[];
+  checkPM = true;
 
   constructor(private productService: ProductService, private categoryService: CategoryService, private tokenService:TokenService,private router:Router) {
     this.getTop1CategoryProducts();
+
   }
 
   ngOnInit(): void {

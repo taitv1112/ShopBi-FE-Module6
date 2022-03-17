@@ -76,11 +76,13 @@ import {ListUserInPmComponent} from './pm/ListUserInPm/list-user-in-pm/list-user
 import {AuthAdminGuard} from './service/auth-admin.guard';
 import { SearchByNameComponent } from './user/search-by-name/search-by-name.component';
 import { InforUserComponent } from './user/infor-user/infor-user.component';
+import { ShowProductPmComponent } from './user/show-product-pm/show-product-pm.component';
 
 
 // @ts-ignore
 export const appRoutes: Routes = [
   {path: '', component: UserComponent, data: {title: 'Home'}},
+  {path: 'home', component: UserComponent, data: {title: 'Home'}},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
 
@@ -106,6 +108,7 @@ export const appRoutes: Routes = [
   {path: 'user/showOrders', component: OrderBuyerComponent,canActivate:[AuthRouterGuard]},
   {path: 'index/showOrders', component: SearchByNameComponent},
   {path: 'index/inforComponent', component: InforUserComponent,canActivate:[AuthRouterGuard]},
+  {path: 'index/ShowProductPmComponent', component: ShowProductPmComponent,canActivate:[AuthRouterGuard]},
 
   {
     path: 'guide/getting-started',
@@ -116,7 +119,7 @@ export const appRoutes: Routes = [
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UploadAvatarComponent, ChangeAvatarComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent,EditComponent, CreateComponent, ListproductcategoryComponent, ProductDetailComponent,DetailProductComponent, OrderInPmComponent, DetailOrderInPmComponent,ShowCartComponent,ShowListUserComponent,HomeAdminComponent, EditUserComponent, ListUserInPmComponent, ListOrderInUserBuyerComponent, ListOrderDetailInBuyerComponent,OrderBuyerComponent, SearchByNameComponent, InforUserComponent],
+  declarations: [AppComponent, HomeComponent, GettingStartedComponent, RegisterComponent, LoginComponent, UploadAvatarComponent, ChangeAvatarComponent, PmComponent, UserComponent,ShowListComponent, IndexComponent,EditComponent, CreateComponent, ListproductcategoryComponent, ProductDetailComponent,DetailProductComponent, OrderInPmComponent, DetailOrderInPmComponent,ShowCartComponent,ShowListUserComponent,HomeAdminComponent, EditUserComponent, ListUserInPmComponent, ListOrderInUserBuyerComponent, ListOrderDetailInBuyerComponent,OrderBuyerComponent, SearchByNameComponent, InforUserComponent, ShowProductPmComponent],
 
   imports: [
     FormsModule,

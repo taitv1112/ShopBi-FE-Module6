@@ -19,6 +19,8 @@ import {Comment} from '../../model/comment';
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit,AfterViewInit {
+  checkLogin= false;
+  username:string;
   @ViewChild("productImages") productImages:ElementRef;
   @ViewChild("productImageSlide") productImageSlide:ElementRef;
   rates = [1,2,3,4,5];
@@ -40,6 +42,13 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
   userOnline:User =  new User(0,"","","","","","","",0,[])
   contentComment :string ='';
   ngOnInit(): void {
+    if(this.tokenService.getUserNameKey()!= null){
+      this.checkLogin = true;
+      this.username = this.tokenService.getUserNameKey();
+      console.log("this.checkLogin,this.username");
+      console.log(!this.checkLogin == true && this.username == "Anhdenday");
+    }
+
     this.tokenService.idProductCurrent.subscribe((idProduct)=>{
       this.idProduct = idProduct;
       this.getProductById();
@@ -171,12 +180,22 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
   getAvgPmRate(id :any){
     this.productService.avgPmRate(id).subscribe(
       (data)=>{
-        this.rateAvgPm = data;
+        this.rateAvgPm = Math.round(data);
       },
     (error:HttpErrorResponse)=>{
       console.log(error);
     }
+    )
+  }
 
+  showProductsByPm(id:number) {
+    this.tokenService.changePMId(id);
+    this.router1.navigate(["/index/ShowProductPmComponent"]).then()
+  }
+
+  login() {
+    this.router1.navigate(["/login"]).then(
+      window.location.reload
     )
   }
 }
