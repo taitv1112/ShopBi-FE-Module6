@@ -19,7 +19,7 @@ export class DetailProductComponent implements OnInit {
     new Category(0,"",""), new User(0,"","","","","","","",0,[]),
     new Promotion(0,"",0));
 
-  user = new User(0,"","","","","","","","",0,[]);
+  user = new User(0,"","","","","","","",0,[]);
 
   listImg : Img[] = []
 
