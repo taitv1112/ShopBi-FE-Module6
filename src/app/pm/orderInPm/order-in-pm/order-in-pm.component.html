@@ -154,7 +154,7 @@
                                         <div class="d-flex px-2 py-1">
 
                                             <div class="d-flex flex-column justify-content-center">
-                                                <a routerLink="/pm/detailOrder/{{order.id}}"><h6 class="mb-0 text-sm">{{order.id}}</h6></a>
+                                                <a routerLink="/pm/orderDetail/{{order.id}}"><h6 class="mb-0 text-sm">{{order.id}}</h6></a>
                                             </div>
                                         </div>
                                     </td>
@@ -172,7 +172,11 @@
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-success" (click)="checkkedOrder(order.id)" *ngIf="order.status=='Pending'">Checkked</button>
-                                        <button type="button" class="btn btn-warning" (click)="unCheckkedOrder(order.id)" *ngIf="order.status=='Paid'">Unchekked</button>
+                                        <button type="button" class="btn btn-warning" (click)="unCheckkedOrder(order.id)" *ngIf="order.status=='Paid'">Unchecked</button>
+                                        <button type="button" class="btn btn-info" (click)="checkDone(order.id)" *ngIf="order.status=='Paid'">Done</button>
+                                    </td>
+                                    <td>
+                                        <a type="button" class="btn btn-info"  routerLink="/pm/detailOrder/{{order.id}}">Detail</a>
                                     </td>
 <!--                                    <td>-->
 

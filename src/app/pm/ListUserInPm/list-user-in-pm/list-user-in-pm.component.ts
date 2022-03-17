@@ -16,7 +16,6 @@ export class ListUserInPmComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListUserInPm();
-    this.findByEmail()
   }
 
 
@@ -36,5 +35,6 @@ export class ListUserInPmComponent implements OnInit {
       this.listUserInPm = data;
     })
   }
+
 
 }
