@@ -1,9 +1,9 @@
-import {User} from './user';
+
 
 export class Cart {
   private id! : number;
 
-  constructor(id: number, user: User) {
+  constructor(id: number) {
     this.id = id;
   }
 

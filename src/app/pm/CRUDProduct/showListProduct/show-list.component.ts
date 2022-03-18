@@ -3,6 +3,7 @@ import {Product} from '../../../model/product';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Category} from '../../../model/category';
+import {TokenService} from '../../../service/token.service';
 
 @Component({
   selector: 'app-show-list',
@@ -16,13 +17,13 @@ export class ShowListComponent implements OnInit {
   idCate:number;
 
 
-  constructor(private http: HttpClient,private router : Router,private active: ActivatedRoute) {
-
+  constructor(private http: HttpClient,private router : Router,private active: ActivatedRoute,private tokenService:TokenService) {
+    this.getListProduct()
+    this.getListCategory()
   }
 
   ngOnInit(): void {
-    this.getListProduct()
-    this.getListCategory()
+
   }
   search :string ='';
 
@@ -47,7 +48,7 @@ export class ShowListComponent implements OnInit {
 
 
   getListProduct(){
-    this.http.get<Product[]>("http://localhost:8080/pm/product").subscribe((data)=>{
+    this.http.get<Product[]>("http://localhost:8080/pm/product/"+ this.tokenService.getUserNameKey()).subscribe((data)=>{
       this.listProduct = data;
     })
   }

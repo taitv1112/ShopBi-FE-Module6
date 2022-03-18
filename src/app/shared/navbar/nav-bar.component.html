@@ -24,7 +24,7 @@
 
                 <a *ngIf="quantityCart == 0"><p style="color: red; bottom: 1px">{{quantityCart}}</p><img src="assets/img/cart.png" alt=""></a>
                 <a *ngIf="isCheckLogin && checkPM" [routerLink]="['/index/inforComponent']"><p> Register Seller</p></a>
-                <a *ngIf="!isCheckLogin && checkPM" [routerLink]="['/pm']"><p> Seller Manager</p></a>
+                <a *ngIf="!(isCheckLogin && checkPM)" [routerLink]="['/pm']"><p> Seller Manager</p></a>
 
                 <a *ngIf="quantityCart > 0" [routerLink]="['/showCartDetail']"><p style="color: red; bottom: 1px">{{quantityCart}}</p><img src="assets/img/cart.png" alt=""></a>
             </div>

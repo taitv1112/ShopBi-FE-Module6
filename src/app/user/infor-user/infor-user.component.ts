@@ -52,11 +52,12 @@ export class InforUserComponent implements OnInit,AfterViewInit {
   }
 
   public onUpdateUser(user: User ,userEdit: User): void {
-
+    this.tokenService.setAvatarKey(user.avatar);
     userEdit.name = user.name;
     userEdit.avatar = user.avatar;
     userEdit.nameStore = user.nameStore;
     userEdit.address = user.address;
+    userEdit.phone = user.phone;
     if(this.fb != ""){
       userEdit.avatar = this.fb
     }

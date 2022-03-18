@@ -14,7 +14,7 @@ export class ListOrderDetailInBuyerComponent implements OnInit {
 
   id : number;
   orderDetail : OrderDetail[] = [];
-  constructor(private http : HttpClient,private tokenservice: TokenService,private routerActive : ActivatedRoute) {
+  constructor(private http : HttpClient,private tokenService: TokenService,private routerActive : ActivatedRoute) {
     this.routerActive.paramMap.subscribe((param)=>{
       this.id = Number(<string>param.get('id'));
       this.getListOrderDetail()

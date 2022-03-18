@@ -12,7 +12,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ListOrderInUserBuyerComponent implements OnInit {
   id : number;
-  constructor(private http : HttpClient,private tokenservice: TokenService,private routerActive : ActivatedRoute) {
+  constructor(private http : HttpClient,private tokenService: TokenService,private routerActive : ActivatedRoute) {
     this.routerActive.paramMap.subscribe((param)=>{
       this.id = Number(<string>param.get('id'));
       this.getListUserInPm()
@@ -27,7 +27,7 @@ export class ListOrderInUserBuyerComponent implements OnInit {
   }
 
   getListUserInPm(){
-    this.http.get<Orders[]>("http://localhost:8080/orderInPm/listOrderUserInPm/" +this.tokenservice.getUserNameKey()+"?id=" + this.id).subscribe((data)=>{
+    this.http.get<Orders[]>("http://localhost:8080/orderInPm/listOrderUserInPm/" +this.tokenService.getUserNameKey()+"?id=" + this.id).subscribe((data)=>{
       this.listOrder = data;
     })
   }

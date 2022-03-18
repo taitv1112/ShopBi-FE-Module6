@@ -64,6 +64,8 @@ export class NavBarComponent implements OnInit,AfterViewInit{
 
   logOut() {
     if(confirm("Are you sign out ?")){
+      console.log("this.tokenService.cart.getId");
+      console.log(this.tokenService.cart);
       let idCart = this.tokenService.cart.getId();
       this.productService.deleteCartDetail(idCart).subscribe((data)=>{
           console.log(data);

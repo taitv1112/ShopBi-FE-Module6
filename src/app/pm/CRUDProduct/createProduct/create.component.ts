@@ -29,7 +29,7 @@ export class CreateComponent implements OnInit {
 
   checkUpload = false;
 
-  constructor(private http : HttpClient,private router : Router,private storage : AngularFireStorage,private tokenservice: TokenService) {
+  constructor(private http : HttpClient,private tokenService:TokenService,private router : Router,private storage : AngularFireStorage,private tokenservice: TokenService) {
 
     this.getListCategory()
     this.getListPromotion()
@@ -81,7 +81,9 @@ export class CreateComponent implements OnInit {
 
 
 
-    this.router.navigate(["/pm/listProduct"])
+    this.router.navigate(["/pm/listProduct"]).then(
+      window.location.reload
+    )
   }
 
   submit(){

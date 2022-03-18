@@ -76,7 +76,7 @@
             </td>
 
             <td *ngIf="orders.rate == null">Please Rate</td>
-            <td></td>
+            <td> {{orders.createAt}}</td>
             <td>
                 <a (click)="onOpenModal(orders, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"> Detail<i class="fa fa-pencil"></i> </a>
             </td>

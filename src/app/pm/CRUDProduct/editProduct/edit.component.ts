@@ -27,7 +27,7 @@ export class EditComponent implements OnInit {
 
   arrayPicture = "";
 
-  constructor(private http: HttpClient, private routerActive : ActivatedRoute, private router : Router,private storage : AngularFireStorage,private tokenservice: TokenService) {
+  constructor(private http: HttpClient,private tokenService:TokenService, private routerActive : ActivatedRoute, private router : Router,private storage : AngularFireStorage,private tokenservice: TokenService) {
     this.routerActive.paramMap.subscribe((param)=>{
       this.id = Number(<string>param.get('id'));
     })

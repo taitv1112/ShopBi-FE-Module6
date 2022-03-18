@@ -12,7 +12,7 @@ import {data} from 'jquery';
 })
 export class ListUserInPmComponent implements OnInit {
 
-  constructor(private http : HttpClient,private tokenservice: TokenService) {
+  constructor(private http : HttpClient,private tokenService: TokenService) {
     this.getListUserInPm();
 
   }
@@ -28,14 +28,14 @@ export class ListUserInPmComponent implements OnInit {
   orderFind : string
 
   getListUserInPm(){
-    this.http.get<User[]>("http://localhost:8080/orderInPm/listUserInPm/" +this.tokenservice.getUserNameKey()).subscribe((data)=>{
+    this.http.get<User[]>("http://localhost:8080/orderInPm/listUserInPm/" +this.tokenService.getUserNameKey()).subscribe((data)=>{
       this.listUserInPm = data;
 
     })
   }
 
   findByEmail(){
-    this.http.get<User[]>("http://localhost:8080/orderInPm/findUserInPm/"  + this.tokenservice.getUserNameKey() +"?email=" + this.orderFind).subscribe((data)=>{
+    this.http.get<User[]>("http://localhost:8080/orderInPm/findUserInPm/"  + this.tokenService.getUserNameKey() +"?email=" + this.orderFind).subscribe((data)=>{
       this.listUserInPm = data;
     })
   }

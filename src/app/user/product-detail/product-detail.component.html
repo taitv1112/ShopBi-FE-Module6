@@ -58,10 +58,11 @@
 
         <br>
         <p class="product-brand">Available: {{quantityProductNow}}</p>
+        <p class="product-brand">Sold: {{product.priceSale}}</p>
         <br>
         <p class="product-short-des">{{product.description}}</p>
-        <span class="product-price">Price: {{product.price}}</span>
-        <span class="product-actual-price">Price sale: ${{product.price*product.promotion.discount}}</span>
+        <span class="product-price">Price sale: $ {{product.priceSale}}</span>
+        <span class="product-actual-price">Price: ${{product.price}}</span>
         <span class="product-discount">( {{product.promotion.discount}}% off )</span>
         <BR>
         <button *ngIf="checkLogin && username !== product.user.username" class="btn cart-btn" (click)="addToCart(product)">add to cart</button>
@@ -116,7 +117,7 @@
     <div class="product-container" *ngIf="top15ProductsalePm">
         <div *ngFor="let product of top15ProductsalePm" class="product-card">
             <div class="product-image">
-                <span class="discount-tag">50% off</span>
+                <span class="discount-tag">{{product.promotion.discount}}% off</span>
                 <a (click)="goProduct(product)">
                     <img src="{{product.coverPhoto}}" class="product-thumb" alt="">
                 </a>
@@ -125,8 +126,9 @@
             </div>
             <div class="product-info">
                 <a (click)="goProduct(product)">  <h2 class="product-brand">{{product.name}}</h2></a>
-                <p class="product-short-des">{{product.description}}</p>
-                <span class="price"></span><span class="actual-price">${{product.priceSale}}</span>
+                <p class="product-short-des">Sold: {{product.quantitySale}}</p>
+                <span class="price">${{product.priceSale}}</span>
+                <span class="actual-price">${{product.price}}</span>
             </div>
         </div>
     </div>
@@ -140,7 +142,7 @@
     <div class="product-container" *ngIf="checkFindByPmAndCate">
         <div *ngFor="let product of findByPmAndCate" class="product-card">
             <div class="product-image">
-                <span class="discount-tag">50% off</span>
+                <span class="discount-tag">{{product.promotion.discount}}% off</span>
                 <a (click)="goProduct(product)">
                     <img src="{{product.coverPhoto}}" class="product-thumb" alt="">
                 </a>
@@ -148,9 +150,10 @@
 <!--                <button class="card-btn">add to whislist</button>-->
             </div>
             <div class="product-info">
-                <h2 class="product-brand">{{product.name}}</h2>
-                <p class="product-short-des">{{product.description}}</p>
-                <span class="price"></span><span class="actual-price">${{product.priceSale}}</span>
+                <a (click)="goProduct(product)">  <h2 class="product-brand">{{product.name}}</h2></a>
+                <p class="product-short-des">Sold: {{product.quantitySale}}</p>
+                <span class="price">${{product.priceSale}}</span>
+                <span class="actual-price">${{product.price}}</span>
             </div>
         </div>
     </div>

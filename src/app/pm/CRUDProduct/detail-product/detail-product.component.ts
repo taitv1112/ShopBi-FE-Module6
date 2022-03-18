@@ -8,6 +8,7 @@ import {HttpClient} from '@angular/common/http';
 import {Img} from '../../../model/img';
 import {finalize} from 'rxjs/operators';
 import {AngularFireStorage} from '@angular/fire/storage';
+import {TokenService} from '../../../service/token.service';
 
 @Component({
   selector: 'app-detail-product',
@@ -31,7 +32,7 @@ export class DetailProductComponent implements OnInit {
 
   @ViewChild('uploadFile',{static : true}) public avatarDom:ElementRef | undefined;
 
-  constructor(private routerActive : ActivatedRoute, private http : HttpClient,private router : Router,private storage : AngularFireStorage) {
+  constructor(private routerActive : ActivatedRoute,private tokenService:TokenService, private http : HttpClient,private router : Router,private storage : AngularFireStorage) {
       this.routerActive.paramMap.subscribe((param)=>{
         this.id = Number(<string>param.get('id'));
         this.detailProduct();
