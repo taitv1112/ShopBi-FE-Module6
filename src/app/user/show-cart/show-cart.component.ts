@@ -13,6 +13,9 @@ import {OrderForm} from '../../model/OrderForm';
 import {Orders} from '../../model/orders';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Route, Router} from '@angular/router';
+import {ProductService} from '../../service/product.service';
+import {Promotion} from '../../model/promotion';
+import {error} from 'ng-packagr/lib/utils/log';
 
 @Component({
   selector: 'app-show-cart',
@@ -21,6 +24,7 @@ import {Route, Router} from '@angular/router';
 
 })
 export class ShowCartComponent implements OnInit, AfterViewInit {
+  discount : string;
   address:string;
   quantityEdit: any;
   userPm = null;
@@ -28,7 +32,7 @@ export class ShowCartComponent implements OnInit, AfterViewInit {
   @ViewChild('fullPrice') fullPrice: ElementRef;
   cartDetails: CartDetail[] = this.tokenService.getListCardDetail();
 
-  constructor(private tokenService: TokenService, private orderService:OrderServiceService,private router:Router) {
+  constructor(private tokenService: TokenService,private productService: ProductService, private orderService:OrderServiceService,private router:Router) {
     this.address = this.tokenService.getAddressKey();
 
   }
@@ -260,7 +264,7 @@ export class ShowCartComponent implements OnInit, AfterViewInit {
     for (const orderPm1 of orderPms) {
         orderPm1.usernameBuyer = this.tokenService.getUserNameKey();
         orderPm1.address_ship = this.address;
-        orderPm1.billTotal = this.getTotalBillByPm(orderPm1.cartDetails);
+        orderPm1.billTotal = this.getTotalBillByPm(orderPm1.cartDetails) * this.point;
         this.orderService.createOrder(orderPm1).subscribe((data)=>{
           console.log("Create order successful");
           console.log(data);
@@ -283,6 +287,30 @@ export class ShowCartComponent implements OnInit, AfterViewInit {
     for (const orderPM of orderPmList) {
       sum += this.getTotalBillByPm(orderPM.cartDetails);
     }
+    if(this.point!=1){
+     sum = sum - this.point*sum/100;
+    }
     return sum;
+  }
+ promotion:Promotion;
+  checkPormotionk = true;
+  point:number = 1;
+  checkPromotion() {
+    this.point = 1;
+    this.productService.findPromotion(this.discount).subscribe(
+      (data)=>{
+        this.promotion = data
+        if(this.promotion == null){
+          alert("Discount Code Not Available")
+          this.checkPormotionk = false;
+        }else {
+          this.point = this.promotion.discount;
+        }
+      },
+    (error:HttpErrorResponse)=>{
+        alert("Discount Code Not Available")
+        this.checkPormotionk = false;
+    }
+    )
   }
 }

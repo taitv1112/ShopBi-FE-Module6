@@ -25,7 +25,7 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
   @ViewChild("productImageSlide") productImageSlide:ElementRef;
   rates = [1,2,3,4,5];
   quantityProductNow:number;
-  cart = this.tokenService.getCard();
+  cart = this.tokenService.getCart();
   cartDetails=this.tokenService.getListCardDetail();
   top15ProductsalePm:Product[];
   checkTop15ProductsalePm= false;

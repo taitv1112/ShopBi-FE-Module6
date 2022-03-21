@@ -87,7 +87,7 @@ export class TokenService {
     window.sessionStorage.setItem(CART, JSON.stringify(cart));
   }
 
-  public getCard(): any {
+  public getCart(): any {
     return JSON.parse(window.sessionStorage.getItem(CART));
   }
 

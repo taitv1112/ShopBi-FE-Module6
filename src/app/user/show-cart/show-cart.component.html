@@ -28,7 +28,12 @@
         </tbody>
         <tr>
             <td style="padding: 30px"><h4>Address: </h4></td>
-            <td colspan="6"> <input type="text" placeholder="Address" [(ngModel)]="address" value="{{address}}"  ></td></tr>
+            <td colspan="6"> <input type="text" placeholder="Address" [(ngModel)]="address" value="{{address}}"  ></td>
+        </tr>
+        <tr>
+            <td style="padding: 30px"><h4>Discount Code: </h4></td>
+            <td colspan="6"> <input (change)="checkPromotion()" type="text" placeholder="Discount Code" [(ngModel)]="discount"   ></td>
+        </tr>
         <tr>
             <td colspan="6" style="text-align: right ; color: red">Total : {{getTotalBillByPm(orderPMs.cartDetails)}}</td>
         </tr>

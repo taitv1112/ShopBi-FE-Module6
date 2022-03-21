@@ -64,28 +64,38 @@ export class NavBarComponent implements OnInit,AfterViewInit{
 
   logOut() {
     if(confirm("Are you sign out ?")){
-      console.log("this.tokenService.cart.getId");
-      console.log(this.tokenService.cart);
-      let idCart = this.tokenService.cart.getId();
+
+      let idCart = this.tokenService.getCart().id;
       this.productService.deleteCartDetail(idCart).subscribe((data)=>{
           console.log(data);
+          console.log(1);
+
         let cartDetails = this.tokenService.getListCardDetail();
-        for (const cartDetail of cartDetails) {
-          this.productService.saveCartDetail(cartDetail).subscribe((data)=>{
-              console.log(data);
-            },
-            (error:HttpErrorResponse) => {
-              console.log(error);
-            }
-          )
+          console.log("cartDetails.length");
+          console.log(typeof cartDetails);
+        if(cartDetails != null ){
+          for (const cartDetail of cartDetails) {
+            this.productService.saveCartDetail(cartDetail).subscribe((data)=>{
+                console.log(data);
+                console.log(2);
+              },
+              (error:HttpErrorResponse) => {
+                console.log(error);
+                console.log(3);
+              }
+            )
+          }
         }
           window.sessionStorage.clear();
-          this.router.navigate(['login']).then(() => {
+          this.router.navigate(['/login']).then(() => {
             window.location.reload();
           })
+          console.log(4);
         },
         (error:HttpErrorResponse) => {
+          console.log(5);
           console.log(error);
+
         }
       )
 

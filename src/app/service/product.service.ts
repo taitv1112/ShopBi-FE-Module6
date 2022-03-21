@@ -90,9 +90,12 @@ export class ProductService {
     return this.httpClient.post<CartDetail>(this.apilocal+"index/saveCartDetail", cartDetail);
   }
   public deleteCartDetail(idCart:any):Observable<any>{
-    return this.httpClient.delete<any>(this.apilocal+"index/deleteCartDetail/" +idCart, null);
+    return this.httpClient.get<any>(this.apilocal+"index/deleteCartDetail/" +idCart);
   }
-
+  public findPromotion(name:any):Observable<any> {
+    // @ts-ignore
+    return this.httpClient.get(this.apilocal + 'index/findPromotion/'+name);
+  }
 
 
 }

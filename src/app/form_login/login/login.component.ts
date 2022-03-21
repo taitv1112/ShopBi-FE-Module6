@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
         this.tokenService.setListCardDetail(data.cartDetailList);
         this.tokenService.setUserNameKey(data.username);
         this.tokenService.setAddressKey(data.address);
+
         console.log("this.authService.loggedInUser()");
         console.log(this.authService.loggedInUser());
         console.log("this.authService.loggedInPM()");
