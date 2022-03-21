@@ -11,6 +11,7 @@ const AVATAR_KEY = 'Avatar_Key';
 const LIST_CART_DETAIL = 'CartDetails_Key';
 const CART = 'Cart_Key';
 const ADDRESS = 'ADDRESS';
+const HREF = 'HREF';
 
 @Injectable({
   providedIn: 'root'

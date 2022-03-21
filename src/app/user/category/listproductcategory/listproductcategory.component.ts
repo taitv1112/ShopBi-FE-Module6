@@ -17,11 +17,10 @@ export class ListproductcategoryComponent implements OnInit {
   constructor(private productService:ProductService, private router:ActivatedRoute,private  http:HttpClient,private router1:Router,private tokenService:TokenService) { }
 
   ngOnInit(): void {
-
-    this.tokenService.idCategoryCurrent.subscribe((idCategory)=>{
-      this.idCategory = idCategory;
-      this.getListProductByCategoryID(0);
-    })
+      this.router.paramMap.subscribe((param)=> {
+        this.idCategory = param.get("id");
+        this.getListProductByCategoryID(0);
+      })
 
   }
 

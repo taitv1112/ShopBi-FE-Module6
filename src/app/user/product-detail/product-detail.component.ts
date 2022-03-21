@@ -12,6 +12,7 @@ import {Promotion} from '../../model/promotion';
 import {User} from '../../model/user';
 import {data} from 'jquery';
 import {Comment} from '../../model/comment';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-detail',
@@ -45,24 +46,27 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
     if(this.tokenService.getUserNameKey()!= null){
       this.checkLogin = true;
       this.username = this.tokenService.getUserNameKey();
-      console.log("this.checkLogin,this.username");
-      console.log(!this.checkLogin == true && this.username == "Anhdenday");
+
     }
 
-    this.tokenService.idProductCurrent.subscribe((idProduct)=>{
-      this.idProduct = idProduct;
+    this.router.paramMap.subscribe(params => {
+      this.idProduct = + params.get("id");
       this.getProductById();
       this.getImgProductById();
-      this.getListComment()
-      this.getUserByUserName()
+      this.getListComment();
+
     })
+    console.log("window.location.href",window.location.href);
+    this.getUserByUserName();
 
 
-
+    console.log("idProduct",this.idProduct);
     console.log("ListComment",this.listComment);
     console.log("User",this.userOnline);
     console.log("user name",this.tokenService.getUserNameKey());
   }
+
+
   public getProductById():void{
     this.productService.getProductByID(this.idProduct).subscribe((response)=>{
         this.product = response;
@@ -162,7 +166,7 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
     }
 
     saveComment(){
-    if (confirm("Bạn có chắc chắn không ?")){
+    if (confirm("Ok comment ?")){
       let  comment = new Comment(this.contentComment,this.userOnline,this.product)
       this.http.post("http://localhost:8080/comment",comment).subscribe((data)=>{
         this.getListComment()
@@ -171,11 +175,7 @@ export class ProductDetailComponent implements OnInit,AfterViewInit {
 
     }
 
-  goProduct(product: Product) {
-    // @ts-ignore
-    this.tokenService.changeProductDetail(product.id);
-    this.router1.navigate(["showProductDetail"]).then()
-  }
+
 
   getAvgPmRate(id :any){
     this.productService.avgPmRate(id).subscribe(

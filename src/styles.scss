@@ -21,15 +21,7 @@ body { }
   box-sizing: border-box;
 }
 
-//body{
-//  width: 100%;
-//  min-height: 100vh;
-//  display: flex;
-//  justify-content: center;
-//  margin-left: 4%;
-//  background: #f5f5f5;
-//  font-family: 'roboto', sans-serif;
-//}
+
 
 .loader{
   position: absolute;
@@ -189,8 +181,8 @@ label a{
 }
 .image-slider{
   background-image: url('assets/img/product image 1.png');
-  width: 800px;
-  height: 800px;
+  width: 600px;
+  height: 600px;
   position: relative;
   background-size: cover;
 }

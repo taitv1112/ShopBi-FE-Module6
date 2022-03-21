@@ -97,8 +97,8 @@ export const appRoutes: Routes = [
   {path: 'pm/detailProduct/:id', component: DetailProductComponent ,canActivate:[AuthPmGuard]},
 
   {path: 'index', component: UserComponent},
-  {path: 'showProductByCategory', component: ListproductcategoryComponent},
-  {path: 'showProductDetail', component: ProductDetailComponent},
+  {path: 'showProductByCategory/:id', component: ListproductcategoryComponent},
+  {path: 'showProductDetail/:id', component: ProductDetailComponent},
   {path: 'showCartDetail', component: ShowCartComponent,canActivate:[AuthRouterGuard]},
   {path: 'admin', component: HomeAdminComponent,canActivate:[AuthAdminGuard]},
   {path: 'admin/showUser', component: ShowListUserComponent,canActivate:[AuthAdminGuard]},

@@ -118,7 +118,8 @@
         <div *ngFor="let product of top15ProductsalePm" class="product-card">
             <div class="product-image">
                 <span class="discount-tag">{{product.promotion.discount}}% off</span>
-                <a (click)="goProduct(product)">
+<!--                <a (click)="goProduct(product)">-->
+                <a [routerLink]="['/showProductDetail',product.id]" >
                     <img src="{{product.coverPhoto}}" class="product-thumb" alt="">
                 </a>
 
@@ -143,14 +144,17 @@
         <div *ngFor="let product of findByPmAndCate" class="product-card">
             <div class="product-image">
                 <span class="discount-tag">{{product.promotion.discount}}% off</span>
-                <a (click)="goProduct(product)">
+                <a [routerLink]="['/showProductDetail',product.id]" >
                     <img src="{{product.coverPhoto}}" class="product-thumb" alt="">
                 </a>
 
 <!--                <button class="card-btn">add to whislist</button>-->
             </div>
             <div class="product-info">
-                <a (click)="goProduct(product)">  <h2 class="product-brand">{{product.name}}</h2></a>
+<!--                <a (click)="goProduct(product)">  -->
+                <a [routerLink]="['/showProductDetail',product.id]" >
+                    <h2 class="product-brand">{{product.name}}</h2>
+                </a>
                 <p class="product-short-des">Sold: {{product.quantitySale}}</p>
                 <span class="price">${{product.priceSale}}</span>
                 <span class="actual-price">${{product.price}}</span>

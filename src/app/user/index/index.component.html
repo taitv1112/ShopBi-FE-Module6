@@ -10,14 +10,15 @@
 
 <!-- cards-container -->
 <section class="product">
-    <h2 class="product-category">best selling</h2>
+    <h2 class="product-category">Best selling</h2>
     <button class="pre-btn"><img src="assets/img/arrow.png" alt=""></button>
     <button class="nxt-btn"><img src="assets/img/arrow.png" alt=""></button>
     <div class="product-container" *ngIf="checkLoadBestProducts">
         <div  *ngFor="let product of bestProducts" class="product-card" >
             <div class="product-image"  >
                 <span class="discount-tag">{{product.promotion.discount}}% off</span>
-                <a (click)="showDetail(product.id)" >
+<!--                <a (click)="showDetail(product.id)" >-->
+                <a [routerLink]="['/showProductDetail',product.id]" >
                     <img src="{{product.coverPhoto}}" class="product-thumb" alt="">
                 </a>
 
@@ -36,7 +37,7 @@
 <div>
     <!-- collections -->
     <section class="collection-container" *ngIf="checkCategory">
-        <a (click)="showProductBYCategoryId(category.id)"  class="collection" *ngFor="let category of categories">
+        <a [routerLink]="['/showProductByCategory',category.id]"  class="collection" *ngFor="let category of categories">
             <img src="{{category.imgCate}}" alt="">
             <p class="collection-title">{{category.name}} <br> apparels</p>
         </a>
@@ -46,14 +47,14 @@
 
 <!-- card-container -->
 <section class="product" *ngIf="checkCategory">
-  <a (click)="showProductBYCategoryId(categories[0].id) "> <h2 class="product-category">{{categories[0].name}}</h2>></a>
+  <a [routerLink]="['/showProductByCategory',categories[0].id] "> <h2 class="product-category">{{categories[0].name}}</h2>></a>
     <button class="pre-btn"><img src="assets/img/arrow.png" alt=""></button>
     <button class="nxt-btn"><img src="assets/img/arrow.png" alt=""></button>
     <div class="product-container" *ngIf="checkLoadTopCategory ">
         <div *ngFor="let productC of top1CategoryProducts" class="product-card">
             <div class="product-image">
                 <span class="discount-tag">{{productC.promotion.discount}}% off</span>
-                <a (click)="showDetail(productC.id)" >
+                <a [routerLink]="['/showProductDetail',productC.id]" >
                     <img src="{{productC.coverPhoto}}" class="product-thumb" alt="">
                 </a>
                 <button class="card-btn">add to whislist</button>
@@ -78,7 +79,7 @@
         <div *ngFor="let product of productsNew" class="product-card">
             <div class="product-image">
                 <span class="discount-tag">{{product.promotion.discount}}% off</span>
-                <a (click)="showDetail(product.id)" >
+                <a [routerLink]="['/showProductDetail',product.id]" >
                     <img src="{{product.coverPhoto}}" class="product-thumb" alt="">
                 </a>
 
