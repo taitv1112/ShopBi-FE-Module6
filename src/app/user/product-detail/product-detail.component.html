@@ -71,7 +71,7 @@
     </div>
 </section>
 <!--comment-->
-    <section class="detail-des">
+    <section class="detail-des" >
         <h2 class="heading">Reviews</h2>
         <div >
             <div class="row">
@@ -92,7 +92,7 @@
 
                         </div>
                         <div>
-                            <div >
+                            <div *ngIf="checkLogin">
                                 <div class="p-2"><span class="round"><img src="{{userOnline.avatar}}" alt="user" width="50"></span></div>
                                 <div class="comment-text w-100">
                                     <h5>{{userOnline.name}}</h5>
@@ -126,7 +126,9 @@
 <!--                <button class="card-btn">add to whislist</button>-->
             </div>
             <div class="product-info">
-                <a (click)="goProduct(product)">  <h2 class="product-brand">{{product.name}}</h2></a>
+                <a [routerLink]="['/showProductDetail',product.id]" >
+                    <h2 class="product-brand">{{product.name}}</h2>
+                </a>
                 <p class="product-short-des">Sold: {{product.quantitySale}}</p>
                 <span class="price">${{product.priceSale}}</span>
                 <span class="actual-price">${{product.price}}</span>

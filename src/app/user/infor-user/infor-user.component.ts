@@ -41,7 +41,7 @@ export class InforUserComponent implements OnInit,AfterViewInit {
         this.checkload = true
       },
       (error:HttpErrorResponse)=>{
-        alert(error.message);
+        console.log(error.message);
       }
     )
   }
@@ -68,7 +68,7 @@ export class InforUserComponent implements OnInit,AfterViewInit {
         this.user = response;
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
   }
@@ -111,11 +111,11 @@ export class InforUserComponent implements OnInit,AfterViewInit {
     userEdit.address = user.address;
     this.productService.sendRequestUpSaller(userEdit).subscribe(
       (response: User) => {
-        alert("response");
+        console.log("response");
         this.checkUP1Hit = false
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
   }

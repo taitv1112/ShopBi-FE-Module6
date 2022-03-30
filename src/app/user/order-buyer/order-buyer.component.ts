@@ -173,7 +173,7 @@ export class OrderBuyerComponent implements OnInit,AfterViewInit {
         window.location.reload();
       },
       (error:HttpErrorResponse)=>{
-        alert(error.message);
+        console.log(error.message);
       })
     // @ts-ignore
 

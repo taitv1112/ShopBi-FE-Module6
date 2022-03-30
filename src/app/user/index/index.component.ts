@@ -67,7 +67,7 @@ export class IndexComponent implements OnInit {
         this.checkLoadBestProducts = true;
       },
       (error:HttpErrorResponse)=>{
-        alert(error.message);
+        console.log(error.message);
       }
     );
   }
@@ -80,7 +80,7 @@ export class IndexComponent implements OnInit {
             this.checkLoadTopCategory = true;
           },
           (error:HttpErrorResponse)=>{
-            alert(error.message);
+            console.log(error.message);
           }
         );
       },
